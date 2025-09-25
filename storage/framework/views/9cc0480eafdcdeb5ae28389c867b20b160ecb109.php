@@ -132,7 +132,7 @@
         }
         
         {
-            background-color: #F7C701 !important;
+            background-color: #F7C701 !important; 
         }
         .content {
             background-image: url('/assets/logo.JPG'); 
@@ -153,7 +153,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            backdrop-filter: blur(5px); 
+            backdrop-filter: blur(2.5px); 
         }
         #wrapper.toggled #sidebar-wrapper {
         margin-left: 0;
