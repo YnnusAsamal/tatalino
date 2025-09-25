@@ -21,7 +21,6 @@
         "laravel/vonage-notification-channel": "^2.5",
         "laravelcollective/html": "^6.3",
         "latfur/laravel-event-crud": "^1.0",
-        "luigel/laravel-paymongo": "^1.5",
         "maatwebsite/excel": "^3.1",
         "nexmo/client": "^2.4",
         "realrashid/sweet-alert": "^7.1",
