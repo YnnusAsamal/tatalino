@@ -23,6 +23,16 @@ use App\Http\Controllers\SettingController;
 |
 */
 
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('config:clear');
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('key:generate');
+    return 'DONE';
+});
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
