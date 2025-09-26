@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Tatalino</title>
+        <title>Tintatalino</title>
         <link href="<?php echo e(asset('images/logo.png')); ?>" rel="website icon">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -190,7 +190,7 @@
 
         <!-- Sidebar -->
         <div class="sidebar border-right sticky-top" id="sidebar-wrapper">
-            <div class="sidebar-heading text-white"><img src="<?php echo e(asset('assets/logo.JPG')); ?>" width="75px"> TATALINO</div>
+            <div class="sidebar-heading text-white"><img src="<?php echo e(asset('assets/logo.JPG')); ?>" width="75px"> TINTATALINO</div>
                 <div class="list-group list-group-flush">
                     <a href="<?php echo e(route('dashboard')); ?>" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspDashboard</a>
                     <div class="accordion accordion-flush" id="accordionFlushExample">
