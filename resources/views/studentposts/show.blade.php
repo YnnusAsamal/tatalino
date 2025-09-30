@@ -32,7 +32,7 @@
     <div class="feed-posts">
         <h3>Latest Posts</h3>
 
-        @foreach($posts as $post)
+        @foreach($myfeeds as $post)
             <div class="post-card">
                 <div class="post-header">
                     <img src="https://picsum.photos/50" class="post-avatar" alt="">
