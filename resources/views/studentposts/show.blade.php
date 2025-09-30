@@ -51,6 +51,12 @@
                 <div class="post-body">
                     <h4>{{ $post->title }}</h4>
                     <p>{{ Str::limit($post->content, 200) }}</p>
+
+                     @if($post->image)
+                        <div class="post-image">
+                        <img src="{{ asset('assets/posts/' . $post->image) }}" alt="Post Image" style="max-width:100%; border-radius:8px; margin-top:10px;">
+                        </div>
+                    @endif
                 </div>
                 <div class="post-footer">
                     <button>👍 Like</button>
