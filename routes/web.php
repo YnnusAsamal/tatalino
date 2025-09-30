@@ -63,6 +63,12 @@ Route::group(['middleware' => ['auth']], function () {
     // For Student role
     Route::group(['middleware' => ['role:Student']], function () {
         Route::get('studentposts', [StudentPostController::class, 'index'])->name('studentposts.index');
+        Route::get('studentposts/{id}', [StudentPostController::class, 'show'])->name('studentposts.show');
+        Route::post('studentposts/store', [StudentPostController::class, 'store'])->name('studentposts.store');
+        Route::get('studentposts/edit/{id}', [StudentPostController::class, 'edit'])->name('studentposts.edit');
+        Route::put('studentposts/update/{id}', [StudentPostController::class, 'update'])->name('studentposts.update');
+        Route::delete('studentposts/destroy/{id}', [StudentPostController::class, 'destroy'])->name('studentposts.destroy');
+
     });
 });
 

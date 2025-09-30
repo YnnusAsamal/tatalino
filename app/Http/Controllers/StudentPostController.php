@@ -14,7 +14,7 @@ class StudentPostController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('author', Auth::id())->get();
+        $posts = Post::all();
         return view('studentposts.index', compact('posts'));
     }
 
@@ -47,7 +47,8 @@ class StudentPostController extends Controller
      */
     public function show($id)
     {
-        //
+        $myfeeds = Post::find($id);
+        return view('studentposts.show', compact('myfeeds'));
     }
 
     /**
