@@ -47,7 +47,7 @@ class StudentPostController extends Controller
      */
     public function show($id)
     {
-        $myfeeds = Post::find($id);
+        $myfeeds = Post::where('author', Auth::id())->get();
         return view('studentposts.show', compact('myfeeds'));
     }
 
