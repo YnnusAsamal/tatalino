@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -35,7 +37,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $posts = new Post();
+
+        $posts->title = $request->Input('title');
+        $posts->content = $request->Input('content');
+        $posts->author = Auth::id();
+        $posts->image = $request->Input('image');
+        $posts->category = $request->Input('category');
+        $posts->save();
+
+        return redirect()->back()->with('status', 'Post Created Successfully');
     }
 
     /**

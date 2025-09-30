@@ -8,6 +8,11 @@ use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\AuditController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CostController;
+use App\Http\Controllers\ConsumptionController;
+use App\Http\Controllers\StudentPostController;
 
 
 Route::get('/clear-cache', function() {
@@ -24,7 +29,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
 
 Route::get('pdf', [App\Http\Controllers\PdfController::class, 'index'])->name('pdf.index');
 Route::get('/export-pdf', [App\Http\Controllers\PdfController::class, 'exportPdf'])->name('export-pdf');
@@ -34,21 +39,31 @@ Route::get('/consumptions/monthly-report', 'App\Http\Controllers\ConsumptionCont
 Route::get('/filter', 'App\Http\Controllers\CustomerController@filter')->name('filter');
 Route::get('/monthly-report',  [App\Http\Controllers\ConsumptionController::class, 'monthlyReport'])->name('monthly.report');
 
-Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles', 'App\Http\Controllers\RoleController');
-    Route::resource('users', 'App\Http\Controllers\UserController');
-    Route::resource('permissions', 'App\Http\Controllers\PermissionController');
-    Route::resource('logs', 'App\Http\Controllers\AuditController');
-    Route::resource('researchs', 'App\Http\Controllers\ResearchController');
-    Route::resource('update-password','App\Http\Controllers\SettingController');
-    Route::resource('customers','App\Http\Controllers\CustomerController');
-    Route::resource('costs','App\Http\Controllers\CostController');
-    Route::resource('consumptions','App\Http\Controllers\ConsumptionController');
-    Route::get('consumptions/destroy/{id}',[App\Http\Controllers\ConsumptionController::class, 'destroy'])->name('consumptions.destroy');
-    Route::get('consumptions/payment/{id}',[App\Http\Controllers\ConsumptionController::class, 'paymentShow'])->name('consumptions.paymentShow');
-    Route::put('consumptions/payment/{id}',[App\Http\Controllers\ConsumptionController::class, 'payment'])->name('consumptions.payment');
-    Route::post('consumptions',[App\Http\Controllers\ConsumptionController::class, 'storeSingle'])->name('consumptions.storeSingle');
+Route::group(['middleware' => ['auth']], function () {
 
+    // For Admin, Super-Admin, Whse-Admin roles
+    Route::group(['middleware' => ['role:Admin|Super-Admin|Whse-Admin']], function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('roles', RoleController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('permissions', PermissionController::class);
+        Route::resource('logs', AuditController::class);
+        Route::resource('researchs', ResearchController::class);
+        Route::resource('update-password', SettingController::class);
+        Route::resource('customers', CustomerController::class);
+        Route::resource('costs', CostController::class);
+        Route::resource('consumptions', ConsumptionController::class);
+
+        Route::get('consumptions/destroy/{id}', [ConsumptionController::class, 'destroy'])->name('consumptions.destroy');
+        Route::get('consumptions/payment/{id}', [ConsumptionController::class, 'paymentShow'])->name('consumptions.paymentShow');
+        Route::put('consumptions/payment/{id}', [ConsumptionController::class, 'payment'])->name('consumptions.payment');
+        Route::post('consumptions', [ConsumptionController::class, 'storeSingle'])->name('consumptions.storeSingle');
+    });
+
+    // For Student role
+    Route::group(['middleware' => ['role:Student']], function () {
+        Route::get('studentposts', [StudentPostController::class, 'index'])->name('studentposts.index');
+    });
 });
 
 require __DIR__.'/auth.php';

@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class RedirectIfAuthenticated
 {
@@ -23,7 +23,22 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                $user = Auth::guard($guard)->user();
+
+                Log::info('User Roles:', $user->getRoleNames()->toArray());
+
+                if (method_exists($user, 'hasRole') && method_exists($user, 'hasAnyRole')) {
+                    $redirectRoute = match (true) {
+                        $user->hasRole('Student') => 'studentposts.index',
+                        $user->hasAnyRole(['Admin', 'Super-Admin', 'Publisher']) => 'dashboard',
+                        default => 'home',
+                    };
+
+                    return redirect()->route($redirectRoute);
+                } else {
+                    // If user model is missing the HasRoles trait, abort with 403
+                    abort(403, 'User model is missing HasRoles trait.');
+                }
             }
         }
 
