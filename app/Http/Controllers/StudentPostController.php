@@ -36,7 +36,20 @@ class StudentPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('posts', 'public');
+        }
+
+        StudentPost::create([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $imagePath, // Save path in DB
+        ]);
+
+        return redirect()->back()->with('success', 'Post created successfully!');
     }
 
     /**

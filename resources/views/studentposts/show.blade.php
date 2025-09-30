@@ -17,16 +17,23 @@
         </div>
     </div>
 
-    <!-- Create Post Section -->
     <div class="create-post">
         <h3>Create a New Post</h3>
-        <form action="{{ route('studentposts.store') }}" method="POST">
+        <form action="{{ route('studentposts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="text" name="title" placeholder="Post Title" required>
-            <textarea name="content" rows="5" placeholder="Write your thoughts..." required></textarea>
+
+            <!-- Rich Textarea -->
+            <textarea id="postContent" name="content" rows="5" placeholder="Write your thoughts..."></textarea>
+            
+            <!-- Image Upload -->
+            <label for="image">Attach Image:</label>
+            <input type="file" name="image" accept="image/*" class="form-control mb-2">
+
             <button type="submit">Publish</button>
         </form>
     </div>
+
 
     <!-- Feed Section -->
     <div class="feed-posts">

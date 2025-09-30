@@ -168,5 +168,15 @@
             </div>
         </div>
     </body>
-
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#postContent',
+        menubar: false,
+        plugins: 'lists link image preview code',
+        toolbar: 'undo redo | styles | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | code',
+        branding: false,
+        height: 300
+    });
+</script>
 </html>
