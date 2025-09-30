@@ -20,7 +20,7 @@
     <!-- Create Post Section -->
     <div class="create-post">
         <h3>Create a New Post</h3>
-        <form action="{{ route('posts.store') }}" method="POST">
+        <form action="{{ route('studentposts.store') }}" method="POST">
             @csrf
             <input type="text" name="title" placeholder="Post Title" required>
             <textarea name="content" rows="5" placeholder="Write your thoughts..." required></textarea>
