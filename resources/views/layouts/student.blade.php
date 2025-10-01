@@ -159,7 +159,7 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-
+                            <a href ="{{route('studentposts.index')}}" class="dropdown-item">Home</a>
                             <a href="{{route('studentposts.show', auth()->user()->id)}}" class="dropdown-item">My Feed</a>
                         </div>
                     </li>
