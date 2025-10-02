@@ -30,7 +30,7 @@
                 <div class="post-header">
                     <img src="https://picsum.photos/50" class="post-avatar" alt="">
                     <div>
-                        <strong>{{ $post->user->name ?? 'NA'}}</strong>
+                        <strong>{{ $post->users->name ?? 'NA'}}</strong>
                         <p class="date">{{ $post->created_at->diffForHumans() ?? 'NA' }}</p>
                     </div>
                 </div>

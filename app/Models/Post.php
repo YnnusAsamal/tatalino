@@ -20,5 +20,10 @@ class Post extends Model
         'status',
         'published_at',
     ];
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'author');
+    }
     
 }
