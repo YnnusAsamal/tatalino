@@ -22,10 +22,6 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         
-        <!-- Place the first <script> tag in your HTML's <head> -->
-        <script src="https://cdn.tiny.cloud/1/u0ahhzkwhvgib2627sg4yah2pymmi3s46ss840kiyfssldzi/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
-
-        <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
   
         <style>
         .feed-container {
