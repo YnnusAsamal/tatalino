@@ -47,7 +47,7 @@
             { value: 'Email', title: 'Email' },
             ],
             ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-            uploadcare_public_key: 'e2e35bdc3a44038bac07',
+            uploadcare_public_key: 'u0ahhzkwhvgib2627sg4yah2pymmi3s46ss840kiyfssldzi',
         });
     </script>
 </div>
