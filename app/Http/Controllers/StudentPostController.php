@@ -42,11 +42,11 @@ class StudentPostController extends Controller
             $imagePath = $request->file('image')->store('posts', 'public');
         }
 
-        StudentPost::create([
+        Post::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
             'content' => $request->content,
-            'image' => $imagePath, // Save path in DB
+            'image' => $imagePath, 
         ]);
 
         return redirect()->back()->with('success', 'Post created successfully!');
