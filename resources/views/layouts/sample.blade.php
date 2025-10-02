@@ -261,14 +261,12 @@
         </nav>
 
         <div class="content">
-            <div class="blur-overlay"></div>
-            @yield('content')
-            @include('sweetalert::alert')
+                <div class="blur-overlay"></div>
+                @yield('content')
+                @include('sweetalert::alert')
+            </div>
         </div>
         </div>
-        <!-- /#page-content-wrapper -->
-        </div>
-        <!-- /#wrapper -->
     </body>
 
 </html>

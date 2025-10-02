@@ -21,11 +21,117 @@
         
         <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        
+  
+        <style>
+        .feed-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+            }
 
+            .profile-card {
+            display: flex;
+            align-items: center;
+            background: #fdfaf3;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            }
+            .profile-card .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            }
+            .profile-info h2 {
+            margin: 0;
+            color: #1d3928;
+            }
+            .profile-info .bio {
+            font-size: 0.9rem;
+            color: #666;
+            }
+            .profile-info .stats {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            display: flex;
+            gap: 1rem;
+            }
+
+            .create-post {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 2rem;
+            }
+            .create-post h3 {
+            margin-bottom: 1rem;
+            }
+            .create-post input, .create-post textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            }
+            .create-post button {
+            background: #c8962d;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            }
+
+            .feed-posts h3 {
+            margin-bottom: 1rem;
+            }
+            .post-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            }
+            .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            }
+            .post-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            }
+            .post-body h4 {
+            margin: 0 0 0.5rem 0;
+            }
+            .post-body p {
+            margin: 0;
+            color: #333;
+            }
+            .post-footer {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            }
+            .post-footer button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #555;
+            }
+
+       </style>
         <body>
 
-        <nav class="navbar sticky-top navbar-expand-lg text-dark border-bottom" id="navbar">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar sticky-top navbar-expand-lg border-bottom navbar-light" id="navbar">
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -50,6 +156,8 @@
                             <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
                                 <?php echo csrf_field(); ?>
                             </form>
+                            <a href ="<?php echo e(route('studentposts.index')); ?>" class="dropdown-item">Home</a>
+                            <a href="<?php echo e(route('studentposts.show', auth()->user()->id)); ?>" class="dropdown-item">My Feed</a>
                         </div>
                     </li>
                     
@@ -63,5 +171,4 @@
             </div>
         </div>
     </body>
-
 </html><?php /**PATH C:\laragon\www\tatalino\resources\views/layouts/student.blade.php ENDPATH**/ ?>

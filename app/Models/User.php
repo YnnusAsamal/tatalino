@@ -53,7 +53,6 @@ class User extends Authenticatable
     public function log($message)
 
     {
-             
         $message = ucwords($message);
 
         $data = [
@@ -63,7 +62,17 @@ class User extends Authenticatable
             'activity' => "{$this->name} $message"
 
         ];
-         AuditTrail::query()->create($data);
+        AuditTrail::query()->create($data);
     }
+
+
+    public function likes() {
+    return $this->hasMany(Like::class);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
 
 }

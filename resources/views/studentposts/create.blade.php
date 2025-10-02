@@ -14,7 +14,18 @@
             </div>
         </div>
     </div>
-
+    <div class="row my-3">
+        <div class="col-auto">
+            <a href="{{ route('studentposts.show', Auth::id()) }}" class="btn btn-primary">
+                📄 My Post
+            </a>
+        </div>
+        <div class="col-auto">
+            <a href="{{ route('studentposts.create') }}" class="btn btn-primary">
+                ➕ Create Post
+            </a>
+        </div>
+    </div>
     <div class="create-post">
         <h3>Create a New Post</h3>
         <form action="{{ route('studentposts.store') }}" method="POST" enctype="multipart/form-data">

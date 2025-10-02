@@ -16,11 +16,19 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <a href="{{route('studentposts.create')}}">Create Post</a>
+    <div class="row my-3">
+        <div class="col-auto">
+            <a href="{{ route('studentposts.show', Auth::id()) }}" class="btn btn-primary">
+                📄 My Post
+            </a>
+        </div>
+        <div class="col-auto">
+            <a href="{{ route('studentposts.create') }}" class="btn btn-primary">
+                ➕ Create Post
+            </a>
         </div>
     </div>
+
     <!-- Feed Section -->
     <div class="feed-posts">
         <h3>Latest Posts</h3>
@@ -45,9 +53,9 @@
                     @endif
                 </div>
                 <div class="post-footer">
-                    <button>👍 Like</button>
-                    <button>💬 Comment</button>
-                    <button>↪ Share</button>
+                    <button class="submit">👍 Like</button>
+                    <button class="submit">💬 Comment</button>
+                    <button class="submit">↪ Share</button>
                 </div>
             </div>
         @endforeach

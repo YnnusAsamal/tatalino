@@ -16,7 +16,7 @@
       padding: 2rem 1rem 1rem;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       margin: 0;
       color: #1d3928;
     }
