@@ -43,7 +43,7 @@ class StudentPostController extends Controller
         }
 
         Post::create([
-            'user_id' => Auth::id(),
+            'author' => Auth::id(),
             'title' => $request->title,
             'content' => $request->content,
             'image' => $imagePath, 
