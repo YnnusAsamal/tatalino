@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 class StudentPostController extends Controller
@@ -48,6 +49,8 @@ class StudentPostController extends Controller
             'content' => $request->content,
             'image' => $imagePath, 
         ]);
+        
+        Alert::success('Posted successfully');
 
         return redirect()->back()->with('success', 'Post created successfully!');
     }

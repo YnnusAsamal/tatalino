@@ -25,10 +25,10 @@ class CustomerController extends Controller
         $searchTerm = $request->input('search');
         $query->where(function ($q) use ($searchTerm) {
             $q->where('firstname', 'like', "%$searchTerm%")
-              ->orWhere('lastname', 'like', "%$searchTerm%")
-              ->orwhere('address2', 'like', "%$searchTerm%")
-              ->orWhere('contactNumber', 'like', "%$searchTerm%")
-              ->orWhere('meterNumber', 'like', "%$searchTerm%");
+            ->orWhere('lastname', 'like', "%$searchTerm%")
+            ->orwhere('address2', 'like', "%$searchTerm%")
+            ->orWhere('contactNumber', 'like', "%$searchTerm%")
+            ->orWhere('meterNumber', 'like', "%$searchTerm%");
         });
 
     }
