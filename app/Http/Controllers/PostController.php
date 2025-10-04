@@ -70,7 +70,7 @@ class PostController extends Controller
         $post->unpublished_at = Carbon::now();
         $post->save();
 
-        Alert::success('Published successfully');
+        Alert::success('Unpublished successfully');
         return redirect()->back();
     }
     /**
