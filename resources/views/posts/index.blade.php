@@ -43,13 +43,13 @@
                     </form>
 
                     @if($post->status == ['draft','Unpublished'])
-                        <form action="{{route('posts.published')}}" method="POST" class="d-inline">
+                        <form action="{{route('posts.published', $post->id)}}" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success btn-sm">Publish</button>
                         </form>
                     @else
-                        <form action="{{route('posts.unpublished')}}" method="POST" class="d-inline">
+                        <form action="{{route('posts.unpublished', $post->id)}}" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-secondary btn-sm">Unpublish</button>
