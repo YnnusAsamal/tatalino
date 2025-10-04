@@ -26,7 +26,16 @@
                     </div>
 
                     <div class="status">
-                        {{$post->status}}
+                        @if(in_array($post->status, ['draft', 'Unpublished']))
+                        <span class="badge badge-danger">
+                            {{$post->status}}
+                        </span>
+                        @else
+
+                        <span class="badge badge-success">
+                            {{$post->status}}
+                        </span>
+                        @endif
                     </div>
 
                     <div class="author mt-2">
