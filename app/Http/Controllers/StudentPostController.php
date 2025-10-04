@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 class StudentPostController extends Controller
 {
@@ -26,7 +27,8 @@ class StudentPostController extends Controller
      */
     public function create()
     {
-        return view('studentposts.create');
+        $category = Category::all();
+        return view('studentposts.create', compact('category'));
     }
 
     /**
@@ -37,21 +39,31 @@ class StudentPostController extends Controller
      */
     public function store(Request $request)
     {
-    
-        $imagePath = null;
+        $imageName = null;
+
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('posts', 'public');
+            $image = $request->file('image');
+
+            $destinationPath = public_path('assets/posts');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $image->move($destinationPath, $imageName);
         }
 
         Post::create([
             'author' => Auth::id(),
             'title' => $request->title,
             'content' => $request->content,
-            'image' => $imagePath, 
+            'category' => $request->category,
+            'image' => $imageName,
+            'status' => 'Unpublished',
         ]);
-        
-        Alert::success('Posted successfully');
 
+        Alert::success('Your work has been submitted for review');
         return redirect()->back()->with('success', 'Post created successfully!');
     }
 

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Tintatalino</title>
-        <link href="{{asset('images/logo.png')}}" rel="website icon">
+        <link href="{{asset('public/images/logo.JPG')}}" rel="website icon">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <!--style-->
@@ -183,16 +183,18 @@
             width:50%;
         }
         
-        </style>    
+        </style>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
         <div class="sidebar border-right sticky-top" id="sidebar-wrapper">
-            <div class="sidebar-heading text-white"><img src="{{asset('assets/logo.JPG')}}" width="75px"> TINTATALINO</div>
+            <div class="sidebar-heading text-white"><img src="{{asset('public/assets/logo.JPG')}}" width="75px"> TINTATALINO</div>
                 <div class="list-group list-group-flush">
                     <a href="{{ route('dashboard')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspDashboard</a>
+                    <a href="{{ route('posts.index')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Post</a>
+                    <a href="{{ route('category.index')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Category</a>
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         @hasanyrole('Admin')    
                         <div class="accordion-item">
@@ -211,62 +213,58 @@
                                     <a class="dropdown-item text-white" href="{{ route('logs.index')}}"><span class="bi bi-gear"> User Activity</span></a>
                                 </div>
                             </div>
-                            
-                             
                         </div>
                         @endhasanyrole 
                     </div>
             </div>
         </div>
-
         <div id="page-content-wrapper">
+            <nav class="navbar sticky-top navbar-expand-lg text-dark border-bottom" id="navbar">
+                <button class="nav-button btn btn-light" id="menu-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg></button> <!--Toggle button-->
 
-        <nav class="navbar sticky-top navbar-expand-lg text-dark border-bottom" id="navbar">
-            <button class="nav-button btn btn-light" id="menu-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-            </svg></button> <!--Toggle button-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre> Welcome, {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                        
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre> Welcome, {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-                            <div class="dropdown-divider"></div>
-                            <!-- <a class="dropdown-item" href="{{ route('users.index')}}">Account Setting</a> -->
-                            <a class="dropdown-item" href="{{route('update-password.edit', auth()->user()->id)}}">Change Password</a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <!-- <a class="dropdown-item" href="{{ route('users.index')}}">Account Setting</a> -->
+                                <a class="dropdown-item" href="{{route('update-password.edit', auth()->user()->id)}}">Change Password</a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                    </div>
+                    </li>
+                    
+                </ul>
                 </div>
-                </li>
-                
-            </ul>
+            </nav>
+            <div class="content">
+                    <div class="blur-overlay">
+                        
+                    </div>
+                    @yield('content')
+                    @include('sweetalert::alert')
+                </div>
             </div>
-        </nav>
-
-        <div class="content">
-                <div class="blur-overlay"></div>
-                @yield('content')
-                @include('sweetalert::alert')
-            </div>
-        </div>
         </div>
     </body>
-
 </html>

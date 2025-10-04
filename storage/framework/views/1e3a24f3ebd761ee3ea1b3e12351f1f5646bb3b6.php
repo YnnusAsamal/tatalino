@@ -31,8 +31,15 @@
         <form action="<?php echo e(route('studentposts.store')); ?>" method="POST" enctype="multipart/form-data">
             <?php echo csrf_field(); ?>
             <input type="text" name="title" placeholder="Post Title" required>
+            <select name="category" class="form-select mb-2">
+                <option value="No selected Category">Choose Category</option>
+                <?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($data->id); ?>">
+                    <?php echo e($data->name); ?> | <?php echo e($data->subcategory); ?>
 
-            <!-- Rich Textarea -->
+                </option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
             <textarea id="postContent" name="content" rows="5" placeholder="Write your thoughts..."></textarea>
             
             <!-- Image Upload -->
@@ -42,10 +49,7 @@
             <button type="submit">Publish</button>
         </form>
     </div>
-    <!-- Place the first <script> tag in your HTML's <head> -->
     <script src="https://cdn.tiny.cloud/1/u0ahhzkwhvgib2627sg4yah2pymmi3s46ss840kiyfssldzi/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
-
-    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
     <script>
     tinymce.init({
         selector: 'textarea',

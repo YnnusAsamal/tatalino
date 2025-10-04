@@ -31,8 +31,14 @@
         <form action="{{ route('studentposts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="text" name="title" placeholder="Post Title" required>
-
-            <!-- Rich Textarea -->
+            <select name="category" class="form-select mb-2">
+                <option value="No selected Category">Choose Category</option>
+                @foreach($category as $data)
+                <option value="{{$data->id}}">
+                    {{$data->name}} | {{$data->subcategory}}
+                </option>
+                @endforeach
+            </select>
             <textarea id="postContent" name="content" rows="5" placeholder="Write your thoughts..."></textarea>
             
             <!-- Image Upload -->
@@ -42,10 +48,7 @@
             <button type="submit">Publish</button>
         </form>
     </div>
-    <!-- Place the first <script> tag in your HTML's <head> -->
     <script src="https://cdn.tiny.cloud/1/u0ahhzkwhvgib2627sg4yah2pymmi3s46ss840kiyfssldzi/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
-
-    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
     <script>
     tinymce.init({
         selector: 'textarea',

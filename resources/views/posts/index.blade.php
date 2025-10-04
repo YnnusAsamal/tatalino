@@ -1,48 +1,61 @@
 @extends('layouts.sample')
 @section('content')
-<div class="container">
+<div class="container mt-3">
     <div class="row">
         <div class="col">
-            <h3>All Post</h3>
-
+            <h3>All Posts</h3>
         </div>
     </div>
     <hr>
     <div class="row">
         @foreach($posts as $post)
         <div class="col-md-4 mb-4">
-            <div class="card h-100">
+            <div class="card h-100" style="height: 400px;"> {{-- fixed height --}}
                 @if($post->image)
-                <img src="{{ asset('assets/posts/' . $post->image) }}" class="card-img-top" alt="Post Image" style="height:200px; object-fit:cover;">
+                    <img src="{{ asset('assets/posts/' . $post->image) }}" 
+                        class="card-img-top" 
+                        alt="Post Image" 
+                        style="height:200px; object-fit:cover;">
                 @endif
-                <div class="card-body">
+                <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ $post->title }}</h5>
-                    <p class="card-text">{{ Str::limit($post->content, 100) }}</p>
+
+                    <div class="card-text flex-grow-1" 
+                        style="max-height: 100px; overflow-y: auto; padding-right:5px;">
+                        {!! $post->content !!}
+                    </div>
+
+                    <div class="author mt-2">
+                        <label class="fw-bold">Author:</label> {{$post->users->name}}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="" class="btn btn-warning btn-sm">Edit</a>
+
+                    <form action="" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+
+                    @if(!$post->is_published)
+                        <form action="" method="POST" class="d-inline">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-success btn-sm">Publish</button>
+                        </form>
+                    @else
+                        <form action="" method="POST" class="d-inline">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-secondary btn-sm">Unpublish</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <a href="" class="btn btn-warning">Edit</a>
-                <form action="" method="POST" class="d-inline"></form>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-                <form action="" method="POST" class="d-inline">
-                    @csrf
-                    @method('PUT')
-                    <button type="submit" class="btn btn-success">Published</button>
-                </form>
-                <form action="" method="POST" class="d-inline">
-                    @csrf
-                    @method('PUT')
-                    <button type="submit" class="btn btn-danger">Unpublish</button>
-                </form>
-
-            </div>
-        </div>
         @endforeach
+
     </div>
 </div>
 @endsection

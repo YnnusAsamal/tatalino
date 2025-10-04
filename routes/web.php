@@ -11,8 +11,9 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AuditController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CostController;
-use App\Http\Controllers\ConsumptionController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StudentPostController;
+use App\Http\Controllers\PostController;
 
 
 Route::get('/clear-cache', function() {
@@ -54,10 +55,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('costs', CostController::class);
         Route::resource('consumptions', ConsumptionController::class);
 
-        Route::get('consumptions/destroy/{id}', [ConsumptionController::class, 'destroy'])->name('consumptions.destroy');
-        Route::get('consumptions/payment/{id}', [ConsumptionController::class, 'paymentShow'])->name('consumptions.paymentShow');
-        Route::put('consumptions/payment/{id}', [ConsumptionController::class, 'payment'])->name('consumptions.payment');
-        Route::post('consumptions', [ConsumptionController::class, 'storeSingle'])->name('consumptions.storeSingle');
+
+        Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+        Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+        Route::put('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+        Route::delete('category/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+
+
+        Route::get('posts', [PostController::class, 'index'])->name('posts.index');
     });
 
     // For Student role

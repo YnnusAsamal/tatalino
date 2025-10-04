@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +18,8 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->get('search');
-        $categories = DB::table('categories')->where('catDescription', 'like','%' .$search. '%')->paginate(10);
-        return view('assets.categories.index', ['categories' => $categories])
-
-            ->with('i', ($request->input('page', 1) - 1) * 10);
+        $category = Category::all();
+        return view('category.index', compact('category'));
     }
 
     /**
@@ -42,7 +40,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->Input('name');
+        $category->subcategory = $request->Input('subcategory');
+        $category->user_id = Auth::id();
+        $category->status = '1';
+        $category->save();
+        Alert::success('Category/Theme Added Successfully');
+        return redirect()->back();
+
     }
 
     /**
@@ -76,7 +82,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->name = $request->Input('name');
+        $category->subcategory = $request->Input('subcategory');
+        $category->user_id = Auth::id();
+        $category->status = '1';
+        $category->save();
+        Alert::success('Category/Theme Added Successfully');
+        return redirect()->back();
     }
 
     /**
@@ -87,6 +100,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::findOrFail($id)->delete();
+        Alert::success('Deleted Successfully');
+        return redirect()->back();
     }
 }
