@@ -76,6 +76,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('studentposts/update/{id}', [StudentPostController::class, 'update'])->name('studentposts.update');
         Route::delete('studentposts/destroy/{id}', [StudentPostController::class, 'destroy'])->name('studentposts.destroy');
 
+
+        Route::get('userprofiles/show/{id}', [UserProfileController::class, 'show'])->name('userprofiles.show');
+
     });
 });
 
