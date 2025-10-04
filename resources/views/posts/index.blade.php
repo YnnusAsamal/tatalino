@@ -55,15 +55,22 @@
                         <form action="{{ route('posts.published', $post->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="btn btn-success btn-sm">Publish</button>
+                            <button type="submit" class="btn btn-success btn-sm"
+                                onclick="return confirm('Are you sure you want to publish this post?')">
+                                Publish
+                            </button>
                         </form>
                     @else
                         <form action="{{ route('posts.unpublished', $post->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="btn btn-secondary btn-sm">Unpublish</button>
+                            <button type="submit" class="btn btn-secondary btn-sm"
+                                onclick="return confirm('Are you sure you want to unpublish this post?')">
+                                Unpublish
+                            </button>
                         </form>
                     @endif
+
                 </div>
             </div>
         </div>
