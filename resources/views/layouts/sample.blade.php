@@ -257,14 +257,13 @@
                 </ul>
                 </div>
             </nav>
+            
             <div class="content">
-                    <div class="blur-overlay">
-                        
-                    </div>
-                    @yield('content')
-                    @include('sweetalert::alert')
-                </div>
+            <div class="blur-overlay"></div>
+                @yield('content')
+                @include('sweetalert::alert')
             </div>
+        </div>
         </div>
     </body>
 </html>

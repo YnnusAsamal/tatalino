@@ -183,7 +183,7 @@
             width:50%;
         }
         
-        </style>    
+        </style>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -258,14 +258,13 @@
                 </ul>
                 </div>
             </nav>
+            
             <div class="content">
-                    <div class="blur-overlay">
-                        
-                    </div>
-                    <?php echo $__env->yieldContent('content'); ?>
-                    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                </div>
+            <div class="blur-overlay"></div>
+                <?php echo $__env->yieldContent('content'); ?>
+                <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
+        </div>
         </div>
     </body>
 </html><?php /**PATH C:\laragon\www\tatalino\resources\views/layouts/sample.blade.php ENDPATH**/ ?>

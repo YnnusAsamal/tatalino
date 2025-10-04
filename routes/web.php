@@ -30,6 +30,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('register', function () {
+    return view('auth.register');
+});
+
 
 
 Route::get('pdf', [App\Http\Controllers\PdfController::class, 'index'])->name('pdf.index');

@@ -31,7 +31,7 @@ class RedirectIfAuthenticated
                     $redirectRoute = match (true) {
                         $user->hasRole('Student') => 'studentposts.index',
                         $user->hasAnyRole(['Admin', 'Super-Admin', 'Publisher']) => 'dashboard',
-                        default => 'home',
+                        default => 'dashboard',
                     };
 
                     return redirect()->route($redirectRoute);
