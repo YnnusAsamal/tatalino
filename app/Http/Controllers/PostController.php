@@ -49,6 +49,26 @@ class PostController extends Controller
         return redirect()->back()->with('status', 'Post Created Successfully');
     }
 
+
+    public function published($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->status = 'Published';
+        $post->save();
+
+        Alert::success('Published successfully');
+        return redirect()->back();
+    }
+
+    public function unpublished($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->status = 'Unpublished';
+        $post->save();
+
+        Alert::success('Published successfully');
+        return redirect()->back();
+    }
     /**
      * Display the specified resource.
      *

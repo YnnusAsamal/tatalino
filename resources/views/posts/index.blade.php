@@ -38,14 +38,14 @@
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
 
-                    @if($post->status == 'draft')
-                        <form action="" method="POST" class="d-inline">
+                    @if($post->status == ['draft','Unpublished'])
+                        <form action="{{route('posts.published')}}" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success btn-sm">Publish</button>
                         </form>
                     @else
-                        <form action="" method="POST" class="d-inline">
+                        <form action="{{route('posts.unpublished')}}" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-secondary btn-sm">Unpublish</button>
