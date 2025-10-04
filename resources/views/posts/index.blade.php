@@ -12,7 +12,7 @@
         <div class="col-md-4 mb-4">
             <div class="card h-100" style="height: 400px;"> {{-- fixed height --}}
                 @if($post->image)
-                    <img src="{{ asset('assets/posts/' . $post->image) }}" 
+                    <img src="{{ asset('public/assets/posts/' . $post->image) }}" 
                         class="card-img-top" 
                         alt="Post Image" 
                         style="height:200px; object-fit:cover;">
@@ -38,7 +38,7 @@
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
 
-                    @if(!$post->is_published)
+                    @if(!$post->status == 'draft')
                         <form action="" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
