@@ -25,6 +25,10 @@
                         {!! $post->content !!}
                     </div>
 
+                    <div class="status">
+                        {{$post->status}}
+                    </div>
+
                     <div class="author mt-2">
                         <label class="fw-bold">Author:</label> {{$post->users->name}}
                     </div>
