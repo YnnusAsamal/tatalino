@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon;
 
 class PostController extends Controller
 {
@@ -54,6 +55,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->status = 'Published';
+        $post->published_at = Carbon::now();
         $post->save();
 
         Alert::success('Published successfully');
@@ -64,6 +66,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->status = 'Unpublished';
+        $post->unpublished_at = Carbon::now();
         $post->save();
 
         Alert::success('Published successfully');

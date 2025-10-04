@@ -19,6 +19,7 @@ class Post extends Model
         'category',
         'status',
         'published_at',
+        'unpublished_at'
     ];
 
     public function users()
