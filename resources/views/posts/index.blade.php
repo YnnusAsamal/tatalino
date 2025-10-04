@@ -38,7 +38,7 @@
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
 
-                    @if(!$post->status == 'draft')
+                    @if($post->status == 'draft')
                         <form action="" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
