@@ -88,16 +88,6 @@ class UserProfileController extends Controller
             return redirect()->back();
         }
 
-        // Remove or comment out this validation block
-        /*
-        $request->validate([
-            'user_description' => 'nullable|string|max:255',
-            'bio' => 'nullable|string|max:500',
-            'hobby' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        */
-
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
@@ -108,7 +98,7 @@ class UserProfileController extends Controller
 
             $image->move(public_path('assets/userprofiles'), $imageName);
 
-            $profile->image = 'assets/userprofiles/' . $imageName;
+            $profile->image = 'public/assets/userprofiles/' . $imageName;
         }
 
         $profile->user_description = $request->input('user_description');
