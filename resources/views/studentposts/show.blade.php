@@ -39,7 +39,7 @@
         @foreach($myfeeds as $post)
             <div class="post-card">
                 <div class="post-header">
-                    <img src="https://picsum.photos/50" class="post-avatar" alt="">
+                    <img src="{{ asset('asset/userprofiles/'. Auth::user()->profile->image ?? 'default-avatar.png') }}" alt="User Avatar" class="post-avatar">
                     <div>
                         <strong>{{ $post->users->name ?? 'NA'}}</strong>
                         <p class="date">{{ $post->created_at->diffForHumans() ?? 'NA' }}</p>
