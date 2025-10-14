@@ -88,12 +88,24 @@
             @else
                 <p>No profile image available.</p>
             @endif
-            <input type="file" name="image" id="image" class="form-control mt-2" accept="image/*">
+            <input 
+                type="file" 
+                name="image" 
+                id="image" 
+                class="form-control mt-2" 
+                accept="image/*"
+            >
         </div>
 
         <div class="mb-4">
             <label for="user_description" class="form-label">Description</label>
-            <input type="text" name="user_description" id="user_description" class="form-control"value="{{ $userId->profile->user_description ?? '' }}">
+            <input 
+                type="text" 
+                name="user_description" 
+                id="user_description" 
+                class="form-control" 
+                value="{{ old('user_description', $userId->profile->user_description ?? '') }}"
+            >
             @error('user_description')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -101,7 +113,12 @@
 
         <div class="mb-4">
             <label for="bio" class="form-label">Bio</label>
-            <textarea name="bio" id="bio" class="form-control" rows="4">{{ old('bio', $userId->profile->bio ?? '') }}</textarea>
+            <textarea 
+                name="bio" 
+                id="bio" 
+                class="form-control" 
+                rows="4"
+            >{{ old('bio', $userId->profile->bio ?? '') }}</textarea>
             @error('bio')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -109,7 +126,13 @@
 
         <div class="mb-4">
             <label for="hobby" class="form-label">Hobby</label>
-            <input type="text" name="hobby" id="hobby" class="form-control"value="{{ old('hobby', $userId->profile->hobby ?? '') }}">
+            <input 
+                type="text" 
+                name="hobby" 
+                id="hobby" 
+                class="form-control" 
+                value="{{ old('hobby', $userId->profile->hobby ?? '') }}"
+            >
             @error('hobby')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -119,5 +142,6 @@
             <button type="submit" class="btn btn-primary px-5 py-2">Update Profile</button>
         </div>
     </form>
+
 </div>
 @endsection
