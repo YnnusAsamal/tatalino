@@ -102,7 +102,9 @@
 
         <div class="mb-4">
             <label for="bio" class="form-label">Bio</label>
-            <textarea name="bio" id="bio" class="form-control" rows="4">{{ old('bio', $userId ? $userId->profile->bio : '') }}</textarea>
+            <textarea name="bio" id="bio" class="form-control" rows="4">
+                {{ old('bio', $userId->profile->bio ?? '') }}
+            </textarea>
             @error('bio')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
