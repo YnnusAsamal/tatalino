@@ -81,7 +81,7 @@ class UserProfileController extends Controller
     {
         $user = User::findOrFail(Auth::id());
 
-        $profile = UserProfile::where('user_id', $user->id)->first();
+        $profile = UserProfile::where('user_id', $user)->first();
 
         if (!$profile) {
             Alert::error('Error', 'Profile not found!');

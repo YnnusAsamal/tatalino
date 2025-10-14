@@ -39,7 +39,11 @@
         <?php $__currentLoopData = $myfeeds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="post-card">
                 <div class="post-header">
-                    <img src="https://picsum.photos/50" class="post-avatar" alt="">
+                    <img src="<?php echo e(Auth::user()->profile && Auth::user()->profile->image
+                        ? asset('asset/userprofiles/' . Auth::user()->profile->image)
+                        : asset('default-avatar.png')); ?>"
+                        alt="User Avatar" class="post-avatar">
+
                     <div>
                         <strong><?php echo e($post->users->name ?? 'NA'); ?></strong>
                         <p class="date"><?php echo e($post->created_at->diffForHumans() ?? 'NA'); ?></p>
