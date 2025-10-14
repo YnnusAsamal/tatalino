@@ -81,7 +81,7 @@ class UserProfileController extends Controller
     {
         $user = User::findOrFail(Auth::id());
 
-        $profile = UserProfile::where('user_id', $user)->first();
+        $profile = UserProfile::where('user_id', $user->id)->first();
 
         if (!$profile) {
             Alert::error('Error', 'Profile not found!');
@@ -98,7 +98,7 @@ class UserProfileController extends Controller
 
             $image->move(public_path('assets/userprofiles'), $imageName);
 
-            $profile->image = 'assets/userprofiles/' . $imageName;
+            $profile->image = 'public/assets/userprofiles/' . $imageName;
         }
 
         $profile->user_description = $request->input('user_description');

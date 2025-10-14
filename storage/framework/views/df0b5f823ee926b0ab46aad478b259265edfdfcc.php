@@ -88,13 +88,24 @@
             <?php else: ?>
                 <p>No profile image available.</p>
             <?php endif; ?>
-            <input type="file" name="image" id="image" class="form-control mt-2" accept="image/*">
+            <input 
+                type="file" 
+                name="image" 
+                id="image" 
+                class="form-control mt-2" 
+                accept="image/*"
+            >
         </div>
 
         <div class="mb-4">
             <label for="user_description" class="form-label">Description</label>
-            <input type="text" name="user_description" id="user_description" class="form-control"
-                   value="<?php echo e($userId->profile->user_description ?? old('user_description')); ?>">
+            <input 
+                type="text" 
+                name="user_description" 
+                id="user_description" 
+                class="form-control" 
+                value="<?php echo e(old('user_description', $userId->profile->user_description ?? '')); ?>"
+            >
             <?php $__errorArgs = ['user_description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -109,7 +120,12 @@ unset($__errorArgs, $__bag); ?>
 
         <div class="mb-4">
             <label for="bio" class="form-label">Bio</label>
-            <textarea name="bio" id="bio" class="form-control" rows="4"><?php echo e(old('bio', $userId ? $userId->profile->bio : '')); ?></textarea>
+            <textarea 
+                name="bio" 
+                id="bio" 
+                class="form-control" 
+                rows="4"
+            ><?php echo e(old('bio', $userId->profile->bio ?? '')); ?></textarea>
             <?php $__errorArgs = ['bio'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -124,8 +140,13 @@ unset($__errorArgs, $__bag); ?>
 
         <div class="mb-4">
             <label for="hobby" class="form-label">Hobby</label>
-            <input type="text" name="hobby" id="hobby" class="form-control"
-                   value="<?php echo e(old('hobby', $userId ? $userId->profile->hobby : '')); ?>">
+            <input 
+                type="text" 
+                name="hobby" 
+                id="hobby" 
+                class="form-control" 
+                value="<?php echo e(old('hobby', $userId->profile->hobby ?? '')); ?>"
+            >
             <?php $__errorArgs = ['hobby'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -142,6 +163,7 @@ unset($__errorArgs, $__bag); ?>
             <button type="submit" class="btn btn-primary px-5 py-2">Update Profile</button>
         </div>
     </form>
+
 </div>
 <?php $__env->stopSection(); ?>
 
