@@ -98,7 +98,7 @@ class UserProfileController extends Controller
 
             $image->move(public_path('assets/userprofiles'), $imageName);
 
-            $profile->image = 'public/assets/userprofiles/' . $imageName;
+            $profile->image = 'assets/userprofiles/' . $imageName;
         }
 
         $profile->user_description = $request->input('user_description');
