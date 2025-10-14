@@ -88,12 +88,15 @@ class UserProfileController extends Controller
             return redirect()->back();
         }
 
+        // Remove or comment out this validation block
+        /*
         $request->validate([
             'user_description' => 'nullable|string|max:255',
             'bio' => 'nullable|string|max:500',
             'hobby' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        */
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -117,6 +120,7 @@ class UserProfileController extends Controller
         Alert::success('Success', 'Profile updated successfully!');
         return redirect()->back();
     }
+
 
 
 
