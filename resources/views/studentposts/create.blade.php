@@ -15,6 +15,9 @@
                 <span><strong>34</strong> Following</span>
             </div>
         </div>
+        <div class="edit-profile">
+            <a href="{{ route('userprofiles.edit', Auth::id()) }}" class="btn btn-secondary btn-sm">Edit Profile</a>
+        </div>
     </div>
     <div class="row my-3">
         <div class="col-auto">
