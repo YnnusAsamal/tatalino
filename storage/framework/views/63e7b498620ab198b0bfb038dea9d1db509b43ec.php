@@ -4,7 +4,8 @@
 <div class="feed-container">
 
     <div class="profile-card">
-        <img src="https://picsum.photos/100" alt="User Avatar" class="avatar">
+        <img src="<?php echo e(asset(Auth::user()->profile->image ?? 'default-avatar.png')); ?>" alt="User Avatar" class="avatar">
+
         <div class="profile-info">
             <h2><?php echo e(Auth::user()->name); ?></h2>
             <p class="bio">Aspiring writer. Lover of words and stories.</p>
