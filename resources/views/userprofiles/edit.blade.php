@@ -113,7 +113,7 @@
         <div class="mb-4">
             <label for="hobby" class="form-label">Hobby</label>
             <input type="text" name="hobby" id="hobby" class="form-control"
-                   value="{{ old('hobby', $userId ? $userId->profile->hobby : '') }}">
+                   value="{{ old('hobby', $userId ? $userId->profile->hobby ?? '') }}">
             @error('hobby')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
