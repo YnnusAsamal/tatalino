@@ -93,8 +93,7 @@
 
         <div class="mb-4">
             <label for="user_description" class="form-label">Description</label>
-            <input type="text" name="user_description" id="user_description" class="form-control"
-                   value="{{ $userId->profile->user_description ?? old('user_description') }}">
+            <input type="text" name="user_description" id="user_description" class="form-control"value="{{ $userId->profile->user_description ?? '' }}">
             @error('user_description')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -102,9 +101,7 @@
 
         <div class="mb-4">
             <label for="bio" class="form-label">Bio</label>
-            <textarea name="bio" id="bio" class="form-control" rows="4">
-                {{ old('bio', $userId->profile->bio ?? '') }}
-            </textarea>
+            <textarea name="bio" id="bio" class="form-control" rows="4">{{ old('bio', $userId->profile->bio ?? '') }}</textarea>
             @error('bio')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
