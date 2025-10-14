@@ -1,9 +1,11 @@
 @extends('layouts.student')
 
 @section('content')
+
 <div class="feed-container">
     <div class="profile-card">
-        <img src="https://picsum.photos/100" alt="User Avatar" class="avatar">
+        <img src="{{ asset(Auth::user()->profile->image ?? 'default-avatar.png') }}" alt="User Avatar" class="avatar">
+
         <div class="profile-info">
             <h2>{{ Auth::user()->name }}</h2>
             <p class="bio">Aspiring writer. Lover of words and stories.</p>
@@ -28,9 +30,10 @@
     </div>
     <div class="create-post">
         <h3>Create a New Post</h3>
+        <hr>
         <form action="{{ route('studentposts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="text" name="title" placeholder="Post Title" required>
+            <input type="text" name="title" placeholder="Post Title" class="form-control mb-2" required>
             <select name="category" class="form-select mb-2">
                 <option value="No selected Category">Choose Category</option>
                 @foreach($category as $data)

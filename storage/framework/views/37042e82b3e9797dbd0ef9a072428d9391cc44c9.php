@@ -163,7 +163,7 @@
             <div class="inputbox">
                 <input id="email" type="email" name="email" value="<?php echo e(old('email')); ?>" required autofocus />
                 <label for="email">Email</label>
-                <ion-icon name="mail-outline"></ion-icon>
+                <ion- name="mail-outline"></ion-    icon>
             </div>
 
             <!-- Password -->

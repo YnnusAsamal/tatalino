@@ -1,155 +1,228 @@
 
+
 <?php $__env->startSection('content'); ?>
-<head>
-     <title>Tinta’t Talino</title>
-  <style>
-    body {
-      font-family: Georgia, serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fdfaf3;
-      color: #2c2c2c;
+<style>
+  body {
+    font-family: Georgia, serif;
+    background-color: #fdfaf3;
+    color: #2E7D32 !important;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #2E7D32;
+  }
+
+  header p {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: #444;
+    letter-spacing: 1px;
+  }
+
+  .featured {
+    background: url('https://picsum.photos/1200/400?grayscale') no-repeat center/cover;
+    padding: 3rem 2rem;
+    color: #fff;
+    text-align: left;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .featured h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .featured p {
+    font-size: 1rem;
+    max-width: 500px;
+  }
+
+  .featured button {
+    margin-top: 1rem;
+    background: #c8962d;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  main.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+  }
+
+  section.works, section.essays {
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    color: #1d3928;
+    margin-bottom: 1rem;
+  }
+
+  .works-grid, .essays-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    background: #f3f0e7;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 6px;
+  }
+
+  .card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  .card strong {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.95rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+    color: #333;
+    margin: 0;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .writer, .news, .poems {
+    background: #f8f6f1;
+    padding: 1rem;
+    border-radius: 6px;
+  }
+
+  .writer img, .poems img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+
+  .writer h4 {
+    margin: 0.5rem 0 0.2rem;
+  }
+
+  .writer a {
+    color: #8b4c0f;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .news button {
+    margin-top: 0.8rem;
+    background: #c8962d;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .submit {
+    text-align: center;
+    margin: 2rem 0 3rem;
+  }
+
+  .submit button {
+    background: #c8962d;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    main.container {
+      grid-template-columns: 1fr;
     }
 
-    header {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-    }
     header h1 {
-      font-size: 3.5rem;
-      margin: 0;
-      color: #1d3928;
-    }
-    header p {
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      margin: 0.5rem 0;
-      color: #444;
-    }
-
-    .featured {
-      background: url('https://picsum.photos/1200/400?grayscale') no-repeat center/cover;
-      padding: 4rem 2rem;
-      color: #fff;
-      text-align: left;
-      position: relative;
-    }
-    .featured h2 {
       font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .featured p {
-      font-size: 1rem;
-      max-width: 500px;
-    }
-    .featured button {
-      margin-top: 1rem;
-      background: #c8962d;
-      color: #fff;
-      border: none;
-      padding: 0.7rem 1.5rem;
-      font-size: 1rem;
-      cursor: pointer;
     }
 
-    .container {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-      padding: 2rem;
+    .featured h2 {
+      font-size: 1.5rem;
     }
+  }
+</style>
 
-    .works, .essays {
-      margin-bottom: 2rem;
-    }
-    h3 {
-      margin-bottom: 1rem;
-      color: #1d3928;
-    }
-    .works-grid, .essays-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-    }
-    .card {
-      background: #f3f0e7;
-      padding: 1rem;
-      text-align: center;
-    }
-    .card img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-      margin-bottom: 0.5rem;
-    }
-    .card p {
-      margin: 0;
-      font-size: 0.85rem;
-      color: #333;
-    }
-    .card strong {
-      display: block;
-      margin-top: 0.3rem;
-    }
-
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .writer {
-      text-align: center;
-      background: #f8f6f1;
-      padding: 1rem;
-    }
-    .writer img {
-      width: 100%;
-      border-radius: 4px;
-      margin-bottom: 0.5rem;
-    }
-    .writer h4 {
-      margin: 0.5rem 0;
-    }
-    .writer a {
-      color: #8b4c0f;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-    .news, .poems {
-      background: #f8f6f1;
-      padding: 1rem;
-    }
-    .news button {
-      margin-top: 1rem;
-      background: #c8962d;
-      border: none;
-      color: white;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-    }
-
-    .submit {
-      text-align: center;
-      margin: 2rem 0;
-    }
-    .submit button {
-      background: #c8962d;
-      color: white;
-      font-size: 1.2rem;
-      border: none;
-      padding: 1rem 2rem;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<div class="container-fluid mt-3">
-
-<body>
+<div class="container-fluid p-0">
   <header>
     <h1>Tinta’t Talino</h1>
     <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
   </header>
 
+  <section class="navigation">
+      <?php if(auth()->guard()->check()): ?>
+        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
+           
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="">Essays</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="">Collections</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="">Explore</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="<?php echo e(route('studentposts.show', auth()->user()->id)); ?>">Publish</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="">About</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="">Contact</a>
+            </li>
+        </ul>
+    <?php else: ?>
+        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="<?php echo e(route('login')); ?>">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="<?php echo e(route('register')); ?>">Register</a>
+            </li>
+        </ul>
+    <?php endif; ?>
+
+  </section>
+  <hr>
   <section class="featured">
     <h2>Featured Work of the Month</h2>
     <p>A mesmerizing poem on the beauty of nature and the human spirit</p>
@@ -221,7 +294,7 @@
   <div class="submit">
     <button>Submit Your Work</button>
   </div>
-</body>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.student', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\tatalino\resources\views/studentposts/index.blade.php ENDPATH**/ ?>

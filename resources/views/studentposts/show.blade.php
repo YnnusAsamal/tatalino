@@ -3,7 +3,6 @@
 @section('content')
 <div class="feed-container">
 
-    <!-- User Profile Section -->
     <div class="profile-card">
         <img src="https://picsum.photos/100" alt="User Avatar" class="avatar">
         <div class="profile-info">
@@ -14,6 +13,9 @@
                 <span><strong>58</strong> Followers</span>
                 <span><strong>34</strong> Following</span>
             </div>
+        </div>
+        <div class="edit-profile">
+            <a href="{{ route('userprofiles.edit', Auth::id()) }}" class="btn btn-secondary btn-sm">Edit Profile</a>
         </div>
     </div>
     <div class="row my-3">
