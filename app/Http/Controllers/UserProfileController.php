@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\File;
 
 class UserProfileController extends Controller
 {
@@ -79,23 +80,28 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail(Auth::id());
+        $uploadPath = public_path('assets/userprofiles/');
+        $newFiles = [];
 
-        $profile = UserProfile::where('user_id', $user->id)->first();
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-
-            if ($profile->image && file_exists(public_path($profile->image))) {
-                unlink(public_path($profile->image));
-            }
-
-            $image->move(public_path('assets/userprofiles'), $imageName);
-
-            $profile->image = 'assets/userprofiles/' . $imageName;
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true);
         }
 
+        if ($request->hasFile('image')) {
+            $file = $request->file('image'); 
+
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+            $file->move($uploadPath, $filename);
+
+            $newFiles[] = $filename;
+        }
+        
+        $user = User::findOrFail(Auth::id());
+        $profile = UserProfile::where('user_id', $user->id)->first();
+
+        $profile->image = json_encode($newFiles);
         $profile->user_description = $request->input('user_description');
         $profile->bio = $request->input('bio');
         $profile->hobby = $request->input('hobby');
@@ -104,8 +110,7 @@ class UserProfileController extends Controller
 
         Alert::success('Success', 'Profile updated successfully!');
         return redirect()->back();
-    }
-
+}
 
 
 
