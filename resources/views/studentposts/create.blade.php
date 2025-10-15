@@ -50,11 +50,11 @@
 <div class="feed-container">
     <div class="profile-card">
 
-         @if(Auth::user() && Auth::user()->profile && Auth::user()->profile->image)
+        @if(Auth::user() && Auth::user()->profile && Auth::user()->profile->image)
             @php
                 $images = json_decode(Auth::user()->profile->image, true);
                 $firstImage = $images[0] ?? null;
-             @endphp
+            @endphp
             @if($firstImage)
                 <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
             @else
