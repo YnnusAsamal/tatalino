@@ -56,10 +56,13 @@
     @endif
 
     <div class="profile-card text-center">
-        @if($userId && $userId->profile)
-            {{-- Profile Image --}}
-            @if($userId->profile->image)
-                <img src="{{ asset('public/assets/userprofiles/' . $userId->profile->image) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+          @if($userId && $userId->profile && $userId->profile->image)
+           @php
+                    $images = json_decode($userId->profile->image, true);
+                    $firstImage = $images[0] ?? null;
+                @endphp
+            @if($firstImage)
+                <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
             @else
                 <p>No profile image available.</p>
             @endif
