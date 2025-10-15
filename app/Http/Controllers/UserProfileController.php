@@ -99,7 +99,10 @@ class UserProfileController extends Controller
         
         $user = User::findOrFail(Auth::id());
         $profile = UserProfile::where('user_id', $user->id)->first();
-
+        if (!$profile) {
+            $profile = new UserProfile();
+            $profile->user_id = $user->id;
+        }
         $profile->image = json_encode($newFiles);
         $profile->user_description = $request->input('user_description');
         $profile->bio = $request->input('bio');
