@@ -59,7 +59,7 @@
         @if($userId && $userId->profile)
             {{-- Profile Image --}}
             @if($userId->profile->image)
-                <img src="{{ asset($userId->profile->image) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                <img src="{{ asset('public/assets/userprofiles/' . $userId->profile->image) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
             @else
                 <p>No profile image available.</p>
             @endif
