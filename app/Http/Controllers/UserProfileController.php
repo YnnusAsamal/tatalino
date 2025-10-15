@@ -83,11 +83,6 @@ class UserProfileController extends Controller
 
         $profile = UserProfile::where('user_id', $user->id)->first();
 
-        if (!$profile) {
-            Alert::error('Error', 'Profile not found!');
-            return redirect()->back();
-        }
-
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
