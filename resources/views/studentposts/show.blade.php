@@ -95,45 +95,46 @@
         <h3>Latest Posts</h3>
 
         @foreach($myfeeds as $post)
-            <div class="post-card">
-                <div class="post-header">
-                    @if(Auth::user() && Auth::user()->profile && Auth::user()->profile->image)
-                            @php
-                                $images = json_decode(Auth::user()->profile->image, true);
-                                $firstImage = $images[0] ?? null;
-                            @endphp
-                            @if($firstImage)
-                                <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
-                            @else
-                                <p>No profile image available.</p>
-                            @endif
-                        @else
-                            <p class="text-muted">No profile information available.</p>
-                        @endif
-
-                    <div>
-                        <strong>{{ $post->users->name ?? 'NA'}}</strong>
-                        <p class="date">{{ $post->created_at->diffForHumans() ?? 'NA' }}</p>
-                    </div>
-                </div>
-                <div class="post-body">
-                    <h4>{{ $post->title }}</h4>
-                    <div>{!! Str::limit($post->content, 200) !!}</div>
-
-                    @if($post->image)
-                        <div class="post-image">
-                            <img src="{{ asset('assets/posts/' . $post->image) }}" alt="Post Image" style="max-width:100%; border-radius:8px; margin-top:10px;">
-                        </div>
+        <div class="post-card">
+            <div class="post-header">
+                @if(Auth::user() && Auth::user()->profile && Auth::user()->profile->image)
+                    @php
+                        $images = json_decode(Auth::user()->profile->image, true);
+                        $firstImage = $images[0] ?? null;
+                    @endphp
+                    @if($firstImage)
+                        <img src="{{ asset('assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                    @else
+                        <p>No profile image available.</p>
                     @endif
-                </div>
-                <div class="post-footer">
-                    <button class="submit">👍 Like</button>
-                    <button class="submit">💬 Comment</button>
-                    <button class="submit">↪ Share</button>
+                @else
+                    <p class="text-muted">No profile information available.</p>
+                @endif
+
+                <div>
+                    <strong>{{ $post->users->name ?? 'NA'}}</strong>
+                    <p class="date">{{ $post->created_at->diffForHumans() ?? 'NA' }}</p>
                 </div>
             </div>
-        @endforeach
-    </div>
+
+            <div class="post-body">
+                <h4>{{ $post->title }}</h4>
+                <div class="post-content">{!! Str::limit($post->content, 200) !!}</div>
+
+                @if($post->image)
+                    <div class="post-image">
+                        <img src="{{ asset('assets/posts/' . $post->image) }}" alt="Post Image" style="max-width:100%; border-radius:8px; margin-top:10px;">
+                    </div>
+                @endif
+            </div>
+
+            <div class="post-footer">
+                <button class="submit">👍 Like</button>
+                <button class="submit">💬 Comment</button>
+                <button class="submit">↪ Share</button>
+            </div>
+        </div>
+    @endforeach
 
 
     <script>
