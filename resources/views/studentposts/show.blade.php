@@ -66,7 +66,7 @@
 
         <div class="profile-info">
             <h2>{{ Auth::user()->name }}</h2>
-            <p class="bio">Aspiring writer. Lover of words and stories.</p>
+            <p class="bio">{{ Auth::user()->profile->bio ?? 'No bio available.' }}</p>
             <div class="stats">
                 <span><strong>12</strong> Posts</span>
                 <span><strong>58</strong> Followers</span>
@@ -103,7 +103,7 @@
                         $firstImage = $images[0] ?? null;
                     @endphp
                     @if($firstImage)
-                        <img src="{{ asset('assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                        <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
                     @else
                         <p>No profile image available.</p>
                     @endif
