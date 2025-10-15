@@ -93,7 +93,6 @@
                 name="image" 
                 id="image" 
                 class="form-control mt-2" 
-                accept="image/*"
             >
         </div>
 

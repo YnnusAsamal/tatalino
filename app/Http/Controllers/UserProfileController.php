@@ -90,7 +90,6 @@ class UserProfileController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image'); 
-
             $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
             $file->move($uploadPath, $filename);
