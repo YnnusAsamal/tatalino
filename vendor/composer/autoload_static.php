@@ -79,6 +79,10 @@ class ComposerStaticInit23bd144b0c7df48103e831bf953bd40d
         ),
         'T' => 
         array (
+            'Tonysm\\RichTextLaravel\\Database\\Factories\\' => 42,
+            'Tonysm\\RichTextLaravel\\' => 23,
+            'Tonysm\\GlobalId\\Database\\Factories\\' => 35,
+            'Tonysm\\GlobalId\\' => 16,
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
             'Tests\\' => 6,
         ),
@@ -112,6 +116,7 @@ class ComposerStaticInit23bd144b0c7df48103e831bf953bd40d
             'Svg\\' => 4,
             'StellaMaris\\Clock\\' => 18,
             'Spatie\\Permission\\' => 18,
+            'Spatie\\LaravelPackageTools\\' => 27,
             'Sabberworm\\CSS\\' => 15,
         ),
         'R' => 
@@ -261,6 +266,22 @@ class ComposerStaticInit23bd144b0c7df48103e831bf953bd40d
             0 => __DIR__ . '/..' . '/nexmo/client-core/src',
             1 => __DIR__ . '/..' . '/vonage/client-core/src',
         ),
+        'Tonysm\\RichTextLaravel\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tonysm/rich-text-laravel/database/factories',
+        ),
+        'Tonysm\\RichTextLaravel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src',
+        ),
+        'Tonysm\\GlobalId\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tonysm/globalid-laravel/database/factories',
+        ),
+        'Tonysm\\GlobalId\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tonysm/globalid-laravel/src',
+        ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
             0 => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src',
@@ -380,6 +401,10 @@ class ComposerStaticInit23bd144b0c7df48103e831bf953bd40d
         'Spatie\\Permission\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-permission/src',
+        ),
+        'Spatie\\LaravelPackageTools\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-package-tools/src',
         ),
         'Sabberworm\\CSS\\' => 
         array (
@@ -730,6 +755,7 @@ class ComposerStaticInit23bd144b0c7df48103e831bf953bd40d
         'App\\Http\\Controllers\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/SettingController.php',
         'App\\Http\\Controllers\\StudentPostController' => __DIR__ . '/../..' . '/app/Http/Controllers/StudentPostController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
+        'App\\Http\\Controllers\\UserProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserProfileController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -6218,6 +6244,9 @@ class ComposerStaticInit23bd144b0c7df48103e831bf953bd40d
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\LaravelPackageTools\\Exceptions\\InvalidPackage' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Exceptions/InvalidPackage.php',
+        'Spatie\\LaravelPackageTools\\Package' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Package.php',
+        'Spatie\\LaravelPackageTools\\PackageServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/PackageServiceProvider.php',
         'Spatie\\Permission\\Commands\\CacheReset' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CacheReset.php',
         'Spatie\\Permission\\Commands\\CreatePermission' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreatePermission.php',
         'Spatie\\Permission\\Commands\\CreateRole' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreateRole.php',
@@ -7102,6 +7131,52 @@ class ComposerStaticInit23bd144b0c7df48103e831bf953bd40d
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'Tonysm\\GlobalId\\Commands\\GlobalIdCommand' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Commands/GlobalIdCommand.php',
+        'Tonysm\\GlobalId\\Exceptions\\GlobalIdException' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Exceptions/GlobalIdException.php',
+        'Tonysm\\GlobalId\\Exceptions\\InvalidSignatureException' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Exceptions/InvalidSignatureException.php',
+        'Tonysm\\GlobalId\\Exceptions\\LocatorException' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Exceptions/LocatorException.php',
+        'Tonysm\\GlobalId\\Exceptions\\MissingVerifierException' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Exceptions/MissingVerifierException.php',
+        'Tonysm\\GlobalId\\Exceptions\\SignedGlobalIdException' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Exceptions/SignedGlobalIdException.php',
+        'Tonysm\\GlobalId\\Facades\\Locator' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Facades/Locator.php',
+        'Tonysm\\GlobalId\\GlobalId' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/GlobalId.php',
+        'Tonysm\\GlobalId\\GlobalIdServiceProvider' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/GlobalIdServiceProvider.php',
+        'Tonysm\\GlobalId\\Locator' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Locator.php',
+        'Tonysm\\GlobalId\\Locators\\BaseLocator' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Locators/BaseLocator.php',
+        'Tonysm\\GlobalId\\Locators\\LocatorContract' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Locators/LocatorContract.php',
+        'Tonysm\\GlobalId\\Models\\HasGlobalIdentification' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Models/HasGlobalIdentification.php',
+        'Tonysm\\GlobalId\\SignedGlobalId' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/SignedGlobalId.php',
+        'Tonysm\\GlobalId\\URI\\GID' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/URI/GID.php',
+        'Tonysm\\GlobalId\\URI\\GIDParsingException' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/URI/GIDParsingException.php',
+        'Tonysm\\GlobalId\\Verifier' => __DIR__ . '/..' . '/tonysm/globalid-laravel/src/Verifier.php',
+        'Tonysm\\RichTextLaravel\\Actions\\FragmentByCanonicalizingAttachmentGalleries' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Actions/FragmentByCanonicalizingAttachmentGalleries.php',
+        'Tonysm\\RichTextLaravel\\Actions\\FragmentByCanonicalizingAttachments' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Actions/FragmentByCanonicalizingAttachments.php',
+        'Tonysm\\RichTextLaravel\\AttachableFactory' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/AttachableFactory.php',
+        'Tonysm\\RichTextLaravel\\Attachables\\Attachable' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Attachables/Attachable.php',
+        'Tonysm\\RichTextLaravel\\Attachables\\AttachableContract' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Attachables/AttachableContract.php',
+        'Tonysm\\RichTextLaravel\\Attachables\\ContentAttachment' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Attachables/ContentAttachment.php',
+        'Tonysm\\RichTextLaravel\\Attachables\\MissingAttachable' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Attachables/MissingAttachable.php',
+        'Tonysm\\RichTextLaravel\\Attachables\\RemoteFile' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Attachables/RemoteFile.php',
+        'Tonysm\\RichTextLaravel\\Attachables\\RemoteImage' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Attachables/RemoteImage.php',
+        'Tonysm\\RichTextLaravel\\Attachment' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Attachment.php',
+        'Tonysm\\RichTextLaravel\\AttachmentGallery' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/AttachmentGallery.php',
+        'Tonysm\\RichTextLaravel\\Attachments\\Minification' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Attachments/Minification.php',
+        'Tonysm\\RichTextLaravel\\Attachments\\TrixConvertion' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Attachments/TrixConvertion.php',
+        'Tonysm\\RichTextLaravel\\Casts\\AsRichTextContent' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Casts/AsRichTextContent.php',
+        'Tonysm\\RichTextLaravel\\Casts\\ForwardsAttributeToRelationship' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Casts/ForwardsAttributeToRelationship.php',
+        'Tonysm\\RichTextLaravel\\Commands\\RichTextLaravelInstallCommand' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Commands/RichTextLaravelInstallCommand.php',
+        'Tonysm\\RichTextLaravel\\Content' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Content.php',
+        'Tonysm\\RichTextLaravel\\Exceptions\\RichTextException' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Exceptions/RichTextException.php',
+        'Tonysm\\RichTextLaravel\\Fragment' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Fragment.php',
+        'Tonysm\\RichTextLaravel\\HtmlConversion' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/HtmlConversion.php',
+        'Tonysm\\RichTextLaravel\\LivewireSupportsRichText' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/LivewireSupportsRichText.php',
+        'Tonysm\\RichTextLaravel\\Livewire\\WithRichTexts' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Livewire/WithRichTexts.php',
+        'Tonysm\\RichTextLaravel\\Models\\RichText' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Models/RichText.php',
+        'Tonysm\\RichTextLaravel\\Models\\Traits\\HasRichText' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Models/Traits/HasRichText.php',
+        'Tonysm\\RichTextLaravel\\PlainTextConversion' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/PlainTextConversion.php',
+        'Tonysm\\RichTextLaravel\\RichTextLaravelServiceProvider' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/RichTextLaravelServiceProvider.php',
+        'Tonysm\\RichTextLaravel\\Serialization' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/Serialization.php',
+        'Tonysm\\RichTextLaravel\\TrixAttachment' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/TrixAttachment.php',
+        'Tonysm\\RichTextLaravel\\View\\Components\\TrixStyles' => __DIR__ . '/..' . '/tonysm/rich-text-laravel/src/View/Components/TrixStyles.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Vonage\\Account\\Balance' => __DIR__ . '/..' . '/nexmo/client-core/src/Account/Balance.php',

@@ -158,4 +158,22 @@
       0 => 'Spatie\\Permission\\PermissionServiceProvider',
     ),
   ),
+  'tonysm/globalid-laravel' => 
+  array (
+    'aliases' => 
+    array (
+      'GlobalId' => 'Tonysm\\GlobalId\\GlobalIdFacade',
+    ),
+    'providers' => 
+    array (
+      0 => 'Tonysm\\GlobalId\\GlobalIdServiceProvider',
+    ),
+  ),
+  'tonysm/rich-text-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Tonysm\\RichTextLaravel\\RichTextLaravelServiceProvider',
+    ),
+  ),
 );
