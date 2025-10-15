@@ -4,11 +4,25 @@
 
 <div class="feed-container">
     <div class="profile-card">
-        <img src="{{ asset(Auth::user()->profile->image ?? 'default-avatar.png') }}" alt="User Avatar" class="avatar">
+
+         @if(Auth::user() && Auth::user()->profile && Auth::user()->profile->image)
+            @php
+                $images = json_decode(Auth::user()->profile->image, true);
+                $firstImage = $images[0] ?? null;
+             @endphp
+            @if($firstImage)
+                <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+            @else
+                <p>No profile image available.</p>
+            @endif
+        @else
+            <p class="text-muted">No profile information available.</p>
+        @endif
+        <!-- <img src="{{ asset(Auth::user()->profile->image ?? 'default-avatar.png') }}" alt="User Avatar" class="avatar"> -->
 
         <div class="profile-info">
             <h2>{{ Auth::user()->name }}</h2>
-            <p class="bio">Aspiring writer. Lover of words and stories.</p>
+            <p class="bio">{{ Auth::user()->profile->bio ?? 'No bio available.' }}</p>
             <div class="stats">
                 <span><strong>12</strong> Posts</span>
                 <span><strong>58</strong> Followers</span>
