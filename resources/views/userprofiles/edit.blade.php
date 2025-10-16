@@ -86,6 +86,7 @@
 
         <div class="mb-4 text-center">
             <label for="image" class="form-label">Change Profile Image</label>
+
             @if($userId && $userId->profile && $userId->profile->image)
                 @php
                     $images = json_decode($userId->profile->image, true);
@@ -97,17 +98,13 @@
                 @else
                     <p>No profile image available.</p>
                 @endif
+
+                {{-- Hidden input to retain current image --}}
+                <input type="hidden" name="existing_image" value="{{ $firstImage }}">
             @else
                 <p>No profile image available.</p>
             @endif
-
-            <input 
-                type="file" 
-                name="image" 
-                id="image" 
-                class="form-control mt-2" 
-
-            >
+            <input type="file" name="image" id="image" class="form-control mt-2">
         </div>
 
         <div class="mb-4">
