@@ -112,7 +112,7 @@
 
         <!-- <input id="postContent" type="hidden" name="content">
         <trix-editor input="postContent" class="form-control mb-3"></trix-editor> -->
-        <textarea name="content" id="" cols="30" rows="10"></textarea>
+        <textarea name="content" id="" class="form-control mb-3" cols="30" rows="10"></textarea>
 
         <label for="image">Attach Image:</label>
         <input type="file" name="image" accept="image/*" class="form-control mb-2">
