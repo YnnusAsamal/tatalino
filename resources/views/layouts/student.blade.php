@@ -97,6 +97,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end">
+                                @hasrole('Admin')
+                                <a class="dropdown-item" href="{{ route('dashboard') }}">Admin Dashboard</a>
+                                @endhasrole
                                 <a class="dropdown-item" href="{{ route('studentposts.index') }}">Home</a>
                                 <a class="dropdown-item" href="{{ route('studentposts.show', auth()->user()->id) }}">My Feed</a>
                                 <a class="dropdown-item" href="{{ route('update-password.edit', auth()->user()->id) }}">Change Password</a>
