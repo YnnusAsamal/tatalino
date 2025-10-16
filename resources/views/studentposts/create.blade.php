@@ -110,11 +110,10 @@
             @endforeach
         </select>
 
-        <!-- Trix Editor -->
-        <input id="postContent" type="hidden" name="content">
-        <trix-editor input="postContent" class="form-control mb-3"></trix-editor>
+        <!-- <input id="postContent" type="hidden" name="content">
+        <trix-editor input="postContent" class="form-control mb-3"></trix-editor> -->
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
 
-        <!-- Image Upload -->
         <label for="image">Attach Image:</label>
         <input type="file" name="image" accept="image/*" class="form-control mb-2">
 
