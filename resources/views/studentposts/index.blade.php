@@ -1,5 +1,4 @@
 @extends('layouts.student')
-
 @section('content')
 <style>
   body {

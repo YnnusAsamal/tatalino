@@ -125,7 +125,7 @@
     <div class="content">
         @guest
             <div class="welcome-banner">
-                <h1>Welcome to Tintatalino!</h1>
+                <h1>Welcome to Tinta't Talino!</h1>
                 <p class="lead">Join a learning community where students share ideas and grow together.</p>
                 <div class="welcome-actions">
                     <a href="{{ route('login') }}" class="btn btn-light btn-lg">Login</a>
