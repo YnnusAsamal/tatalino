@@ -89,52 +89,46 @@
             </a>
         </div>
     </div>
-
-    <!-- Feed Section -->
     <div class="feed-posts">
         <h3>Latest Posts</h3>
 
         @foreach($myfeeds as $post)
-        <div class="post-card">
-            <div class="post-header">
-                @if(Auth::user() && Auth::user()->profile && Auth::user()->profile->image)
-                    @php
-                        $images = json_decode(Auth::user()->profile->image, true);
-                        $firstImage = $images[0] ?? null;
-                    @endphp
-                    @if($firstImage)
-                        <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
-                    @else
-                        <p>No profile image available.</p>
-                    @endif
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex align-items-center">
+                @php
+                    $images = json_decode($post->users->profile->image ?? '[]', true);
+                    $profileImage = $images[0] ?? null;
+                @endphp
+                @if($profileImage)
+                    <img src="{{ asset('public/assets/userprofiles/' . $profileImage) }}" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
                 @else
-                    <p class="text-muted">No profile information available.</p>
+                    <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
                 @endif
 
                 <div>
-                    <strong>{{ $post->users->name ?? 'NA'}}</strong>
-                    <p class="date">{{ $post->created_at->diffForHumans() ?? 'NA' }}</p>
+                    <strong>{{ $post->users->name ?? 'NA' }}</strong><br>
+                    <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small>
                 </div>
             </div>
 
-            <div class="post-body">
-                <h4>{{ $post->title }}</h4>
-                <div class="post-content">{{$post->content}}</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ $post->title }}</h5>
+                <p class="card-text">{{ $post->content }}</p>
 
                 @if($post->image)
-                    <div class="post-image">
-                        <img src="{{ asset('assets/posts/' . $post->image) }}" alt="Post Image" style="max-width:100%; border-radius:8px; margin-top:10px;">
-                    </div>
+                    <img src="{{ asset('assets/posts/' . $post->image) }}" alt="Post Image" class="img-fluid rounded mt-3">
                 @endif
             </div>
 
-            <div class="post-footer">
-                <button class="submit">👍 Like</button>
-                <button class="submit">💬 Comment</button>
-                <button class="submit">↪ Share</button>
+            <div class="card-footer d-flex gap-2">
+                <button class="btn btn-outline-success btn-sm flex-grow-1">👍 Like</button>
+                <button class="btn btn-outline-primary btn-sm flex-grow-1">💬 Comment</button>
+                <button class="btn btn-outline-secondary btn-sm flex-grow-1">↪ Share</button>
             </div>
         </div>
-    @endforeach
+        @endforeach
+    </div>
+
 
 
     <script>
