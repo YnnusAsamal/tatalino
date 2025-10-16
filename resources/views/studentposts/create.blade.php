@@ -1,7 +1,11 @@
 @extends('layouts.student')
 
 @section('content')
-<style>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.js"></script>
+
+    <style>
     body {
         font-family: 'Lato', sans-serif;
         background-color: #fff;
@@ -47,6 +51,8 @@
         margin-bottom: 1.5rem;
     }
 </style>
+</head>
+
 <div class="feed-container">
     <div class="profile-card">
 
