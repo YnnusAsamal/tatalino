@@ -119,7 +119,7 @@
 
             <div class="post-body">
                 <h4>{{ $post->title }}</h4>
-                <div class="post-content">{!! Str::limit($post->content, 200) !!}</div>
+                <div class="post-content">{{$post->content}}</div>
 
                 @if($post->image)
                     <div class="post-image">
