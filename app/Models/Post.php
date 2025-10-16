@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
+
 
 
 class Post extends Model
 {
     use HasFactory;
-    use HasRichText;
+
 
     protected $table = 'posts';
 
@@ -23,10 +23,6 @@ class Post extends Model
         'status',
         'published_at',
         'unpublished_at'
-    ];
-
-    protected $richTextFields = [
-        'content',
     ];
 
     public function users()
