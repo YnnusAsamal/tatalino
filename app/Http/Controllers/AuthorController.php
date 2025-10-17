@@ -41,7 +41,7 @@ class AuthorController extends Controller
         $author->save();
 
         Alert::success('Success', 'Author featured status updated successfully.');
-        return view('authors.index', compact('author'));
+        return redirect()->route('authors.index', compact('author'));
     }
     /**
      * Show the form for creating a new resource.
