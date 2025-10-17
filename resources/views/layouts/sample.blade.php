@@ -216,6 +216,7 @@
                         </div>
                         @endhasanyrole 
                     </div>
+                    <a href="{{ route('studentposts.index')}}" class="dropdown-item text-white"><span class="bi bi-house-door"></span>&nbspGo to Website</a>
             </div>
         </div>
         <div id="page-content-wrapper">

@@ -15,6 +15,7 @@ use App\Http\Controllers\CostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StudentPostController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\UserProfileController;
 
@@ -71,6 +72,7 @@ Route::group(['middleware' => ['auth']], function () {
             'customers' => CustomerController::class,
             'costs' => CostController::class,
             'consumptions' => ConsumptionController::class,
+            'authors' => AuthorController::class,
         ]);
 
         Route::get('category', [CategoryController::class, 'index'])->name('category.index');
