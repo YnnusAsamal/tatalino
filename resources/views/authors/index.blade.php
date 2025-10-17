@@ -260,6 +260,7 @@ h1 a {
             <div class="text-center mt-2">
                 <form action="{{ route('authors.featured', $author->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <button type="submit" class="btn btn-sm btn-outline-warning">
                         ⭐ Feature
                     </button>
