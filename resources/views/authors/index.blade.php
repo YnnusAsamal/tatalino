@@ -206,7 +206,7 @@ h1 a {
         border-radius: 3px;
     }
 </style>
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3 mb-3">
     
     <div class="row">
         <div class="col">
@@ -234,7 +234,7 @@ h1 a {
     </div>
 </div>
 
-<div class="row mb-3">
+<div class="row">
     @foreach($authors as $author)
     <div class="col-md-4 mb-4">
         <div class="card profile-card-3">
