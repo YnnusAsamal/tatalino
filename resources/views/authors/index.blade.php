@@ -219,6 +219,7 @@ h1 a {
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Search authors..." value="{{ request('search') }}">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
+                <a href="{{ route('authors.index') }}" class="btn btn-outline-info">Refresh</a>
             </div>
         </form>
     </div>
