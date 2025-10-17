@@ -278,7 +278,7 @@ h1 a {
     @endif
 
     <div class="d-flex justify-content-center mt-4">
-        {{ $authors->appends(['search' => request('search')])->links() }}
+        {!! $authors->links() !!}
     </div>
 </div>
 @endsection
