@@ -234,7 +234,7 @@ h1 a {
     </div>
 </div>
 
-<div class="row">
+<div class="row mb-3">
     @foreach($authors as $author)
     <div class="col-md-4 mb-4">
         <div class="card profile-card-3">
