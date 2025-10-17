@@ -193,6 +193,7 @@
             <div class="sidebar-heading text-white"><img src="{{asset('public/assets/logo.JPG')}}" width="75px"> TINTATALINO</div>
                 <div class="list-group list-group-flush">
                     <a href="{{ route('dashboard')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspDashboard</a>
+                    <a href="{{ route('authors.index')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Authors</a>
                     <a href="{{ route('posts.index')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Post</a>
                     <a href="{{ route('category.index')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Category</a>
                     <div class="accordion accordion-flush" id="accordionFlushExample">
