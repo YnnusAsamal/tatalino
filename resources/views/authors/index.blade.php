@@ -209,6 +209,13 @@ h1 a {
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col">
+            <div class="d-flex justify-content-center mt-4">
+                {{ $authors->links() }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <h3 class="float-left">Authors</h3>
         </div>
     </div>
@@ -277,8 +284,6 @@ h1 a {
         </div>
     @endif
 
-    <div class="d-flex justify-content-center mt-4">
-        {{ $authors->links() }}
-    </div>
+   
 </div>
 @endsection
