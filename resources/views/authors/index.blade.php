@@ -178,7 +178,15 @@ h1 a {
                     <!-- <img src="{{ asset('public/assets/userprofiles/' . optional($author->profile)->image ?? 'default-image.jpg') }}" alt="profile-image" class="profile" /> -->
                 </div>
                 <div class="profile-thumb-block">
-                    <img src="{{ asset('public/assets/userprofiles/' . optional($author->profile)->image ?? 'default-image.jpg') }}" alt="profile-image" class="profile" />
+                    @php
+                        $images = json_decode($author->profile->image, true);
+                        $firstImage = $images[0] ?? null;
+                    @endphp
+                    @if($firstImage)
+                        <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                    @else
+                        <p>No profile image available.</p>
+                    @endif
                 </div>
                 <div class="card-content">
                     <h2>{{ $author->name }}<small>{{ $author->profile->bio }}</small></h2>
