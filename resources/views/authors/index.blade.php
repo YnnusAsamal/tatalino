@@ -166,10 +166,10 @@ h1 a {
         <div class="col-md-4">
             <div class="card profile-card-3">
                 <div class="background-block">
-                    <img src="{{ asset('public/assets/userprofiles/'.$author->profile->image) }}" alt="profile-sample1" class="background" />
+                    <img src="{{ asset('public/assets/userprofiles/' . optional($author->profile)->image ?? 'default-image.jpg') }}" alt="profile-image" class="profile" />
                 </div>
                 <div class="profile-thumb-block">
-                    <img src="{{ asset('public/assets/userprofiles/'.$author->profile->image) }}" alt="profile-image" class="profile" />
+                    <img src="{{ asset('public/assets/userprofiles/' . optional($author->profile)->image ?? 'default-image.jpg') }}" alt="profile-image" class="profile" />
                 </div>
                 <div class="card-content">
                     <h2>{{ $author->name }}<small>{{ $author->profile->bio }}</small></h2>
