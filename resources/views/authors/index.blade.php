@@ -226,7 +226,6 @@ h1 a {
 
 <div class="row">
     @foreach($authors as $author)
-  
     <div class="col-md-4 mb-4">
         <div class="card profile-card-3">
             <div class="background-block">
@@ -253,11 +252,23 @@ h1 a {
                 <h2>{{ $author->name }}<small>{{ $author->profile->bio }}</small></h2>
             </div>
         </div>
-        <div class="author-description mt-2">
+
+        <div class="author-description mt-2 text-center">
             <strong>{{ $author->profile->user_description }}</strong>
+        </div>
+
+        <!-- Featured Button -->
+        <div class="text-center mt-2">
+            <form action="{{ route('authors.featured', $author->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-sm btn-warning">
+                    ⭐ Feature
+                </button>
+            </form>
         </div>
     </div>
     @endforeach
+
     @if($authors->isEmpty())
         <div class="col-12 text-center">
             <p class="text-muted">No authors found.</p>

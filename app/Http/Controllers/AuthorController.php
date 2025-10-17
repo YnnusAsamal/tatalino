@@ -32,6 +32,16 @@ class AuthorController extends Controller
         return view('authors.index', compact('authors'));
     }
 
+
+    public function featured(Request $request, $id)
+    {
+        $author = User::findOrFail($id);
+        $author->featured = $request->input('featured');
+        $author->save();
+
+        Alert::success('Success', 'Author featured status updated successfully.');
+        return view('authors.index', compact('author'));
+    }
     /**
      * Show the form for creating a new resource.
      *

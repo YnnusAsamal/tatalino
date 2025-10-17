@@ -83,6 +83,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('posts', [PostController::class, 'index'])->name('posts.index');
         Route::put('posts/published/{id}', [PostController::class, 'published'])->name('posts.published');
         Route::put('posts/unpublished/{id}', [PostController::class, 'unpublished'])->name('posts.unpublished');
+
+        Route::put('authors/featured/{id}', [AuthorController::class, 'featured'])->name('authors.featured');
     });
 
     /**
