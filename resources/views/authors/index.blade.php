@@ -251,14 +251,14 @@ h1 a {
 
             <div class="card-content text-center px-2">
                 <h2>{{ $author->name }}<small>{{ $author->profile->bio }}</small></h2>
+
+                <div class="author-description mt-2 text-center">
+                    <strong>{{ $author->profile->user_description }}</strong>
+                </div>
+
             </div>
 
-            <div class="author-description mt-2 text-center">
-                <strong>{{ $author->profile->user_description }}</strong>
-            </div>
-
-            <!-- Featured Button -->
-            <div class="text-center mt-2">
+            <div class="text-center mt-2 mb-2">
                 <form action="{{ route('authors.featured', $author->id) }}" method="POST">
                     @csrf
                     @method('PUT')
