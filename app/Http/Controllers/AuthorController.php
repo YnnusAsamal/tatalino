@@ -17,7 +17,7 @@ class AuthorController extends Controller
 {
     $authors = User::with('profile')->whereHas('profile')->whereHas('roles', function($q) {
         $q->where('name', 'Student');
-    })->get();
+    })->paginate(6);
 
     return view('authors.index', compact('authors'));
 }

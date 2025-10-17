@@ -247,5 +247,9 @@ h1 a {
         </div>
     </div>
     @endforeach
+
+    <div class="d-flex justify-content-center mt-4">
+        {{ $authors->links() }}
+    </div>
 </div>
 @endsection
