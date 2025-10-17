@@ -27,6 +27,5 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(125);
         Paginator::useBootstrap();
-        Paginator::useBootstrapFive();
     }
 }
