@@ -152,6 +152,59 @@ h1 a {
    text-decoration: none;
 }
 
+
+    .card.profile-card-3 {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-content h2 {
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0.5rem;
+        max-height: 70px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .card-content small {
+        display: block;
+        color: #666;
+        font-size: 0.9rem;
+        max-height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .profile-thumb-block .profile {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #FBC02D;
+    }
+
+    .author-description {
+        max-height: 60px;
+        overflow: auto;
+        font-size: 0.95rem;
+        padding: 0 0.5rem;
+        text-align: center;
+    }
+
+    /* Optional scrollbar styling */
+    .author-description::-webkit-scrollbar {
+        width: 6px;
+    }
+    .author-description::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 3px;
+    }
 </style>
 <div class="container-fluid mt-3">
     <div class="row">
@@ -161,41 +214,38 @@ h1 a {
     </div>
     <hr>
 
-    <div class="row">
-        @foreach($authors as $author)
-        <div class="col-md-4">
-            <div class="card profile-card-3">
-                <div class="background-block">
-                    @php
-                        $images = json_decode($author->profile->image, true);
-                        $firstImage = $images[0] ?? null;
-                    @endphp
-                    @if($firstImage)
-                        <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
-                    @else
-                        <p>No profile image available.</p>
-                    @endif
-                    <!-- <img src="{{ asset('public/assets/userprofiles/' . optional($author->profile)->image ?? 'default-image.jpg') }}" alt="profile-image" class="profile" /> -->
-                </div>
-                <div class="profile-thumb-block">
-                    @if($firstImage)
-                    <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="profile-image" class="profile" />
-                    @else
-                        <p>No profile image available.</p>
-                    @endif
-                </div>
-                <div class="card-content">
-                    <h2>{{ $author->name }}<small>{{ $author->profile->bio }}</small></h2>
-                    <!-- <div class="icon-block">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                    </div> -->
-                </div>
+ <div class="row">
+    @foreach($authors as $author)
+    <div class="col-md-4 mb-4">
+        <div class="card profile-card-3">
+            <div class="background-block">
+                @php
+                    $images = json_decode($author->profile->image, true);
+                    $firstImage = $images[0] ?? null;
+                @endphp
+                @if($firstImage)
+                    <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                @else
+                    <p>No profile image available.</p>
+                @endif
             </div>
-            <p class="mt-3 w-100 float-left text-center"><strong>{{ $author->profile->user_description }}</strong></p>
+
+            <div class="profile-thumb-block text-center mt-2">
+                @if($firstImage)
+                    <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="profile-image" class="profile" />
+                @else
+                    <p>No profile image available.</p>
+                @endif
+            </div>
+
+            <div class="card-content text-center px-2">
+                <h2>{{ $author->name }}<small>{{ $author->profile->bio }}</small></h2>
+            </div>
         </div>
-        @endforeach
+        <div class="author-description mt-2">
+            <strong>{{ $author->profile->user_description }}</strong>
+        </div>
     </div>
+    @endforeach
 </div>
 @endsection
