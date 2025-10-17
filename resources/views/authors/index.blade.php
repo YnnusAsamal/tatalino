@@ -213,9 +213,20 @@ h1 a {
         </div>
     </div>
     <hr>
+<div class="row mb-4">
+    <div class="col-md-6">
+        <form action="{{ route('authors.index') }}" method="GET">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search authors..." value="{{ request('search') }}">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
 
- <div class="row">
+<div class="row">
     @foreach($authors as $author)
+  
     <div class="col-md-4 mb-4">
         <div class="card profile-card-3">
             <div class="background-block">
@@ -247,9 +258,14 @@ h1 a {
         </div>
     </div>
     @endforeach
+    @if($authors->isEmpty())
+        <div class="col-12 text-center">
+            <p class="text-muted">No authors found.</p>
+        </div>
+    @endif
 
     <div class="d-flex justify-content-center mt-4">
-        {{ $authors->links() }}
+        {{ $authors->appends(['search' => request('search')])->links() }}
     </div>
 </div>
 @endsection

@@ -13,14 +13,24 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-{
-    $authors = User::with('profile')->whereHas('profile')->whereHas('roles', function($q) {
-        $q->where('name', 'Student');
-    })->paginate(6);
 
-    return view('authors.index', compact('authors'));
-}
+
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+
+        $authors = User::with('profile')
+            ->whereHas('profile')
+            ->whereHas('roles', function ($q) {
+                $q->where('name', 'Student');
+            })
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->paginate(6);
+
+        return view('authors.index', compact('authors'));
+    }
 
     /**
      * Show the form for creating a new resource.
