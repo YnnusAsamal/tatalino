@@ -166,18 +166,27 @@ h1 a {
         <div class="col-md-4">
             <div class="card profile-card-3">
                 <div class="background-block">
-                    <img src="{{ asset('public/assets/userprofiles/' . optional($author->profile)->image ?? 'default-image.jpg') }}" alt="profile-image" class="profile" />
+                    @php
+                        $images = json_decode($author->profile->image, true);
+                        $firstImage = $images[0] ?? null;
+                    @endphp
+                    @if($firstImage)
+                        <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                    @else
+                        <p>No profile image available.</p>
+                    @endif
+                    <!-- <img src="{{ asset('public/assets/userprofiles/' . optional($author->profile)->image ?? 'default-image.jpg') }}" alt="profile-image" class="profile" /> -->
                 </div>
                 <div class="profile-thumb-block">
                     <img src="{{ asset('public/assets/userprofiles/' . optional($author->profile)->image ?? 'default-image.jpg') }}" alt="profile-image" class="profile" />
                 </div>
                 <div class="card-content">
                     <h2>{{ $author->name }}<small>{{ $author->profile->bio }}</small></h2>
-                    <div class="icon-block">
+                    <!-- <div class="icon-block">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
                         <a href="#"><i class="fa fa-google-plus"></i></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <p class="mt-3 w-100 float-left text-center"><strong>{{ $author->profile->user_description }}</strong></p>
