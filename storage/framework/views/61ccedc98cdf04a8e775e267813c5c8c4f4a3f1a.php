@@ -24,6 +24,9 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.js"></script>
 
     <!-- Custom Styles -->
     <style>
@@ -95,6 +98,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end">
+                                <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'Admin')): ?>
+                                <a class="dropdown-item" href="<?php echo e(route('dashboard')); ?>">Admin Dashboard</a>
+                                <?php endif; ?>
                                 <a class="dropdown-item" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
                                 <a class="dropdown-item" href="<?php echo e(route('studentposts.show', auth()->user()->id)); ?>">My Feed</a>
                                 <a class="dropdown-item" href="<?php echo e(route('update-password.edit', auth()->user()->id)); ?>">Change Password</a>
@@ -123,7 +129,7 @@
     <div class="content">
         <?php if(auth()->guard()->guest()): ?>
             <div class="welcome-banner">
-                <h1>Welcome to Tintatalino!</h1>
+                <h1>Welcome to Tinta't Talino!</h1>
                 <p class="lead">Join a learning community where students share ideas and grow together.</p>
                 <div class="welcome-actions">
                     <a href="<?php echo e(route('login')); ?>" class="btn btn-light btn-lg">Login</a>

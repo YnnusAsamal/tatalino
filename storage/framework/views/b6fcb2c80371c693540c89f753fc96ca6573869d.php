@@ -34,6 +34,19 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         
         <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+        <?php if (isset($component)) { $__componentOriginalf372a5a608768d7089881d6322ef2ebf2d24a416 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Tonysm\RichTextLaravel\View\Components\TrixStyles::class, []); ?>
+<?php $component->withName('rich-text-trix-styles'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf372a5a608768d7089881d6322ef2ebf2d24a416)): ?>
+<?php $component = $__componentOriginalf372a5a608768d7089881d6322ef2ebf2d24a416; ?>
+<?php unset($__componentOriginalf372a5a608768d7089881d6322ef2ebf2d24a416); ?>
+<?php endif; ?>
+
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

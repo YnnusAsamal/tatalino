@@ -37,7 +37,7 @@ class AuthorController extends Controller
     public function featured(Request $request, $id)
     {
         $author = User::findOrFail($id);
-        $author->featured = $request->input('featured');
+        $author->featured = 'Featured';
         $author->save();
 
         Alert::success('Success', 'Author featured status updated successfully.');

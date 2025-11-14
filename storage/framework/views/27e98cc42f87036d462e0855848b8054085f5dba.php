@@ -1,5 +1,4 @@
 
-
 <?php $__env->startSection('content'); ?>
 <style>
   body {
@@ -211,14 +210,14 @@
             </li>
         </ul>
     <?php else: ?>
-        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
+        <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
             <li class="nav-item">
                 <a class="nav-link text-dark" href="<?php echo e(route('login')); ?>">Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="<?php echo e(route('register')); ?>">Register</a>
             </li>
-        </ul>
+        </ul> -->
     <?php endif; ?>
 
   </section>

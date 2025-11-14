@@ -17,7 +17,9 @@ class StudentPostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('studentposts.index', compact('posts'));
+
+        $writer = User::where('id', Auth::id())->first();
+        return view('studentposts.index', compact('posts', 'writer'));
     }
 
     /**

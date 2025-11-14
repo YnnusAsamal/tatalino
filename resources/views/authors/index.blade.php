@@ -153,58 +153,58 @@ h1 a {
 }
 
 
-    .card.profile-card-3 {
-        position: relative;
-        overflow: hidden;
-        height: 100%;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
+.card.profile-card-3 {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
 
-    .card-content h2 {
-        font-size: 1.2rem;
-        margin: 0;
-        padding: 0.5rem;
-        max-height: 70px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+.card-content h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0.5rem;
+    max-height: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
-    .card-content small {
-        display: block;
-        color: #666;
-        font-size: 0.9rem;
-        max-height: 40px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
+.card-content small {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
-    .profile-thumb-block .profile {
-        width: 80px;
-        height: 80px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 3px solid #FBC02D;
-    }
+.profile-thumb-block .profile {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #FBC02D;
+}
 
-    .author-description {
-        max-height: 60px;
-        overflow: auto;
-        font-size: 0.95rem;
-        padding: 0 0.5rem;
-        text-align: center;
-    }
+.author-description {
+    max-height: 60px;
+    overflow: auto;
+    font-size: 0.95rem;
+    padding: 0 0.5rem;
+    text-align: center;
+}
 
-    /* Optional scrollbar styling */
-    .author-description::-webkit-scrollbar {
-        width: 6px;
-    }
-    .author-description::-webkit-scrollbar-thumb {
-        background-color: #ccc;
-        border-radius: 3px;
-    }
+/* Optional scrollbar styling */
+.author-description::-webkit-scrollbar {
+    width: 6px;
+}
+.author-description::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
 </style>
 <div class="container-fluid mt-3 mb-3">
     
