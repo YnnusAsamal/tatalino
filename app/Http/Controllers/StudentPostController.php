@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 class StudentPostController extends Controller
