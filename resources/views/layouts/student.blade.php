@@ -27,6 +27,7 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.js"></script>
+    <link rel="stylesheet" media="screen" href="css/style.css">
 
     <!-- Custom Styles -->
     <style>
@@ -123,9 +124,12 @@
             </div>
         </div>
     </nav>
-
-    <!-- Main Content -->
+    
     <div class="content">
+        <div class="count-particles">
+            <span class="js-count-particles">--</span> particles
+        </div>
+        <div id="particles-js"></div>
         @guest
             <div class="welcome-banner">
                 <h1>Welcome to Tinta't Talino!</h1>
@@ -136,12 +140,36 @@
                 </div>
             </div>
         @endguest
-
         <div class="container mt-3">
             @yield('content')
             @include('sweetalert::alert')
         </div>
     </div>
+
+    <script src="../particle/particles.js"></script>
+    <script src="particle/js/app.js"></script>
+
+<!-- stats.js -->
+<script src="particle/js/lib/stats.js"></script>
+<script>
+  var count_particles, stats, update;
+  stats = new Stats;
+  stats.setMode(0);
+  stats.domElement.style.position = 'absolute';
+  stats.domElement.style.left = '0px';
+  stats.domElement.style.top = '0px';
+  document.body.appendChild(stats.domElement);
+  count_particles = document.querySelector('.js-count-particles');
+  update = function() {
+    stats.begin();
+    stats.end();
+    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+    }
+    requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+</script>
 
 </body>
 </html>

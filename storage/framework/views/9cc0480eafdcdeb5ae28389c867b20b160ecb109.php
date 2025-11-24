@@ -193,6 +193,7 @@
             <div class="sidebar-heading text-white"><img src="<?php echo e(asset('public/assets/logo.JPG')); ?>" width="75px"> TINTATALINO</div>
                 <div class="list-group list-group-flush">
                     <a href="<?php echo e(route('dashboard')); ?>" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspDashboard</a>
+                    <a href="<?php echo e(route('authors.index')); ?>" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Authors</a>
                     <a href="<?php echo e(route('posts.index')); ?>" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Post</a>
                     <a href="<?php echo e(route('category.index')); ?>" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Category</a>
                     <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -216,6 +217,7 @@
                         </div>
                         <?php endif; ?> 
                     </div>
+                    <a href="<?php echo e(route('studentposts.index')); ?>" class="dropdown-item text-white"><span class="bi bi-house-door"></span>&nbspGo to Website</a>
             </div>
         </div>
         <div id="page-content-wrapper">
