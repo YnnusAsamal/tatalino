@@ -2,7 +2,7 @@
 
 @section('content')
 <head>
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    
     <style>
     body {
         font-family: 'Lato', sans-serif;
