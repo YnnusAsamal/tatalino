@@ -291,7 +291,7 @@
   </main>
 
   <div class="submit">
-    <button>Submit Your Work</button>
+    <a href="{{ route('studentposts.create') }}">Submit Your Work</a>
   </div>
 </div>
 @endsection
