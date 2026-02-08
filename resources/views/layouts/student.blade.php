@@ -27,13 +27,14 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.js"></script>
-    <link rel="stylesheet" media="screen" href="particle/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" media="screen" href="css/style.css">
 
-    <!-- Custom Styles -->
     <style>
-        body {
+        /* body {
             background: #f8f9fa;
-        }
+            margin: 0;
+        } */
 
         .welcome-banner {
             background: #c8962d;
@@ -56,7 +57,9 @@
         }
 
         .content {
-            padding: 2rem;
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
         }
 
         /* You can keep or remove these depending on whether you want feed/profile styles on the front page */
@@ -72,13 +75,12 @@
             border: 3px solid #FBC02D; /* optional border in your theme */
         }
 
-        /* Additional style you already had can stay here */
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar sticky-top navbar-expand-xs border-bottom navbar-light bg-white" id="navbar">
+    <div id="particles-js"></div>
+        <nav class="navbar sticky-top navbar-expand-xs border-bottom navbar-light bg-white" id="navbar">
         <div class="container">
             <a class="navbar-brand fw-bold" href="{{ url('/') }}">
                 Tinta’t Talino
@@ -124,12 +126,8 @@
             </div>
         </div>
     </nav>
-    
-    <div class="content">
-        <div class="count-particles">
-            <span class="js-count-particles">--</span> particles
-        </div>
-        <div id="particles-js"></div>
+   
+    <div class="content" style="position: relative; z-index: 1;">
         @guest
             <div class="welcome-banner">
                 <h1>Welcome to Tinta't Talino!</h1>
@@ -145,31 +143,5 @@
             @include('sweetalert::alert')
         </div>
     </div>
-
-    <script src="../particle/particles.js"></script>
-    <script src="particle/js/app.js"></script>
-
-<!-- stats.js -->
-<script src="particle/js/lib/stats.js"></script>
-<script>
-  var count_particles, stats, update;
-  stats = new Stats;
-  stats.setMode(0);
-  stats.domElement.style.position = 'absolute';
-  stats.domElement.style.left = '0px';
-  stats.domElement.style.top = '0px';
-  document.body.appendChild(stats.domElement);
-  count_particles = document.querySelector('.js-count-particles');
-  update = function() {
-    stats.begin();
-    stats.end();
-    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-    }
-    requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
-</script>
-
 </body>
 </html>
