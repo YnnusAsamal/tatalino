@@ -2,9 +2,7 @@
 
 @section('content')
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.js"></script>
-
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <style>
     body {
         font-family: 'Lato', sans-serif;
@@ -110,9 +108,7 @@
             @endforeach
         </select>
 
-        <!-- <input id="postContent" type="hidden" name="content">
-        <trix-editor input="postContent" class="form-control mb-3"></trix-editor> -->
-        <textarea name="content" id="" class="form-control mb-3" cols="30" rows="10"></textarea>
+        <textarea name="content" id="editor" class="form-control mb-3" cols="30" rows="10"></textarea>
 
         <label for="image">Attach Image:</label>
         <input type="file" name="image" accept="image/*" class="form-control mb-2">
@@ -122,4 +118,11 @@
 </div>
 
 </div>
+<script>
+    CKEDITOR.replace('editor', {
+        height: 300,
+        removeButtons: 'PasteFromWord',
+        filebrowserUploadMethod: 'form'
+    });
+</script>
 @endsection
