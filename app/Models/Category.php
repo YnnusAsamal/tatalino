@@ -20,6 +20,6 @@ class Category extends Model
 
     public function posts()
     {
-        return $this->hasMany(Post::class, 'category', 'name');
+        return $this->hasMany(Post::class, 'category', 'id');
     }
 }
