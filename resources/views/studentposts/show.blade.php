@@ -110,7 +110,7 @@
                     <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small>
                 </div>
                 <div class="float-end">
-                    <span class="badge bg-success">{{ $post->category ?? 'Uncategorized' }}</span>
+                    <span class="badge bg-success">{{ $post->category->name ?? 'Uncategorized' }}</span>
                 </div>
             </div>
 

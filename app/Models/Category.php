@@ -17,4 +17,9 @@ class Category extends Model
         'user_id',
         'status'
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category', 'name');
+    }
 }
