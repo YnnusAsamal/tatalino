@@ -116,7 +116,7 @@
                 <p class="card-text">{{ $post->content }}</p>
 
                 @if($post->image)
-                    <img src="{{ asset('assets/posts/' . $post->image) }}" alt="Post Image" class="img-fluid rounded mt-3">
+                    <img src="{{ asset('public/assets/posts/' . $post->image) }}" alt="Post Image" class="img-fluid rounded mt-3">
                 @endif
             </div>
 
