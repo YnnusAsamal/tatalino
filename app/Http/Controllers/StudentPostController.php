@@ -78,7 +78,7 @@ class StudentPostController extends Controller
      */
     public function show($id)
     {
-        $myfeeds = Post::where('author', Auth::id())->get();
+        $myfeeds = Post::where('author', Auth::id())->orderBy('created_at', 'desc')->get();
         return view('studentposts.show', compact('myfeeds'));
     }
 
