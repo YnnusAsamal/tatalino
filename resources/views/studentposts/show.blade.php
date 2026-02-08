@@ -109,6 +109,9 @@
                     <strong>{{ $post->users->name ?? 'NA' }}</strong><br>
                     <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small>
                 </div>
+                <div class="float-end">
+                    <span class="badge bg-success">{{ $post->category ?? 'Uncategorized' }}</span>
+                </div>
             </div>
 
             <div class="card-body">
