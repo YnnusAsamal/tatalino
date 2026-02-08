@@ -117,5 +117,11 @@
 </div>
 
 </div>
-
+<script>
+    CKEDITOR.replace('editor', {
+        height: 300,
+        removeButtons: 'PasteFromWord',
+        filebrowserUploadMethod: 'form'
+    });
+</script>
 @endsection
