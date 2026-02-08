@@ -146,7 +146,7 @@
     margin: 2rem 0 3rem;
   }
 
-  .submit button {
+  .submit a {
     background: #c8962d;
     color: white;
     font-size: 1.1rem;
