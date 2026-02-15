@@ -18,6 +18,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\ForumController;
 
 /**
  * Utility route - clear cache
@@ -103,6 +104,12 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('userprofiles/edit/{id}', [UserProfileController::class, 'edit'])->name('userprofiles.edit');
         Route::put('userprofiles/update/{id}', [UserProfileController::class, 'update'])->name('userprofiles.update');
+    
+        
+        Route::get('forum', [ForumController::class, 'index'])->name('forum.index');
+        Route::post('forum/post', [ForumController::class, 'storePost'])->name('forum.post');
+        Route::post('forum/reply', [ForumController::class, 'storeReply'])->name('forum.reply');
+    
     });
 });
 

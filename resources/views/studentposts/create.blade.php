@@ -91,14 +91,6 @@
 
 
 </div>
-<!-- <script>
-    CKEDITOR.replace('editor', {
-        height: 300,
-        removeButtons: 'PasteFromWord',
-        filebrowserUploadMethod: 'form'
-    });
-</script> -->
-
 <script>
     CKEDITOR.replace('editor', {
         height: 300,

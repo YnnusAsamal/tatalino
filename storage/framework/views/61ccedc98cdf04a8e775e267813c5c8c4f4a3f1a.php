@@ -31,15 +31,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <link rel="stylesheet" media="screen" href="css/style.css">
-
+<!-- 
     <style>
-            body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1e1b4b, #312e81, #4c1d95);
-            background-size: 400% 400%;
-            animation: gradientMove 12s ease infinite;
-            color: #fff;
-            overflow-x: hidden;
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #1e1b4b, #312e81, #4c1d95);
+        background-size: 400% 400%;
+        animation: gradientMove 12s ease infinite;
+        color: #fff;
+        overflow-x: hidden;
     }
         .welcome-banner {
             background: #c8962d;
@@ -77,16 +77,11 @@
             object-fit: cover;
             border: 3px solid #FBC02D;
         }
-
-   
-
     @keyframes  gradientMove {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
-
-    /* 💫 Particles layer */
     #particles-js {
         position: fixed;
         width: 100%;
@@ -134,7 +129,6 @@
         color: #fff;
     }
 
-    /* 🚀 Neon Gradient Button */
     .btn-purple {
         background: linear-gradient(90deg, #a855f7, #ec4899, #6366f1);
         background-size: 300% 300%;
@@ -158,7 +152,7 @@
         transform: scale(1.05);
         box-shadow: 0 0 30px rgba(236,72,153,0.8);
     }
-    </style>
+    </style> -->
 </head>
 <body>
 
@@ -178,10 +172,7 @@
 
                     <?php if(auth()->guard()->check()): ?>
                         <li class="nav-item">
-                            <span class="nav-link text-dark">
-                                Welcome, <?php echo e(Auth::user()->name); ?>
-
-                            </span>
+                           
                         </li>
 
                         <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'Admin')): ?>
@@ -193,25 +184,41 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
                         </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<?php echo e(route('forum.index')); ?>">Forum</a>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo e(route('studentposts.show', auth()->user()->id)); ?>">My Feed</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="nav-link text-dark">
+                                Welcome, <?php echo e(Auth::user()->name); ?>
+
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link text-danger" href="<?php echo e(route('logout')); ?>"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                            </li>
+
+                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                            <?php echo csrf_field(); ?>
+                        </form>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo e(route('update-password.edit', auth()->user()->id)); ?>">Change Password</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-danger" href="<?php echo e(route('logout')); ?>"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-                        </li>
-
-                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
-                            <?php echo csrf_field(); ?>
-                        </form>
+                       
 
                     <?php else: ?>
                         <li class="nav-item">
@@ -245,7 +252,7 @@
         </div>
     </div>
 
-    <div id="particles-js"></div>
+    <!-- <div id="particles-js"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
@@ -264,7 +271,7 @@
         "move": { "speed": 2 }
     }
     });
-    </script>
+    </script> -->
 </body>
 </html>
 <?php /**PATH C:\laragon\www\tatalino\resources\views/layouts/student.blade.php ENDPATH**/ ?>

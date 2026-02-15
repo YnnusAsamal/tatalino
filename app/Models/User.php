@@ -79,4 +79,15 @@ class User extends Authenticatable
         return $this->hasOne(UserProfile::class);
     }
 
+
+    public function posts()
+    {
+        return $this->hasMany(Forum::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(ForumReply::class);
+    }
+
 }

@@ -5,200 +5,178 @@
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php $component->withAttributes([]); ?>
-    <head>
-    <link rel="stylesheet" href="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <style>
-            @import  url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    </head>
+        <style>
+        body{
+            margin-top:100px;
+            background: #fff5e1;
             font-family: 'Poppins', sans-serif;
         }
-
-        body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-image: url("<?php echo e(asset('public/assets/login.png')); ?>");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        }
-
-        section {
+        .account-block {
+            padding: 0;
+            background-image: url(https://bootdey.com/img/Content/bg1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
             position: relative;
-            max-width: 400px;
-            background-color: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            backdrop-filter: blur(55px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 3rem;
         }
-
-        h1 {
-            font-size: 2rem;
+        .account-block .overlay {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .account-block .account-testimonial {
+            text-align: center;
             color: #fff;
-            text-align: center;
-        }
-
-        .inputbox {
-            position: relative;
-            margin: 30px 0;
-            max-width: 310px;
-            border-bottom: 2px solid #fff;
-        }
-
-        .inputbox label {
             position: absolute;
-            top: 50%;
-            left: 5px;
-            transform: translateY(-50%);
-            color: #000000ff;
-            font-size: 1rem;
-            pointer-events: none;
-            transition: all 0.5s ease-in-out;
+            margin: 0 auto;
+            padding: 0 1.75rem;
+            bottom: 3rem;
+            left: 0;
+            right: 0;
         }
 
-        input:focus ~ label, 
-        input:valid ~ label {
-            top: -5px;
+        .text-theme {
+            color: #c48B28 !important;
         }
 
-        .inputbox input {
-            width: 100%;
-            height: 60px;
-            background: transparent;
-            border: none;
-            outline: none;
-            font-size: 1rem;
-            padding: 0 35px 0 5px;
-            color: #000000ff;
+        .btn-theme {
+            background-color: #c48B28;
+            border-color: #c48B28;
+            color: #fff;
+        }
+        .school-name{
+            /* background-color: #c48B28;
+            border-color: #c48B28; */
+                color: #c48B28;
+                padding: 5px 15px;
+                border-radius: 5px;
         }
 
-        .inputbox ion-icon {
-            position: absolute;
-            right: 8px;
-            color: #000000ff;
-            font-size: 1.2rem;
-            top: 20px;
+        .header-animate {
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeSlideDown 1s ease forwards;
         }
 
-        .forget {
-            margin: 35px 0;
-            font-size: 0.85rem;
-            color: #000000ff;
-            display: flex;
-            justify-content: space-between;
+        @keyframes  fadeSlideDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .forget label {
-            display: flex;
-            align-items: center;
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
         }
 
-        .forget label input {
-            margin-right: 3px;
+        /* Focus effect */
+        .form-control:focus {
+            border-color: #c48B28;
+            box-shadow: 0 0 0 0.2rem rgba(196, 139, 40, 0.25);
         }
+        .form-group label {
+        color: #c48B28;
+        font-weight: 600;
+            }
 
-        .forget a {
-            color: #000000ff;
-            text-decoration: none;
-            font-weight: 600;
-        }
+            .forgot-link {
+    color: #c48B28 !important;
+    font-weight: 500;
+    }
 
-        .forget a:hover {
-            text-decoration: underline;
-        }
+    .forgot-link:hover {
+        text-decoration: underline;
+    }
+        </style>
+    </head> 
 
-        button {
-            width: 100%;
-            height: 40px;
-            border-radius: 40px;
-            background-color: rgba(235, 191, 145, 1);
-            border: none;
-            outline: none;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.4s ease;
-        }
 
-        button:hover {
-            background-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .register {
-            font-size: 0.9rem;
-            color: #000000ff;
-            text-align: center;
-            margin: 25px 0 10px;
-        }
-
-        .register p a {
-            text-decoration: none;
-            color: #000000ff;
-            font-weight: 600;
-        }
-
-        .register p a:hover {
-            text-decoration: underline;
-        }
-    </style>
-    </head>
-
-    <section>
-
-        <form method="POST" action="<?php echo e(route('login')); ?>">
-            <?php echo csrf_field(); ?>
-
-            <!-- Email Address -->
-            <div class="inputbox">
-                <input id="email" type="email" name="email" value="<?php echo e(old('email')); ?>" required autofocus />
-                <label for="email">Email</label>
-                <ion- name="mail-outline"></ion-    icon>
+    <div id="main-wrapper" class="container">
+        <div class="row mb-3 align-items-center justify-content-center text-center text-md-start header-animate">
+    
+            <div class="col-auto">
+                <img src="<?php echo e(asset('assets/logo.png')); ?>" 
+                    alt="Logo" 
+                    class="img-fluid" 
+                    style="max-width: 120px;">
             </div>
 
-            <!-- Password -->
-            <div class="inputbox">
-                <input id="password" type="password" name="password" required autocomplete="current-password" />
-                <label for="password">Password</label>
-                <ion-icon name="lock-closed-outline"></ion-icon>
+            <div class="col-auto">
+                <h4 class="mb-0 fw-bold school-name">
+                    CALBAYOG CITY NATIONAL HIGH SCHOOL
+                </h4>
             </div>
 
-            <!-- Remember Me -->
-            <div class="forget">
-                <label for="remember_me">
-                    <input id="remember_me" type="checkbox" name="remember">
-                    <span>Remember me</span>
-                </label>
-                <?php if(Route::has('password.request')): ?>
-                    <a href="<?php echo e(route('password.request')); ?>">Forgot Password?</a>
-                <?php endif; ?>
-            </div>
+        </div>
+        <div class="row justify-content-center mb-3">
+            
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="mb-5">
+                                        <h3 class="h4 font-weight-bold text-theme">Login</h3>
+                                    </div>
 
-            <button type="submit">
-                <?php echo e(__('LOG IN')); ?>
+                                    <h6 class="h5 mb-0">Welcome Students!</h6>
+                                    <p class="text-muted mt-2 mb-5">Enter your email address and password to access website</p>
 
-            </button>
+                                    <form method="POST" action="<?php echo e(route('login')); ?>">
+                                        <?php echo csrf_field(); ?>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email address</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" value="<?php echo e(old('email')); ?>" required autofocus>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <label for="exampleInputPassword1">Password</label>
+                                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" required autocomplete="current-password">
+                                        </div>
+                                        <button type="submit" class="btn btn-theme">Login</button>
+                                        <?php if(Route::has('password.request')): ?>
+                                        <a href="<?php echo e(route('password.request')); ?>" class="forgot-link float-right text-primary">Forgot password?</a>
+                                        <?php endif; ?>
+                                    </form>
+                                </div>
+                            </div>
 
-            <!-- Register link -->
-            <?php if(Route::has('register')): ?>
-                <div class="register">
-                    <p>Don't have an account? 
-                        <a href="<?php echo e(route('register')); ?>">Register</a>
-                    </p>
+                            <div class="col-lg-6 d-none d-lg-inline-block">
+                                <div class="account-block rounded-right">
+                                    <div class="overlay rounded-right"></div>
+                                    <div class="account-testimonial">
+                                        <h4 class="text-white mb-4">There is no greater agony than bearing an untold story inside you</h4>
+                                        <!-- <p class="lead text-white">"Best investment i made for a long time. Can only recommend it for other users."</p> -->
+                                        <p>- Maya Angelou</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end card-body -->
                 </div>
-            <?php endif; ?>
-        </form>
-    </section>
+                <!-- end card -->
+
+                <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a href="<?php echo e(route('register')); ?>" class="forgot-link ml-1">register</a></p>
+
+                <!-- end row -->
+
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- Row -->
+    </div>
+  
 
     <?php if(session('status')): ?>
         <script>
