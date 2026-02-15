@@ -57,7 +57,7 @@ body{
     <div class="row mb-2 align-items-center justify-content-center text-center text-md-start header-animate">
     
             <div class="col-auto">
-                <img src="{{ asset('assets/logo.png') }}" 
+                <img src="{{ asset('public/assets/logo.png') }}" 
                     alt="Logo" 
                     class="img-fluid" 
                     style="max-width: 120px;">

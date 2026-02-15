@@ -157,82 +157,107 @@
 <body>
 
     <div id="particles-js"></div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+
+            <!-- Brand -->
+            <a class="navbar-brand fw-bold fs-4" href="{{ url('/') }}">
                 Tinta’t Talino
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav">
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Push items to right -->
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
 
                     @auth
-                        <li class="nav-item">
-                           
-                        </li>
 
                         @hasrole('Admin')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('dashboard') }}">Admin Dashboard</a>
+                                <a class="nav-link fw-semibold" href="{{ route('dashboard') }}">
+                                    Admin Dashboard
+                                </a>
                             </li>
                         @endhasrole
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('studentposts.index') }}">Home</a>
-                        </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="{{ route('forum.index') }}">Forum</a>
+                            <a class="nav-link fw-semibold" href="{{ route('studentposts.index') }}">
+                                Home
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('studentposts.show', auth()->user()->id) }}">My Feed</a>
+                            <a class="nav-link fw-semibold" href="{{ route('forum.index') }}">
+                                Forum
+                            </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" href="{{ route('studentposts.show', auth()->user()->id) }}">
+                                My Feed
+                            </a>
+                        </li>
+
+                        <!-- Dropdown -->
                         <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="nav-link text-dark">
-                                Welcome, {{ Auth::user()->name }}
-                            </span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="nav-item">
-                                <a class="nav-link text-danger" href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                            </li>
+                            <a class="nav-link dropdown-toggle fw-semibold" href="#" 
+                            role="button" data-bs-toggle="dropdown">
+                                {{ Auth::user()->name }}
+                            </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                            <ul class="dropdown-menu dropdown-menu-end shadow">
+                                <li>
+                                    <a class="dropdown-item" 
+                                    href="{{ route('update-password.edit', auth()->user()->id) }}">
+                                        Change Password
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item text-danger" 
+                                    href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <form id="logout-form" action="{{ route('logout') }}" 
+                                method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('update-password.edit', auth()->user()->id) }}">Change Password</a>
-                        </li>
-
-                       
 
                     @else
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link fw-semibold" href="{{ route('login') }}">
+                                Login
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            <a class="btn btn-primary ms-lg-2 px-4" 
+                            href="{{ route('register') }}">
+                                Register
+                            </a>
                         </li>
+
                     @endauth
 
                 </ul>
             </div>
         </div>
     </nav>
+
    
     <div class="content" style="position: relative; z-index: 1;">
         @guest

@@ -157,83 +157,108 @@
 <body>
 
     <div id="particles-js"></div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="<?php echo e(url('/')); ?>">
+
+            <!-- Brand -->
+            <a class="navbar-brand fw-bold fs-4" href="<?php echo e(url('/')); ?>">
                 Tinta’t Talino
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav">
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Push items to right -->
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
 
                     <?php if(auth()->guard()->check()): ?>
-                        <li class="nav-item">
-                           
-                        </li>
 
                         <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasRole', 'Admin')): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo e(route('dashboard')); ?>">Admin Dashboard</a>
+                                <a class="nav-link fw-semibold" href="<?php echo e(route('dashboard')); ?>">
+                                    Admin Dashboard
+                                </a>
                             </li>
                         <?php endif; ?>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
-                        </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="<?php echo e(route('forum.index')); ?>">Forum</a>
+                            <a class="nav-link fw-semibold" href="<?php echo e(route('studentposts.index')); ?>">
+                                Home
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo e(route('studentposts.show', auth()->user()->id)); ?>">My Feed</a>
+                            <a class="nav-link fw-semibold" href="<?php echo e(route('forum.index')); ?>">
+                                Forum
+                            </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" href="<?php echo e(route('studentposts.show', auth()->user()->id)); ?>">
+                                My Feed
+                            </a>
+                        </li>
+
+                        <!-- Dropdown -->
                         <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="nav-link text-dark">
-                                Welcome, <?php echo e(Auth::user()->name); ?>
+                            <a class="nav-link dropdown-toggle fw-semibold" href="#" 
+                            role="button" data-bs-toggle="dropdown">
+                                <?php echo e(Auth::user()->name); ?>
 
-                            </span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="nav-item">
-                                <a class="nav-link text-danger" href="<?php echo e(route('logout')); ?>"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                            </li>
+                            </a>
 
-                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
-                            <?php echo csrf_field(); ?>
-                        </form>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                            <ul class="dropdown-menu dropdown-menu-end shadow">
+                                <li>
+                                    <a class="dropdown-item" 
+                                    href="<?php echo e(route('update-password.edit', auth()->user()->id)); ?>">
+                                        Change Password
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item text-danger" 
+                                    href="<?php echo e(route('logout')); ?>"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <form id="logout-form" action="<?php echo e(route('logout')); ?>" 
+                                method="POST" class="d-none">
+                                <?php echo csrf_field(); ?>
+                            </form>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo e(route('update-password.edit', auth()->user()->id)); ?>">Change Password</a>
-                        </li>
-
-                       
 
                     <?php else: ?>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo e(route('login')); ?>">Login</a>
+                            <a class="nav-link fw-semibold" href="<?php echo e(route('login')); ?>">
+                                Login
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo e(route('register')); ?>">Register</a>
+                            <a class="btn btn-primary ms-lg-2 px-4" 
+                            href="<?php echo e(route('register')); ?>">
+                                Register
+                            </a>
                         </li>
+
                     <?php endif; ?>
 
                 </ul>
             </div>
         </div>
     </nav>
+
    
     <div class="content" style="position: relative; z-index: 1;">
         <?php if(auth()->guard()->guest()): ?>
