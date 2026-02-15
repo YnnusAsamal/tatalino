@@ -93,7 +93,7 @@
         <h3>Latest Posts</h3>
 
         @foreach($myfeeds as $post)
-        <div class="card mb-4 shadow-sm">
+        <div class="comment-card">
             <div class="card-header d-flex align-items-center">
                 @php
                     $images = json_decode($post->users->profile->image ?? '[]', true);
@@ -107,10 +107,8 @@
 
                 <div>
                     <strong>{{ $post->users->name ?? 'NA' }}</strong><br>
-                    <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small>
-                </div>
-                <div class="float-end">
-                    <span class="badge bg-success">{{ $post->category->name ?? 'Uncategorized' }}</span>
+                    <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small><br>
+                    <small class="text-muted"><span class="badge bg-secondary ">{{ $post->subcategory->name ?? 'Uncategorized' }}</span></small>
                 </div>
             </div>
 
@@ -126,9 +124,11 @@
             <div class="card-footer d-flex gap-2">
                 <button class="btn btn-outline-success btn-sm flex-grow-1">👍 Like</button>
                 <button class="btn btn-outline-primary btn-sm flex-grow-1">💬 Comment</button>
-                <button class="btn btn-outline-secondary btn-sm flex-grow-1">↪ Share</button>
+                <!-- <button class="btn btn-outline-secondary btn-sm flex-grow-1">↪ Share</button> -->
             </div>
         </div>
+        </div>
+        
         @endforeach
     </div>
 </div>

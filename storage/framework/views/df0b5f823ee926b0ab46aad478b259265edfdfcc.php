@@ -56,10 +56,14 @@
     <?php endif; ?>
 
     <div class="profile-card text-center">
-        <?php if($userId && $userId->profile): ?>
-            
-            <?php if($userId->profile->image): ?>
-                <img src="<?php echo e(asset($userId->profile->image)); ?>" alt="Profile Image" class="rounded-profile mb-3 shadow">
+        <?php if($userId && $userId->profile && $userId->profile->image): ?>
+            <?php
+                $images = json_decode($userId->profile->image, true);
+                $firstImage = $images[0] ?? null;
+             ?>
+            <?php if($firstImage): ?>
+                
+                <img src="<?php echo e(asset('assets/userprofiles/' . $firstImage)); ?>" alt="Profile Image" class="rounded-profile mb-3 shadow">
             <?php else: ?>
                 <p>No profile image available.</p>
             <?php endif; ?>
@@ -83,18 +87,25 @@
 
         <div class="mb-4 text-center">
             <label for="image" class="form-label">Change Profile Image</label>
+
             <?php if($userId && $userId->profile && $userId->profile->image): ?>
-                <img src="<?php echo e(asset($userId->profile->image)); ?>" alt="Current Image" class="rounded-profile mb-2">
+                <?php
+                    $images = json_decode($userId->profile->image, true);
+                    $firstImage = $images[0] ?? null;
+                ?>
+
+                <?php if($firstImage): ?>
+                    <img src="<?php echo e(asset('public/assets/userprofiles/' . $firstImage)); ?>" alt="Current Image" class="rounded-profile mb-2">
+                <?php else: ?>
+                    <p>No profile image available.</p>
+                <?php endif; ?>
+
+                
+                <input type="hidden" name="existing_image" value="<?php echo e($firstImage); ?>">
             <?php else: ?>
                 <p>No profile image available.</p>
             <?php endif; ?>
-            <input 
-                type="file" 
-                name="image" 
-                id="image" 
-                class="form-control mt-2" 
-                accept="image/*"
-            >
+            <input type="file" name="image" id="image" class="form-control mt-2">
         </div>
 
         <div class="mb-4">

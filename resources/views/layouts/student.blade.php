@@ -22,7 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
@@ -33,11 +33,14 @@
     <link rel="stylesheet" media="screen" href="css/style.css">
 
     <style>
-        /* body {
-            background: #f8f9fa;
-            margin: 0;
-        } */
-
+            body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e1b4b, #312e81, #4c1d95);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            color: #fff;
+            overflow-x: hidden;
+    }
         .welcome-banner {
             background: #c8962d;
             color: white;
@@ -63,8 +66,6 @@
         position: relative;
         z-index: 1;
         }
-
-        /* You can keep or remove these depending on whether you want feed/profile styles on the front page */
         .feed-container {
             max-width: 800px;
             margin: auto;
@@ -74,15 +75,95 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #FBC02D; /* optional border in your theme */
+            border: 3px solid #FBC02D;
         }
 
+   
+
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* 💫 Particles layer */
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        top: 0;
+        left: 0;
+    }
+
+    .comment-card {
+        position: relative;
+        z-index: 2;
+        backdrop-filter: blur(15px);
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        max-width: 900px;
+        margin: 60px auto;
+        transition: 0.4s ease;
+    }
+
+    .comment-card:hover {
+        transform: translateY(-5px);
+    }
+
+    /* ✨ Inputs */
+    .form-control, .form-select {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: #fff;
+        border-radius: 12px;
+        padding: 14px;
+    }
+
+    .form-control::placeholder {
+        color: #ddd;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #a855f7;
+        box-shadow: 0 0 20px rgba(168,85,247,0.5);
+        background: rgba(255,255,255,0.15);
+        color: #fff;
+    }
+
+    /* 🚀 Neon Gradient Button */
+    .btn-purple {
+        background: linear-gradient(90deg, #a855f7, #ec4899, #6366f1);
+        background-size: 300% 300%;
+        animation: gradientBtn 5s ease infinite;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: 0.3s ease;
+        box-shadow: 0 0 20px rgba(168,85,247,0.5);
+    }
+
+    @keyframes gradientBtn {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .btn-purple:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(236,72,153,0.8);
+    }
     </style>
 </head>
 <body>
 
     <div id="particles-js"></div>
-        <nav class="navbar sticky-top navbar-expand-xs border-bottom navbar-light bg-white" id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="{{ url('/') }}">
                 Tinta’t Talino
@@ -96,32 +177,49 @@
                 <ul class="navbar-nav">
 
                     @auth
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown">
+                        <li class="nav-item">
+                            <span class="nav-link text-dark">
                                 Welcome, {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end">
-                                @hasrole('Admin')
-                                <a class="dropdown-item" href="{{ route('dashboard') }}">Admin Dashboard</a>
-                                @endhasrole
-                                <a class="dropdown-item" href="{{ route('studentposts.index') }}">Home</a>
-                                <a class="dropdown-item" href="{{ route('studentposts.show', auth()->user()->id) }}">My Feed</a>
-                                <a class="dropdown-item" href="{{ route('update-password.edit', auth()->user()->id) }}">Change Password</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
+                            </span>
                         </li>
+
+                        @hasrole('Admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('dashboard') }}">Admin Dashboard</a>
+                            </li>
+                        @endhasrole
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('studentposts.index') }}">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('studentposts.show', auth()->user()->id) }}">My Feed</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('update-password.edit', auth()->user()->id) }}">Change Password</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+                        </li>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+
                     @else
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        </li>
                     @endauth
 
                 </ul>
@@ -145,5 +243,26 @@
             @include('sweetalert::alert')
         </div>
     </div>
+
+    <div id="particles-js"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script>
+    particlesJS("particles-js", {
+    "particles": {
+        "number": { "value": 70 },
+        "size": { "value": 3 },
+        "color": { "value": "#a855f7" },
+        "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#c084fc",
+        "opacity": 0.4
+        },
+        "move": { "speed": 2 }
+    }
+    });
+    </script>
 </body>
 </html>

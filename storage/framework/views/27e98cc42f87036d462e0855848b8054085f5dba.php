@@ -146,7 +146,7 @@
     margin: 2rem 0 3rem;
   }
 
-  .submit button {
+  .submit a {
     background: #c8962d;
     color: white;
     font-size: 1.1rem;
@@ -291,9 +291,10 @@
   </main>
 
   <div class="submit">
-    <button>Submit Your Work</button>
+    <a href="<?php echo e(route('studentposts.create')); ?>">Submit Your Work</a>
   </div>
 </div>
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.student', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\tatalino\resources\views/studentposts/index.blade.php ENDPATH**/ ?>

@@ -24,6 +24,7 @@
     "dependencies": {
         "bootstrap": "^5.2.0",
         "bootstrap-icons": "^1.10.2",
+        "particles.js": "^2.0.0",
         "rfs": "^9.0.6",
         "sweetalert": "^2.1.2"
     }

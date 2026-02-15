@@ -134,17 +134,17 @@
         {
             background-color: #F7C701 !important; 
         }
-        .content {
+        /* .content {
             background-image: url('/assets/logo.JPG'); 
             background-repeat: no-repeat;
             background-position: center center;
-            background-size: 600px; /* or any size like 150px, 20% */
+            background-size: 600px;
             
             height: 100vh; 
             color: #000000; 
             position: relative;
             overflow: hidden;
-        }
+        } */
 
 
         .blur-overlay {

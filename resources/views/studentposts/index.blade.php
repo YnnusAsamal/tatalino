@@ -294,4 +294,5 @@
     <a href="{{ route('studentposts.create') }}">Submit Your Work</a>
   </div>
 </div>
+
 @endsection

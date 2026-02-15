@@ -93,7 +93,7 @@
         <h3>Latest Posts</h3>
 
         <?php $__currentLoopData = $myfeeds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="card mb-4 shadow-sm">
+        <div class="comment-card">
             <div class="card-header d-flex align-items-center">
                 <?php
                     $images = json_decode($post->users->profile->image ?? '[]', true);
@@ -107,49 +107,30 @@
 
                 <div>
                     <strong><?php echo e($post->users->name ?? 'NA'); ?></strong><br>
-                    <small class="text-muted"><?php echo e($post->created_at->diffForHumans() ?? 'NA'); ?></small>
+                    <small class="text-muted"><?php echo e($post->created_at->diffForHumans() ?? 'NA'); ?></small><br>
+                    <small class="text-muted"><span class="badge bg-secondary "><?php echo e($post->subcategory->name ?? 'Uncategorized'); ?></span></small>
                 </div>
             </div>
 
             <div class="card-body">
                 <h5 class="card-title"><?php echo e($post->title); ?></h5>
-                <p class="card-text"><?php echo e($post->content); ?></p>
+                <p class="card-text"><?php echo $post->content; ?></p>
 
                 <?php if($post->image): ?>
-                    <img src="<?php echo e(asset('assets/posts/' . $post->image)); ?>" alt="Post Image" class="img-fluid rounded mt-3">
+                    <img src="<?php echo e(asset('public/assets/posts/' . $post->image)); ?>" alt="Post Image" class="img-fluid rounded mt-3">
                 <?php endif; ?>
             </div>
 
             <div class="card-footer d-flex gap-2">
                 <button class="btn btn-outline-success btn-sm flex-grow-1">👍 Like</button>
                 <button class="btn btn-outline-primary btn-sm flex-grow-1">💬 Comment</button>
-                <button class="btn btn-outline-secondary btn-sm flex-grow-1">↪ Share</button>
+                <!-- <button class="btn btn-outline-secondary btn-sm flex-grow-1">↪ Share</button> -->
             </div>
         </div>
+        </div>
+        
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
-
-
-
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: [
-            // Core editing features
-            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-            'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
-            ],
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [
-            { value: 'First.Name', title: 'First Name' },
-            { value: 'Email', title: 'Email' },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-            uploadcare_public_key: 'e2e35bdc3a44038bac07',
-        });
-    </script>
 </div>
 <?php $__env->stopSection(); ?>
 
