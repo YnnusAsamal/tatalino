@@ -5,6 +5,7 @@
     body{
     /* margin-top:20px; */
     background:#ebeef0;
+    font-family: 'Lato', sans-serif;
     }
 
     .img-sm {
