@@ -2,7 +2,7 @@
 <?php $__env->startSection('content'); ?>
 <style>
   body {
-    font-family: Georgia, serif;
+    font-family: 'Lato', sans-serif;
     background-color: #fdfaf3;
     color: #2E7D32 !important;
   }

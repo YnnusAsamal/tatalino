@@ -1,6 +1,91 @@
 @extends('layouts.student')
 
 @section('content')
+<style>
+    body {
+        font-family: 'Lato', sans-serif;
+        background-size: 400% 400%;
+        animation: gradientMove 12s ease infinite;
+        color: #fff;
+        overflow-x: hidden;
+    }
+      @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    #particles-js {
+        pointer-events: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        top: 0;
+        left: 0;
+    }
+    comment-card {
+        position: relative;
+        z-index: 2;
+        backdrop-filter: blur(15px);
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        max-width: 900px;
+        margin: 60px auto;
+        transition: 0.4s ease;
+    }
+
+    .comment-card:hover {
+        transform: translateY(-5px);
+    }
+
+    /* ✨ Inputs */
+    .form-control, .form-select {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: #fff;
+        border-radius: 12px;
+        padding: 14px;
+    }
+
+    .form-control::placeholder {
+        color: #ddd;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #a855f7;
+        box-shadow: 0 0 20px rgba(168,85,247,0.5);
+        background: rgba(255,255,255,0.15);
+        color: #fff;
+    }
+
+    .btn-purple {
+        background: linear-gradient(90deg, #a855f7, #ec4899, #6366f1);
+        background-size: 300% 300%;
+        animation: gradientBtn 5s ease infinite;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: 0.3s ease;
+        box-shadow: 0 0 20px rgba(168,85,247,0.5);
+    }
+
+    @keyframes gradientBtn {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .btn-purple:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(236,72,153,0.8);
+    }
+</style>
+<div id="particles-js"></div>
 <div class="feed-container">
     <div class="profile-card">
         <div class="comment-card">
@@ -22,16 +107,9 @@
             @else
                 <p class="text-muted">No profile information available.</p>
             @endif
-            <!-- <img src="{{ asset(Auth::user()->profile->image ?? 'default-avatar.png') }}" alt="User Avatar" class="avatar"> -->
-
             <div class="profile-info">
                 <h2>{{ Auth::user()->name }}</h2>
                 <p class="bio">{{ Auth::user()->profile->bio ?? 'No bio available.' }}</p>
-                <!-- <div class="stats">
-                    <span><strong>12</strong> Posts</span>
-                    <span><strong>58</strong> Followers</span>
-                    <span><strong>34</strong> Following</span>
-                </div> -->
             </div>
             <div class="edit-profile">
                 <a href="{{ route('userprofiles.edit', Auth::id()) }}" class="btn btn-secondary btn-sm">Edit Profile</a>
@@ -39,18 +117,6 @@
         </div>
     </div>
         
-    <!-- <div class="row my-3">
-        <div class="col-auto">
-            <a href="{{ route('studentposts.show', Auth::id()) }}" class="btn btn-primary">
-                📄 My Post
-            </a>
-        </div>
-        <div class="col-auto">
-            <a href="{{ route('studentposts.create') }}" class="btn btn-primary">
-                ➕ Create Post
-            </a>
-        </div>
-    </div> -->
    <div class="comment-card">
     <h4>Create Post</h4>
 
@@ -73,15 +139,12 @@
                 </select>
             </div>
         </div>
-
         <div class="mb-3">
             <textarea name="content" id="editor" class="form-control" placeholder="What are your thoughts?"></textarea>
         </div>
-
         <div class="mb-3">
             <input type="file" name="image" accept="image/*" class="form-control">
         </div>
-
         <button type="submit" class="btn-purple">
             Submit Post
         </button>

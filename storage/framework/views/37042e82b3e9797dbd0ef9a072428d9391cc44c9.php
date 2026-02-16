@@ -104,7 +104,7 @@
         <div class="row mb-3 align-items-center justify-content-center text-center text-md-start header-animate">
     
             <div class="col-auto">
-                <img src="<?php echo e(asset('assets/logo.png')); ?>" 
+                <img src="<?php echo e(asset('public/assets/logo.png')); ?>" 
                     alt="Logo" 
                     class="img-fluid" 
                     style="max-width: 120px;">
