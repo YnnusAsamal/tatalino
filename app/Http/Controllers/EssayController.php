@@ -17,9 +17,25 @@ class EssayController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::where('category_id', 9)->get(); // Assuming category_id 1 is for essays
+    $query = Post::with(['users.profile', 'category', 'likes'])
+                ->where('status', 'Published')
+                ->where('category_id', 9);
+
+        $sort = $request->get('sort', 'newest');
+
+        if ($sort == 'oldest') {
+            $query->orderBy('created_at', 'asc');
+        } elseif ($sort == 'popular') {
+
+            $query->withCount('likes')->orderBy('likes_count', 'desc');
+        } else {
+
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $posts = $query->get();
         return view('essays.index', compact('posts'));
     }
 

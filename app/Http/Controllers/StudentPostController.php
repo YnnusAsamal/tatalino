@@ -47,11 +47,11 @@ class StudentPostController extends Controller
         } else {
 
             $query->orderBy('created_at', 'desc');
-         }
+        }
 
-    $posts = $query->get();
+        $posts = $query->get();
 
-    return view('publish.index', compact('posts'));
+        return view('publish.index', compact('posts'));
     }
 
     public function collections()

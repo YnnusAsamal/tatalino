@@ -176,11 +176,24 @@
         </section>
         </div>
     </div>
-    
+    <div class="row mb-3 align-items-center">
+        <div class="col-md-6">
+            <h3 class="mb-0">Published Essays</h3>
+        </div>
+        <div class="col-md-6 text-md-end mt-2 mt-md-0">
+            <form method="GET" id="sortForm" class="d-inline-flex align-items-center gap-2">
+                <label for="sort" class="mb-0">Sort By:</label>
+                <select name="sort" id="sort" class="form-select form-select-sm" onchange="document.getElementById('sortForm').submit()">
+                    <option value="newest" <?php echo e(request('sort') == 'newest' ? 'selected' : ''); ?>>Newest</option>
+                    <option value="oldest" <?php echo e(request('sort') == 'oldest' ? 'selected' : ''); ?>>Oldest</option>
+                    <option value="popular" <?php echo e(request('sort') == 'popular' ? 'selected' : ''); ?>>Most Popular</option>
+                </select>
+            </form>
+        </div>
+    </div>
     <div class="row mt-2" style="overflow-y: auto; position: relative; max-height: 80vh;">
         <div class="col-md-8">
             <div class="feed-posts">
-                <h3>Published Essays</h3>
                 <hr>
                 <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="card mb-3 shadow">
