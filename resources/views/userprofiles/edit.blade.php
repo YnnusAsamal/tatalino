@@ -80,7 +80,7 @@
              @endphp
             @if($firstImage)
                 
-                <img src="{{ asset('assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
             @else
                 <p>No profile image available.</p>
             @endif
@@ -112,7 +112,7 @@
                 @endphp
 
                 @if($firstImage)
-                    <img src="{{ asset('assets/userprofiles/' . $firstImage) }}" alt="Current Image" class="rounded-profile mb-2">
+                    <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Current Image" class="rounded-profile mb-2">
                 @else
                     <p>No profile image available.</p>
                 @endif
