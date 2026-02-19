@@ -287,14 +287,14 @@
             </li>
         </ul>
     @else
-        <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
+        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
             <li class="nav-item">
                 <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
             </li>
-        </ul> -->
+        </ul>
     @endauth
 
   </section>

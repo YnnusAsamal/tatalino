@@ -176,11 +176,28 @@
         </section>
         </div>
     </div>
-    
+    <div class="row mb-3 align-items-center">
+            <div class="col-md-6">
+                <h3 class="mb-0">Published Literary Works</h3>
+            </div>
+            <div class="col-md-6 text-md-end mt-2 mt-md-0">
+                <form method="GET" id="sortForm" class="d-inline-flex align-items-center gap-2">
+                    <label for="sort" class="mb-0">Sort By:</label>
+                    <select name="sort" id="sort" class="form-select form-select-sm" onchange="document.getElementById('sortForm').submit()">
+                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
+                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Oldest</option>
+                        <option value="popular" {{ request('sort') == 'popular' ? 'selected' : '' }}>Most Popular</option>
+                    </select>
+                </form>
+            </div>
+        </div>
     <div class="row mt-2" style="overflow-y: auto; position: relative; max-height: 80vh;">
+
         <div class="col-md-8">
+           
             <div class="feed-posts">
-                <h3>Published Literary Works</h3>
+
+                
                 <hr>
                 @foreach($posts as $post)
                 <div class="card mb-3 shadow">

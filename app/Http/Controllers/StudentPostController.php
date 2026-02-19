@@ -31,10 +31,27 @@ class StudentPostController extends Controller
         return view('studentposts.index', compact('posts', 'writer', 'featuredPosts', 'essays', 'poems'));
     }
 
-    public function allposts()
+    public function allposts(Request $request)
     {
-        $posts = Post::with('category')->where('status', 'Published')->get();
-        return view('publish.index', compact('posts'));
+
+        $query = Post::with(['users.profile', 'category', 'likes'])
+                ->where('status', 'Published');
+
+        $sort = $request->get('sort', 'newest');
+
+        if ($sort == 'oldest') {
+            $query->orderBy('created_at', 'asc');
+        } elseif ($sort == 'popular') {
+
+            $query->withCount('likes')->orderBy('likes_count', 'desc');
+        } else {
+
+            $query->orderBy('created_at', 'desc');
+         }
+
+    $posts = $query->get();
+
+    return view('publish.index', compact('posts'));
     }
 
     public function collections()
