@@ -224,7 +224,7 @@
             </li>
             |
             <li class="nav-item">
-              <a class="nav-link text-dark" href="">Essays</a>
+              <a class="nav-link text-dark" href="{{ route('essays.index') }}">Essays</a>
             </li>
             |
             <li class="nav-item">
@@ -254,7 +254,12 @@
   </section>
   <hr>
 
-  <main class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h3>Collections</h3>
+      </div>
+    </div>
       @foreach($categories as $category)
       <div class="row">
           <div class="col mb-3">
@@ -274,7 +279,7 @@
           
       </div>
       @endforeach
-  </main>
+  </div>
 
   <!-- <div class="submit">
     <a href="{{ route('studentposts.create') }}">Submit Your Work</a>

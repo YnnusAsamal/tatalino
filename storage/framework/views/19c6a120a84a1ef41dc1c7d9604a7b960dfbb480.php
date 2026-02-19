@@ -224,7 +224,7 @@
             </li>
             |
             <li class="nav-item">
-              <a class="nav-link text-dark" href="">Essays</a>
+              <a class="nav-link text-dark" href="<?php echo e(route('essays.index')); ?>">Essays</a>
             </li>
             |
             <li class="nav-item">
@@ -254,7 +254,12 @@
   </section>
   <hr>
 
-  <main class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h3>Collections</h3>
+      </div>
+    </div>
       <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
       <div class="row">
           <div class="col mb-3">
@@ -274,7 +279,7 @@
           
       </div>
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-  </main>
+  </div>
 
   <!-- <div class="submit">
     <a href="<?php echo e(route('studentposts.create')); ?>">Submit Your Work</a>

@@ -1,6 +1,6 @@
-@extends('layouts.student')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <style>
     body {
     color: #797979;
@@ -132,19 +132,19 @@
     <div class="row">
         <div class="col">
             <section class="navigation">
-            @auth
+            <?php if(auth()->guard()->check()): ?>
                 <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
                 
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('studentposts.index') }}">Home</a>
+                        <a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
                     </li>
                     |
                     <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ route('essays.index') }}">Essays</a>
+                    <a class="nav-link text-dark" href="<?php echo e(route('essays.index')); ?>">Essays</a>
                     </li>
                     |
                     <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ route('collections.index') }}">Collections</a>
+                    <a class="nav-link text-dark" href="<?php echo e(route('collections.index')); ?>">Collections</a>
                     </li>
                     |
                     <li class="nav-item">
@@ -152,7 +152,7 @@
                     </li>
                     |
                     <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ route('publish.index') }}">Publish</a>
+                    <a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a>
                     </li>
                     |
                     <li class="nav-item">
@@ -163,16 +163,16 @@
                     <a class="nav-link text-dark" href="">Contact</a>
                     </li>
                 </ul>
-            @else
+            <?php else: ?>
                 <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link text-dark" href="<?php echo e(route('login')); ?>">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link text-dark" href="<?php echo e(route('register')); ?>">Register</a>
                     </li>
                 </ul> -->
-            @endauth
+            <?php endif; ?>
         </section>
         </div>
     </div>
@@ -182,74 +182,76 @@
             <div class="feed-posts">
                 <h3>Published Essays</h3>
                 <hr>
-                @foreach($posts as $post)
+                <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="card mb-3 shadow">
                     <div class="card-header d-flex align-items-center">
-                        @php
+                        <?php
                             $images = json_decode($post->users->profile->image ?? '[]', true);
                             $profileImage = $images[0] ?? null;
-                        @endphp
-                        @if($profileImage)
-                            <img src="{{ asset('public/assets/userprofiles/' . $profileImage) }}" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
-                        @else
+                        ?>
+                        <?php if($profileImage): ?>
+                            <img src="<?php echo e(asset('public/assets/userprofiles/' . $profileImage)); ?>" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
+                        <?php else: ?>
                             <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
-                        @endif
+                        <?php endif; ?>
 
                         <div>
-                            <strong>{{ $post->users->name ?? 'NA' }}</strong><br>
-                            <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small><br>
-                            <small class="text-muted"><span class="badge bg-secondary ">{{ optional($post->category)->name ?? 'Uncategorized' }}</span></small>
+                            <strong><?php echo e($post->users->name ?? 'NA'); ?></strong><br>
+                            <small class="text-muted"><?php echo e($post->created_at->diffForHumans() ?? 'NA'); ?></small><br>
+                            <small class="text-muted"><span class="badge bg-secondary "><?php echo e(optional($post->category)->name ?? 'Uncategorized'); ?></span></small>
                         </div>
                         <div class="float-right ms-auto">
-                            @if($post->status === 'Published')
+                            <?php if($post->status === 'Published'): ?>
                                 <span class="badge bg-success">Published</span>
-                            @else
+                            <?php else: ?>
                                     <span class="badge bg-warning text-dark">Draft</span>
-                            @endif
+                            <?php endif; ?>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">{{ $post->title }}</h5>
+                        <h5 class="card-title"><?php echo e($post->title); ?></h5>
                         <div class="position-relative">
-                            <div class="post-content text-dark" id="post-content-{{ $post->id }}">
-                                {!! $post->content !!}
+                            <div class="post-content text-dark" id="post-content-<?php echo e($post->id); ?>">
+                                <?php echo $post->content; ?>
+
                             </div>
 
                             <button 
                                 class="btn btn-link p-0 see-more-btn d-none" 
-                                id="toggle-btn-{{ $post->id }}"
-                                onclick="toggleContent({{ $post->id }})">
+                                id="toggle-btn-<?php echo e($post->id); ?>"
+                                onclick="toggleContent(<?php echo e($post->id); ?>)">
                                 See More
                             </button>
                         </div>
 
-                        @if($post->image)
-                            <img src="{{ asset('public/assets/posts/' . $post->image) }}" alt="Post Image" class="img-fluid rounded mt-3" style="max-width: 100%; height: auto;">
-                        @endif
+                        <?php if($post->image): ?>
+                            <img src="<?php echo e(asset('public/assets/posts/' . $post->image)); ?>" alt="Post Image" class="img-fluid rounded mt-3" style="max-width: 100%; height: auto;">
+                        <?php endif; ?>
                     </div>
 
                     <div class="card-footer d-flex gap-2">
-                        @php
+                        <?php
                             $likedUsers = $post->likes->map(function($like) {
                                 return $like->user->name ?? '';
                             })->implode(', ');
-                        @endphp
+                        ?>
 
-                        <form action="{{ route('post.like', $post->id) }}" method="POST">
-                            @csrf
+                        <form action="<?php echo e(route('post.like', $post->id)); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
                             <button 
                                 class="btn btn-sm btn-outline-danger"
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="top"
-                                title="{{ $likedUsers ?: 'No likes yet' }}">
-                                ❤️ {{ $post->likes->count() }}
+                                title="<?php echo e($likedUsers ?: 'No likes yet'); ?>">
+                                ❤️ <?php echo e($post->likes->count()); ?>
+
                             </button>
                         </form>
                         <button class="btn btn-outline-primary btn-sm flex-grow-1">💬 Comment</button>
                     </div>
                 </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
         <div class="col-md-4 sticky-sidebar">
@@ -259,7 +261,7 @@
                     <p class="card-text">Connect with fellow writers and readers!</p>
                     <ul class="list-group">
                         <li class="list-group-item d-flex align-items-center">
-                            <img src="{{ asset('public/assets/userprofiles/default.png') }}" alt="User 1" class="rounded-profile me-3" style="width: 40px; height: 40px; border: 2px solid #FBC02D;">
+                            <img src="<?php echo e(asset('public/assets/userprofiles/default.png')); ?>" alt="User 1" class="rounded-profile me-3" style="width: 40px; height: 40px; border: 2px solid #FBC02D;">
                             <div>
                                 <strong>Jane Doe</strong><br>
                                 <small class="text-muted">5 mutual friends</small>
@@ -323,4 +325,6 @@ function toggleContent(postId) {
     }
 }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.student', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\tatalino\resources\views/essays/index.blade.php ENDPATH**/ ?>

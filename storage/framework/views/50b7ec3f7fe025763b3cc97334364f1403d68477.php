@@ -140,7 +140,7 @@
                     </li>
                     |
                     <li class="nav-item">
-                    <a class="nav-link text-dark" href="">Essays</a>
+                        <a class="nav-link text-dark" href="<?php echo e(route('essays.index')); ?>">Essays</a>
                     </li>
                     |
                     <li class="nav-item">
@@ -190,7 +190,7 @@
                             $profileImage = $images[0] ?? null;
                         ?>
                         <?php if($profileImage): ?>
-                            <img src="<?php echo e(asset('assets/userprofiles/' . $profileImage)); ?>" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
+                            <img src="<?php echo e(asset('public/assets/userprofiles/' . $profileImage)); ?>" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
                         <?php else: ?>
                             <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
                         <?php endif; ?>
@@ -226,7 +226,7 @@
                         </div>
 
                         <?php if($post->image): ?>
-                            <img src="<?php echo e(asset('assets/posts/' . $post->image)); ?>" alt="Post Image" class="img-fluid rounded mt-3" style="max-width: 100%; height: auto;">
+                            <img src="<?php echo e(asset('public/assets/posts/' . $post->image)); ?>" alt="Post Image" class="img-fluid rounded mt-3" style="max-width: 100%; height: auto;">
                         <?php endif; ?>
                     </div>
 
@@ -261,7 +261,7 @@
                     <p class="card-text">Connect with fellow writers and readers!</p>
                     <ul class="list-group">
                         <li class="list-group-item d-flex align-items-center">
-                            <img src="<?php echo e(asset('assets/userprofiles/default.png')); ?>" alt="User 1" class="rounded-profile me-3" style="width: 40px; height: 40px; border: 2px solid #FBC02D;">
+                            <img src="<?php echo e(asset('public/assets/userprofiles/default.png')); ?>" alt="User 1" class="rounded-profile me-3" style="width: 40px; height: 40px; border: 2px solid #FBC02D;">
                             <div>
                                 <strong>Jane Doe</strong><br>
                                 <small class="text-muted">5 mutual friends</small>

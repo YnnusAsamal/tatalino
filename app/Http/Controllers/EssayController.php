@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\Like;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+use Carbon;
 
 class EssayController extends Controller
 {
@@ -13,8 +19,8 @@ class EssayController extends Controller
      */
     public function index()
     {
-        $post = Post::where('category_id', 9)->get(); // Assuming category_id 1 is for essays
-        return view('essays.index', compact('post'));
+        $posts = Post::where('category_id', 9)->get(); // Assuming category_id 1 is for essays
+        return view('essays.index', compact('posts'));
     }
 
     /**

@@ -19,6 +19,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\EssayController;
 
 /**
  * Utility route - clear cache
@@ -124,7 +125,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('collections', [StudentPostController::class, 'collections'])->name('collections.index');
 
         Route::get('collections/{category}', [StudentPostController::class, 'showCategory'])->name('collections.show');
-    
+        
+
+        Route::get('essays', [EssayController::class, 'index'])->name('essays.index');
     });
 });
 
