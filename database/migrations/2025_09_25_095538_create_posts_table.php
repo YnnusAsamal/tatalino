@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->string('author');
             $table->string('image')->nullable();
-            $table->string('category')->nullable();
+            $table->string('category_id')->nullable();
             $table->string('status')->default('draft');
             $table->dateTime('published_at')->nullable();
             $table->timestamps();

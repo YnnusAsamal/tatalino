@@ -2,157 +2,242 @@
 
 @section('content')
 <style>
-    body {
-        font-family: 'Lato', sans-serif;
-        background-size: 400% 400%;
-        animation: gradientMove 12s ease infinite;
-        color: #fff;
-        overflow-x: hidden;
+       body {
+    color: #797979;
+    background: #f1f2f7;
+    font-family: 'Oswald', sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 13px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
     }
-      @keyframes gradientMove {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+
+    header {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #2E7D32;
+  }
+
+  header p {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: #444;
+    letter-spacing: 1px;
+  }
+    h2,h3,h5, label {
+        font-family: 'Oswald', sans-serif;
+        color: #2E7D32;
+    }
+    .profile-card {
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 2rem;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+    }
+    .profile-card p {
+        font-size: 1.05rem;
+        margin-bottom: 0.6rem;
+        color: #333;
+    }
+    .form-label {
+        color: #2E7D32;
+        font-weight: 600;
+    }
+    .btn-primary {
+        background-color: #2E7D32;
+        border-color: #2E7D32;
+    }
+    .btn-primary:hover {
+        background-color: #27642A;
+        border-color: #27642A;
+    }
+    .rounded-profile {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #FBC02D;
+    }
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
     }
     #particles-js {
-        pointer-events: none;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        top: 0;
-        left: 0;
-    }
-    comment-card {
-        position: relative;
-        z-index: 2;
-        backdrop-filter: blur(15px);
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.2);
-        padding: 50px;
-        border-radius: 20px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        max-width: 900px;
-        margin: 60px auto;
-        transition: 0.4s ease;
+            pointer-events: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            top: 0;
+            left: 0;
+        }
+
+        h2, h5, label {
+        font-family: 'Oswald', sans-serif;
+        color: #2E7D32;
     }
 
-    .comment-card:hover {
-        transform: translateY(-5px);
+    .feed-scroll {
+        height: 100vh;
+        overflow-y: auto;
+        padding-right: 15px;
     }
-
-    /* ✨ Inputs */
-    .form-control, .form-select {
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.3);
-        color: #fff;
-        border-radius: 12px;
-        padding: 14px;
-    }
-
-    .form-control::placeholder {
-        color: #ddd;
-    }
-
-    .form-control:focus, .form-select:focus {
-        border-color: #a855f7;
-        box-shadow: 0 0 20px rgba(168,85,247,0.5);
-        background: rgba(255,255,255,0.15);
-        color: #fff;
-    }
-
-    .btn-purple {
-        background: linear-gradient(90deg, #a855f7, #ec4899, #6366f1);
-        background-size: 300% 300%;
-        animation: gradientBtn 5s ease infinite;
-        border: none;
-        padding: 14px 32px;
-        border-radius: 50px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        transition: 0.3s ease;
-        box-shadow: 0 0 20px rgba(168,85,247,0.5);
-    }
-
-    @keyframes gradientBtn {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    .btn-purple:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 30px rgba(236,72,153,0.8);
+    .sticky-sidebar {
+        position: sticky;
+        top: 80px; /* distance from top */
+        height: fit-content;
     }
 </style>
 <div id="particles-js"></div>
-<div class="feed-container">
-    <div class="profile-card">
-        <div class="comment-card">
-            @if(Auth::user() && Auth::user()->profile && Auth::user()->profile->image)
-                @php
-                    $images = json_decode(Auth::user()->profile->image, true);
-                    $firstImage = $images[0] ?? null;
-                @endphp
-                @if($firstImage)
-                 <div class="d-flex flex-column" style="width: 150px;">
-                    <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}"
-                        alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
-                        style="width: 150px; z-index: 1">
-                </div>
-    
-                @else
-                    <p>No profile image available.</p>
-                @endif
-            @else
-                <p class="text-muted">No profile information available.</p>
-            @endif
-            <div class="profile-info">
-                <h2>{{ Auth::user()->name }}</h2>
-                <p class="bio">{{ Auth::user()->profile->bio ?? 'No bio available.' }}</p>
-            </div>
-            <div class="edit-profile">
-                <a href="{{ route('userprofiles.edit', Auth::id()) }}" class="btn btn-secondary btn-sm">Edit Profile</a>
+
+
+<div class="container">
+    <header>
+    <h1>Tinta’t Talino</h1>
+    <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
+  </header>
+  <section class="navigation">
+      @auth
+        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{{ route('studentposts.index') }}">Home</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="">Essays</a>
+            </li>
+            |
+             <li class="nav-item">
+              <a class="nav-link text-dark" href="{{ route('collections.index') }}">Collections</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="">Explore</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{{ route('publish.index') }}">Publish</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="">About</a>
+            </li>
+            |
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="">Contact</a>
+            </li>
+        </ul>
+    @else
+        <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
+            </li>
+        </ul> -->
+    @endauth
+
+  </section>
+    <div class="row">
+        <div class="col">
+            <div class="title">
+                <h3>Create Your Works Here!</h3>
             </div>
         </div>
     </div>
-        
-   <div class="comment-card">
-    <h4>Create Post</h4>
+    <hr>
+    <div class="row" style="height: 100vh;">
+        <div class="col-md-4 sticky-sidebar">
+            <div class="card">
+                <div class="card-body d-flex flex-column align-items-center text-center">
+                    @if(Auth::user() && Auth::user()->profile && Auth::user()->profile->image)
+                        @php
+                            $images = json_decode(Auth::user()->profile->image, true);
+                            $firstImage = $images[0] ?? null;
+                        @endphp
+                        @if($firstImage)
+                            <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                        @else
+                            <p>No profile image available.</p>
+                        @endif
+                    @else
+                        <p class="text-muted">No profile information available.</p>
+                    @endif
 
-    <form action="{{ route('studentposts.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <input type="text" name="title" placeholder="Enter Post Title" class="form-control" required>
+                    <div class="profile-info">
+                        <h2>{{ Auth::user()->name }}</h2>
+                        <p class="bio">{{ Auth::user()->profile->bio ?? 'No bio available.' }}</p>
+                        <div class="stats mb-3">
+                            <span><strong>{{ Auth::user()->posts()->count() }}</strong> Posts</span>
+                            <span><strong>58</strong> Followers</span>
+                            <span><strong>34</strong> Following</span>
+                        </div>
+                    </div>
+                    <div class="edit-profile">
+                        <a href="{{ route('userprofiles.edit', Auth::id()) }}" class="btn btn-secondary btn-sm">Edit Profile</a>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-auto">
+                            <a href="{{ route('studentposts.show', Auth::id()) }}" class="btn btn-warning">
+                                📄 My Post
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="{{ route('studentposts.create') }}" class="btn btn-warning">
+                                ➕ Create Post
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    
+                    <hr>
+                    <form action="{{ route('studentposts.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
 
-            <div class="col-md-6">
-                <select name="category" class="form-select">
-                    <option value="">Choose Category</option>
-                    @foreach($category as $data)
-                        <option value="{{ $data->id }}">
-                            {{ $data->name }} | {{ $data->subcategory }}
-                        </option>
-                    @endforeach
-                </select>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <input type="text" name="title" placeholder="Enter Post Title" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <select name="category" class="form-select">
+                                    <option value="">Choose Category</option>
+                                    @foreach($category as $data)
+                                        <option value="{{ $data->id }}">
+                                            {{ $data->name }} | {{ $data->subcategory }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="file" name="image" accept="image/*" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="content" id="editor" class="form-control input-lg p-text-area" placeholder="What are your thoughts?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning text-white">
+                            Submit Post
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="mb-3">
-            <textarea name="content" id="editor" class="form-control" placeholder="What are your thoughts?"></textarea>
-        </div>
-        <div class="mb-3">
-            <input type="file" name="image" accept="image/*" class="form-control">
-        </div>
-        <button type="submit" class="btn-purple">
-            Submit Post
-        </button>
-
-    </form>
-</div>
-
-
 </div>
 <script>
     CKEDITOR.replace('editor', {
@@ -185,7 +270,6 @@ particlesJS("particles-js", {
   }
 });
 </script>
-<div id="particles-js"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 @endsection

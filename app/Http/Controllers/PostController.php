@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\Like;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -72,6 +74,44 @@ class PostController extends Controller
 
         Alert::success('Unpublished successfully');
         return redirect()->back();
+    }
+
+    public function featured($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->featured = '1';
+        $post->save();
+
+        Alert::success('Featured successfully');
+        return redirect()->back();
+    }
+
+    public function unfeatured($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->featured = '0';
+        $post->save();
+
+        Alert::success('Unfeatured successfully');
+        return redirect()->back();
+    }
+
+    public function toggleLike(Post $post)
+    {
+        $like = Like::where('user_id', auth()->id())
+                    ->where('post_id', $post->id)
+                    ->first();
+
+        if ($like) {
+            $like->delete();
+        } else {
+            Like::create([
+                'user_id' => auth()->id(),
+                'post_id' => $post->id
+            ]);
+        }
+
+        return back();
     }
     /**
      * Display the specified resource.

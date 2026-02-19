@@ -3,9 +3,26 @@
 
 <style>
     body{
-    /* margin-top:20px; */
-    background:#ebeef0;
-    font-family: 'Lato', sans-serif;
+    color: #797979;
+    background: #f1f2f7;
+    font-family: 'Oswald', sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 13px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    }
+
+    #particles-js {
+        pointer-events: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* IMPORTANT */
+        top: 0;
+        left: 0;
+        background: #ffffff; /* white background */
     }
 
     .img-sm {
@@ -104,40 +121,124 @@
     .mar-top {
         margin-top: 15px;
     }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Oswald', sans-serif;
+        color: #2E7D32;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    .reply-text {
+    padding: 12px; /* adjust as needed */
+    background-color: #f8f9fa; /* optional light background */
+    border-radius: 6px; /* optional rounded edges */
+    }
+    .content-post {
+        padding: 12px; /* adjust as needed */
+        background-color: #f8f9fa; /* optional light background */
+        border-radius: 6px; /* optional rounded edges */
+    }
+
+    .title-post {
+        padding: 12px; /* adjust as needed */
+        background-color: #f8f9fa; /* optional light background */
+        border-radius: 6px; /* optional rounded edges */
+    }
+
+    
 </style>
+<div id="particles-js"></div>
 
 <div class="feed-container">
-    <div class="row mt-2">
+    <div class="row mt-3">
         <div class="col">
-            <h1>Student Forum</h1>
+            <h4 class="card-title">Welcome to the Student Forum!</h4>
+            <p class="card-text">This is a place for students to share their thoughts, ask questions, and engage in discussions. Feel free to create new topics or reply to existing ones. Let's keep the conversation respectful and constructive!</p>
         </div>
     </div>
     <hr>
     <div class="comment-card">
-        <h4>Create New Topic</h4>
-        <form action="{{ route('forum.post') }}" method="POST">
-            @csrf
-            <input type="text" name="title" class="form-control mb-2" placeholder="Title">
-            <textarea name="content" class="form-control mb-2" placeholder="Write something..."></textarea>
-            <button class="btn btn-primary btn-purple">Submit</button>
-        </form>
+        <div class="card mb-3 shadow">
+            <div class="card-body">
+                <h4 class="">Create New Topic</h4>
+                <hr>
+                <form action="{{ route('forum.post') }}" method="POST">
+                    @csrf
+                    <input type="text" name="title" class="form-control mb-2" placeholder="Title/Subject">
+                    <textarea name="content" class="form-control mb-2" placeholder="Write something..."></textarea>
+                    <button class="btn btn-warning text-white">Submit</button>
+                </form>
+            </div>
+        </div>
+        
     </div>
     <hr>
     @foreach($posts as $post)
     <div class="comment-card">
-        <div class="card mb-3">
+        <div class="card mb-3 shadow">
             <div class="card-body">
-                <h5>{{ $post->title }}</h5>
-                <p>{{ $post->content }}</p>
-                <small>Posted by: {{ $post->user->name }}</small>
+
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            @php
+                                $images = json_decode($post->user->profile->image ?? '[]', true);
+                                $firstImage = $images[0] ?? null;
+                            @endphp
+
+                            @if($firstImage)
+                                <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}"
+                                    class="img-sm rounded-circle me-2 border border-2 border-dark"
+                                    alt="Profile Image">
+                            @else
+                                No Available Image
+                            @endif
+
+                            <div><strong>{{ $post->user->name }}</strong></div>
+                            <div class="ms-auto">
+                                <small class="text-muted">Posted: {{ $post->created_at->diffForHumans() ?? 'NA' }}</small><br>
+                            </div>
+                        </div>
+
+                        <h5 class="title-post">{{ $post->title }}</h5>
+
+                        <!-- Post Content with max height -->
+                        <div class="post-content" style="max-height:150px; overflow:hidden;">
+                            <p class="content-post">{{ $post->content }}</p>
+                        </div>
+
+                        <!-- See More Button -->
+                        <button class="btn btn-sm btn-link see-more-btn" style="display:none;">See More</button>
+                    </div>
+                </div>
 
                 <hr>
+                <strong class="mb-2">Replies:</strong>
+
                 @foreach($post->replies as $reply)
-                    <div class="border p-2 mb-2">
-                        {{ $reply->content }}
-                        <br>
-                        <small>Reply by: {{ $reply->user->name }}</small>
+                <div class="border p-2 mb-2 mt-2 reply-card">
+                    <div class="d-flex align-items-center mb-2">
+                        @php
+                            $images = json_decode($reply->user->profile->image ?? '[]', true);
+                            $firstImage = $images[0] ?? null;
+                        @endphp
+
+                        @if($firstImage)
+                            <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}"
+                                class="img-sm rounded-circle me-2 border border-2 border-dark"
+                                alt="Profile Image">
+                        @else
+                            No Available Image
+                        @endif
+
+                        <div><strong>{{ $reply->user->name }}</strong></div>
                     </div>
+
+                    <div class="reply-content" style="max-height:100px; overflow:hidden;">
+                        <p class="reply-text">{{ $reply->content }}</p>
+                    </div>
+                    <button class="btn btn-sm btn-link see-more-btn" style="display:none;">See More</button>
+                </div>
                 @endforeach
 
                 {{-- Reply Form --}}
@@ -152,6 +253,57 @@
         </div>
     </div>
     @endforeach
+
+
     {{ $posts->links() }}
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.see-more-btn');
+
+    buttons.forEach(btn => {
+        const contentDiv = btn.previousElementSibling;
+        const maxHeight = contentDiv.classList.contains('post-content') ? 100 : 50;
+
+        // Show button only if content exceeds max-height
+        if (contentDiv.scrollHeight > maxHeight) {
+            btn.style.display = 'inline-block';
+        }
+
+        btn.addEventListener('click', function() {
+            if (contentDiv.style.maxHeight && contentDiv.style.maxHeight !== 'none') {
+                // Expand
+                contentDiv.style.maxHeight = 'none';
+                contentDiv.style.overflow = 'visible';
+                this.textContent = 'See Less';
+            } else {
+                // Collapse
+                contentDiv.style.maxHeight = maxHeight + 'px';
+                contentDiv.style.overflow = 'hidden';
+                this.textContent = 'See More';
+            }
+        });
+    });
+});
+</script>
+
+
+<script>
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 70 },
+    "size": { "value": 3 },
+    "color": { "value": "#a855f7" },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#c084fc",
+      "opacity": 0.4
+    },
+    "move": { "speed": 2 }
+  }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 @endsection

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Category;
+use Realshid\SweetAlert\Facades\Alert;
 
 class LikeController extends Controller
 {
@@ -81,5 +84,23 @@ class LikeController extends Controller
     public function destroy(Like $like)
     {
         //
+    }
+
+    public function toggleLike($postId)
+    {
+        $like = Like::where('user_id', auth()->id())
+                    ->where('post_id', $postId)
+                    ->first();
+
+        if ($like) {
+            $like->delete();
+        } else {
+            Like::create([
+                'user_id' => auth()->id(),
+                'post_id' => $postId
+            ]);
+        }
+
+        return back();
     }
 }

@@ -19,10 +19,41 @@ class StudentPostController extends Controller
     {
         $posts = Post::all();
 
+        $featuredPosts = Post::where('status', 'Published')
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $essays = Post::where('category_id', 9)->where('status', 'Published')->get();
+        $poems = Post::where('category_id', 2)->where('status', 'Published')->get();
+
         $writer = User::where('id', Auth::id())->first();
-        return view('studentposts.index', compact('posts', 'writer'));
+        return view('studentposts.index', compact('posts', 'writer', 'featuredPosts', 'essays', 'poems'));
     }
 
+    public function allposts()
+    {
+        $posts = Post::with('category')->where('status', 'Published')->get();
+        return view('publish.index', compact('posts'));
+    }
+
+    public function collections()
+    {
+        // Fetch all categories with count of published posts
+        $categories = Category::withCount(['posts' => function($query) {
+            $query->where('status', 'Published');
+        }])->get();
+
+        return view('collections.index', compact('categories'));
+    }
+
+    public function showCategory($categoryId)
+    {
+        $category = Category::findOrFail($categoryId);
+        $posts = $category->posts()->where('status', 'Published')->get();
+
+        return view('collections.show', compact('category', 'posts'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -78,7 +109,10 @@ class StudentPostController extends Controller
      */
     public function show($id)
     {
-        $myfeeds = Post::where('author', Auth::id())->orderBy('created_at', 'desc')->get();
+        $myfeeds = Post::where('author', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return view('studentposts.show', compact('myfeeds'));
     }
 

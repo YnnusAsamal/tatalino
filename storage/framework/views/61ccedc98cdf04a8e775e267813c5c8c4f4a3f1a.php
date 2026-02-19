@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/2.0.0/trix.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <link rel="stylesheet" media="screen" href="css/style.css">
+    <!-- <link rel="stylesheet" media="screen" href="css/style.css"> -->
 <!-- 
     <style>
     body {
@@ -149,10 +149,21 @@
         box-shadow: 0 0 30px rgba(236,72,153,0.8);
     }
     </style> -->
+
+   <style>
+    
+        .navbar-brand {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2E7D32 !important;
+            text-align: center;
+            display: block;
+            margin: 0 auto;          
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-
-    <div id="particles-js"></div>
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
         <div class="container">
 
@@ -191,8 +202,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="<?php echo e(route('forum.index')); ?>">
-                                Post
+                            <a class="nav-link fw-semibold" href="<?php echo e(route('studentposts.create')); ?>">
+                                Submit your Work
                             </a>
                         </li>
 
@@ -278,27 +289,6 @@
             <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
     </div>
-
-    <!-- <div id="particles-js"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-    <script>
-    particlesJS("particles-js", {
-    "particles": {
-        "number": { "value": 70 },
-        "size": { "value": 3 },
-        "color": { "value": "#a855f7" },
-        "line_linked": {
-        "enable": true,
-        "distance": 150,
-        "color": "#c084fc",
-        "opacity": 0.4
-        },
-        "move": { "speed": 2 }
-    }
-    });
-    </script> -->
 </body>
 </html>
 <?php /**PATH C:\laragon\www\tatalino\resources\views/layouts/student.blade.php ENDPATH**/ ?>

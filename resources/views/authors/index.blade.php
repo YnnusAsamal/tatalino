@@ -57,28 +57,24 @@ h4 {
     font-size: 18px;
 }
 </style>
-<div class="container-fluid mt-3 mb-3">
-    
+<div class="container mt-3">
     <div class="row">
         <div class="col">
             <h3 class="float-left">Authors</h3>
         </div>
     </div>
     <hr>
-<div class="row mb-4">
-    <div class="col-md-6">
-        <form action="{{ route('authors.index') }}" method="GET">
-            <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search authors..." value="{{ request('search') }}">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
-                <a href="{{ route('authors.index') }}" class="btn btn-outline-info">Refresh</a>
-            </div>
-        </form>
+    <div class="row mb-3">
+        <div class="col">
+            <form action="{{ route('authors.index') }}" method="GET">
+                <div class="d-flex justify-content-start align-items-center mb-3">
+                    <input type="text" name="search" class="form-control" placeholder="Search authors..." value="{{ request('search') }}">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    <a href="{{ route('authors.index') }}" class="btn btn-outline-info">Refresh</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-<hr>
-
-<div class="container">
     <div class="row mb-2">
         <div class="col">
             <div class="d-flex justify-content-center mt-4">
@@ -86,9 +82,9 @@ h4 {
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-sm-4"><a href="#custom-modal" class="btn btn-custom waves-effect waves-light mb-4" data-animation="fadein" data-plugin="custommodal" data-overlayspeed="200" data-overlaycolor="#36404a"><i class="mdi mdi-plus"></i> Add Member</a></div>
-    </div>
+    </div> -->
     <div class="row">
         @forelse($authors as $author)
         <div class="col-lg-4">
@@ -99,8 +95,7 @@ h4 {
                         $firstImage = $images[0] ?? null;
                     @endphp
                         @if($firstImage)
-                            <!-- <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Profile Image" class="rounded-profile mb-3 shadow"> -->
-                            <div class="thumb-lg member-thumb mx-auto"><img src="h{{ asset('assets/userprofiles/' . $firstImage) }}" class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                            <div class="thumb-lg member-thumb mx-auto"><img src="{{ asset('assets/userprofiles/' . $firstImage) }}" class="rounded-circle img-thumbnail" alt="profile-image"></div>
                         @else
                             <p>No profile image available.</p>
                         @endif
@@ -109,20 +104,16 @@ h4 {
                         <h4>{{ $author->name }}</h4>
                         <p class="text-muted">{{ $author->profile->bio }}</p>
                     </div>
-                    <ul class="social-links list-inline">
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-                    </ul>
-
                     <div class="text-center mt-2 mb-2">
+                        @
                         <form action="{{ route('authors.featured', $author->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">
-                                ⭐ Feature
+                                Feature
                             </button>
                         </form>
+                        
                     </div>
                     <!-- <div class="mt-4">
                         <div class="row">

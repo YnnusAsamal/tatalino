@@ -1,11 +1,11 @@
 @extends('layouts.student')
 @section('content')
 <style>
-  body {
+  /* body {
     font-family: 'Lato', sans-serif;
     background-color: #fdfaf3;
     color: #2E7D32 !important;
-  }
+  } */
 
   header {
     text-align: center;
@@ -169,18 +169,95 @@
       font-size: 1.5rem;
     }
   }
-</style>
 
+       body {
+    color: #797979;
+    background: #f1f2f7;
+    font-family: 'Oswald', sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 13px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    }
+    h2, h5, label {
+        font-family: 'Oswald', sans-serif;
+        color: #2E7D32;
+    }
+    .profile-card {
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 2rem;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+    }
+    .profile-card p {
+        font-size: 1.05rem;
+        margin-bottom: 0.6rem;
+        color: #333;
+    }
+    .form-label {
+        color: #2E7D32;
+        font-weight: 600;
+    }
+    .btn-primary {
+        background-color: #2E7D32;
+        border-color: #2E7D32;
+    }
+    .btn-primary:hover {
+        background-color: #27642A;
+        border-color: #27642A;
+    }
+    .rounded-profile {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #FBC02D;
+    }
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    #particles-js {
+            pointer-events: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            top: 0;
+            left: 0;
+        }
+
+        h2, h5, label {
+        font-family: 'Oswald', sans-serif;
+        color: #2E7D32;
+    }
+
+    .feed-scroll {
+        height: 100vh;
+        overflow-y: auto;
+        padding-right: 15px;
+    }
+    .sticky-sidebar {
+        position: sticky;
+        top: 80px; /* distance from top */
+        height: fit-content;
+    }
+
+
+</style>
+<div id="particles-js"></div>
 <div class="container-fluid p-0">
   <header>
     <h1>Tinta’t Talino</h1>
     <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
   </header>
-
   <section class="navigation">
       @auth
         <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-           
             <li class="nav-item">
                 <a class="nav-link text-dark" href="{{ route('studentposts.index') }}">Home</a>
             </li>
@@ -189,8 +266,8 @@
               <a class="nav-link text-dark" href="">Essays</a>
             </li>
             |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Collections</a>
+             <li class="nav-item">
+              <a class="nav-link text-dark" href="{{ route('collections.index') }}">Collections</a>
             </li>
             |
             <li class="nav-item">
@@ -198,7 +275,7 @@
             </li>
             |
             <li class="nav-item">
-              <a class="nav-link text-dark" href="{{ route('studentposts.show', auth()->user()->id) }}">Publish</a>
+              <a class="nav-link text-dark" href="{{ route('publish.index') }}">Publish</a>
             </li>
             |
             <li class="nav-item">
@@ -294,5 +371,22 @@
     <a href="{{ route('studentposts.create') }}">Submit Your Work</a>
   </div>
 </div>
+<script>
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 70 },
+    "size": { "value": 3 },
+    "color": { "value": "#a855f7" },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#c084fc",
+      "opacity": 0.4
+    },
+    "move": { "speed": 2 }
+  }
+});
+</script>
 
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 @endsection

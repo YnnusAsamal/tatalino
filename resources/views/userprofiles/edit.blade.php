@@ -2,12 +2,29 @@
 
 @section('content')
 <style>
-    body {
-        font-family: 'Lato', sans-serif;
-        background-color: #fff;
+      body {
+    color: #797979;
+    background: #f1f2f7;
+    font-family: 'Oswald', sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 13px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
     }
+    #particles-js {
+        pointer-events: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        top: 0;
+        left: 0;
+    }
+
     h2, h5, label {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Oswald', sans-serif;
         color: #2E7D32;
     }
     .profile-card {
@@ -47,7 +64,7 @@
         margin-bottom: 1.5rem;
     }
 </style>
-
+<div id="particles-js"></div>
 <div class="container mt-5">
     <h2 class="mb-4 text-center">Update Your Profile</h2>
 
@@ -95,7 +112,7 @@
                 @endphp
 
                 @if($firstImage)
-                    <img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" alt="Current Image" class="rounded-profile mb-2">
+                    <img src="{{ asset('assets/userprofiles/' . $firstImage) }}" alt="Current Image" class="rounded-profile mb-2">
                 @else
                     <p>No profile image available.</p>
                 @endif
@@ -155,4 +172,23 @@
     </form>
 
 </div>
+
+<script>
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 70 },
+    "size": { "value": 3 },
+    "color": { "value": "#a855f7" },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#c084fc",
+      "opacity": 0.4
+    },
+    "move": { "speed": 2 }
+  }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 @endsection

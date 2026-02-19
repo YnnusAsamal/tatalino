@@ -85,6 +85,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('posts/published/{id}', [PostController::class, 'published'])->name('posts.published');
         Route::put('posts/unpublished/{id}', [PostController::class, 'unpublished'])->name('posts.unpublished');
 
+        Route::put('posts/featured/{id}', [PostController::class, 'featured'])->name('posts.featured');
+        Route::put('posts/unfeatured/{id}', [PostController::class, 'unfeatured'])->name('posts.unfeatured');
+
         Route::put('authors/featured/{id}', [AuthorController::class, 'featured'])->name('authors.featured');
     });
 
@@ -98,8 +101,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('studentposts/store', [StudentPostController::class, 'store'])->name('studentposts.store');
         Route::get('studentposts/edit/{id}', [StudentPostController::class, 'edit'])->name('studentposts.edit');
         Route::put('studentposts/update/{id}', [StudentPostController::class, 'update'])->name('studentposts.update');
-        Route::delete('studentposts/destroy/{id}', [StudentPostController::class, 'destroy'])->name('studentposts.destroy');
+        Route::delete('studentposts/destroy/{id}', [StudentPostController::class, 'destroy'])->name('.destroy');
+        
+//        Route::get('studentposts/allposts', [StudentPostController::class, 'allposts'])->name('studentposts.allposts')
 
+        Route::get('publish', [StudentPostController::class, 'allposts'])->name('publish.index');
+        
         Route::get('userprofiles/show/{id}', [UserProfileController::class, 'show'])->name('userprofiles.show');
 
         Route::get('userprofiles/edit/{id}', [UserProfileController::class, 'edit'])->name('userprofiles.edit');
@@ -109,6 +116,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('forum', [ForumController::class, 'index'])->name('forum.index');
         Route::post('forum/post', [ForumController::class, 'storePost'])->name('forum.post');
         Route::post('forum/reply', [ForumController::class, 'storeReply'])->name('forum.reply');
+
+        Route::post('/post/{post}/like', [PostController::class, 'toggleLike'])
+        ->name('post.like')
+        ->middleware('auth');
+
+        Route::get('collections', [StudentPostController::class, 'collections'])->name('collections.index');
+
+        Route::get('collections/{category}', [StudentPostController::class, 'showCategory'])->name('collections.show');
     
     });
 });

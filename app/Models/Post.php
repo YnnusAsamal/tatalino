@@ -19,11 +19,17 @@ class Post extends Model
         'content',
         'author',
         'image',
-        'category',
+        'category_id',
         'status',
         'published_at',
         'unpublished_at'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
 
     public function users()
     {
@@ -38,7 +44,19 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function category() {
-        return $this->belongsTo(Category::class, 'category', 'id');
+   
+
+    public function isLikedByUser($userId) {
+        return $this->likes()->where('user_id', $userId)->exists();
     }
+
+    public function likeCount() {
+        return $this->likes()->count();
+    }
+
+    public function commentCount() {
+        return $this->comments()->count();
+    }
+
+  
 }
