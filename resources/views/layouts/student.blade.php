@@ -273,7 +273,7 @@
 
    
     <div class="content" style="position: relative; z-index: 1;">
-        @guest
+        <!-- @guest
             <div class="welcome-banner">
                 <h1>Welcome to Tinta't Talino!</h1>
                 <p class="lead">Join a learning community where students share ideas and grow together.</p>
@@ -282,7 +282,7 @@
                     <a href="{{ route('register') }}" class="btn btn-outline-light btn-lg">Register</a>
                 </div>
             </div>
-        @endguest
+        @endguest -->
         <div class="container mt-3">
             @yield('content')
             @include('sweetalert::alert')

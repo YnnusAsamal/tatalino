@@ -274,7 +274,7 @@
 
    
     <div class="content" style="position: relative; z-index: 1;">
-        <?php if(auth()->guard()->guest()): ?>
+        <!-- <?php if(auth()->guard()->guest()): ?>
             <div class="welcome-banner">
                 <h1>Welcome to Tinta't Talino!</h1>
                 <p class="lead">Join a learning community where students share ideas and grow together.</p>
@@ -283,7 +283,7 @@
                     <a href="<?php echo e(route('register')); ?>" class="btn btn-outline-light btn-lg">Register</a>
                 </div>
             </div>
-        <?php endif; ?>
+        <?php endif; ?> -->
         <div class="container mt-3">
             <?php echo $__env->yieldContent('content'); ?>
             <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
