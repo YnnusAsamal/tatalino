@@ -244,7 +244,11 @@
         <div class="works-grid">
           @foreach($featuredPosts as $featuredPost)
           <div class="card">
+            @if($featuredPost->image == null)
+            <p class="text-center text-muted">No Image Available"></p>
+            @else
             <img src="{{ asset('public/assets/posts/' . $featuredPost->image) }}" alt="">
+            @endif
             <strong>{{ $featuredPost->title }}</strong>
             <p>{{ $featuredPost->users->name }}</p>
           </div>

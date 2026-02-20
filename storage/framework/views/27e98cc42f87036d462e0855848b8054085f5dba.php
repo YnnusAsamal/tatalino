@@ -244,7 +244,11 @@
         <div class="works-grid">
           <?php $__currentLoopData = $featuredPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $featuredPost): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <div class="card">
+            <?php if($featuredPost->image == null): ?>
+            <p class="text-center text-muted">No Image Available"></p>
+            <?php else: ?>
             <img src="<?php echo e(asset('public/assets/posts/' . $featuredPost->image)); ?>" alt="">
+            <?php endif; ?>
             <strong><?php echo e($featuredPost->title); ?></strong>
             <p><?php echo e($featuredPost->users->name); ?></p>
           </div>
