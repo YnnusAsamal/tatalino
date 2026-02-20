@@ -160,7 +160,7 @@
                     </li>
                     |
                     <li class="nav-item">
-                    <a class="nav-link text-dark" href="">Contact</a>
+                    <a class="nav-link text-dark" href="<?php echo e(route('contacts.create')); ?>">Contact</a>
                     </li>
                 </ul>
             <?php else: ?>

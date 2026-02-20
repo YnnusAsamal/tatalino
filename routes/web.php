@@ -20,6 +20,7 @@ use App\Http\Controllers\ConsumptionController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\EssayController;
+use App\Http\Controllers\ContactController;
 
 /**
  * Utility route - clear cache
@@ -90,6 +91,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('posts/unfeatured/{id}', [PostController::class, 'unfeatured'])->name('posts.unfeatured');
 
         Route::put('authors/featured/{id}', [AuthorController::class, 'featured'])->name('authors.featured');
+
+         Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
     });
 
     /**
@@ -128,6 +131,11 @@ Route::group(['middleware' => ['auth']], function () {
         
 
         Route::get('essays', [EssayController::class, 'index'])->name('essays.index');
+
+       
+        Route::get('contacts/create', [ContactController::class, 'create'])->name('contacts.create');
+        Route::post('contacts/store', [ContactController::class, 'store'])->name('contacts.store');
+
     });
 });
 

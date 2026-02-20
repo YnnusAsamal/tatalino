@@ -192,10 +192,11 @@
         <div class="sidebar border-right sticky-top" id="sidebar-wrapper">
             <div class="sidebar-heading text-white"><img src="{{asset('public/assets/logo.JPG')}}" width="75px"> TINTATALINO</div>
                 <div class="list-group list-group-flush">
-                    <a href="{{ route('dashboard')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspDashboard</a>
-                    <a href="{{ route('authors.index')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Authors</a>
-                    <a href="{{ route('posts.index')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Post</a>
-                    <a href="{{ route('category.index')}}" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Category</a>
+                    <a href="{{ route('dashboard')}}" class="dropdown-item text-white mb-2"><span class="bi bi-speedometer"></span>&nbspDashboard</a>
+                    <a href="{{ route('authors.index')}}" class="dropdown-item text-whit mb-2"><span class="bi bi-speedometer"></span>&nbspManage Authors</a>
+                    <a href="{{ route('posts.index')}}" class="dropdown-item text-white mb-2"><span class="bi bi-speedometer"></span>&nbspManage Post</a>
+                    <a href="{{ route('category.index')}}" class="dropdown-item text-white mb-2"><span class="bi bi-speedometer"></span>&nbspManage Category</a>
+                    <a href="{{ route('contacts.index')}}" class="dropdown-item text-white mb-2"><span class="bi bi-speedometer"></span>&nbspManage Contacts</a>
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         @hasanyrole('Admin')    
                         <div class="accordion-item">

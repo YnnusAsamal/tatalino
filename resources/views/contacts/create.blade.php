@@ -140,7 +140,7 @@
                     </li>
                     |
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('essays.index') }}">Essays</a>
+                    <a class="nav-link text-dark" href="{{ route('essays.index') }}">Essays</a>
                     </li>
                     |
                     <li class="nav-item">
@@ -160,7 +160,7 @@
                     </li>
                     |
                     <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ route('contacts.create') }}">Contact</a>
+                    <a class="nav-link text-dark" href="">Contact</a>
                     </li>
                 </ul>
             @else
@@ -178,112 +178,44 @@
     </div>
     <div class="row mb-3 align-items-center">
         <div class="col-md-6">
-            <h3 class="mb-0">Published Literary Works</h3>
-        </div>
-        <div class="col-md-6 text-md-end mt-2 mt-md-0">
-            <form method="GET" id="sortForm" class="d-inline-flex align-items-center gap-2">
-                <label for="sort" class="mb-0">Sort By:</label>
-                <select name="sort" id="sort" class="form-select form-select-sm" onchange="document.getElementById('sortForm').submit()">
-                    <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
-                    <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Oldest</option>
-                    <option value="popular" {{ request('sort') == 'popular' ? 'selected' : '' }}>Most Popular</option>
-                </select>
-            </form>
+            <h3 class="mb-0">Contact Us</h3>
         </div>
     </div>
-    <div class="row mt-2" style="overflow-y: auto; position: relative; max-height: 80vh;">
-
-        <div class="col-md-8">
-           
-            <div class="feed-posts">
-
-                
-                <hr>
-                @foreach($posts as $post)
-                <div class="card mb-3 shadow">
-                    <div class="card-header d-flex align-items-center">
-                        @php
-                            $images = json_decode($post->users->profile->image ?? '[]', true);
-                            $profileImage = $images[0] ?? null;
-                        @endphp
-                        @if($profileImage)
-                            <img src="{{ asset('public/assets/userprofiles/' . $profileImage) }}" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
-                        @else
-                            <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
-                        @endif
-
-                        <div>
-                            <strong>{{ $post->users->name ?? 'NA' }}</strong><br>
-                            <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small><br>
-                            <small class="text-muted"><span class="badge bg-secondary ">{{ optional($post->category)->name ?? 'Uncategorized' }}</span></small>
-                        </div>
-                        <div class="float-right ms-auto">
-                            @if($post->status === 'Published')
-                                <span class="badge bg-success">Published</span>
-                            @else
-                                    <span class="badge bg-warning text-dark">Draft</span>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $post->title }}</h5>
-                        <div class="position-relative">
-                            <div class="post-content text-dark" id="post-content-{{ $post->id }}">
-                                {!! $post->content !!}
-                            </div>
-
-                            <button 
-                                class="btn btn-link p-0 see-more-btn d-none" 
-                                id="toggle-btn-{{ $post->id }}"
-                                onclick="toggleContent({{ $post->id }})">
-                                See More
-                            </button>
-                        </div>
-
-                        @if($post->image)
-                            <img src="{{ asset('public/assets/posts/' . $post->image) }}" alt="Post Image" class="img-fluid rounded mt-3" style="max-width: 100%; height: auto;">
-                        @endif
-                    </div>
-
-                    <div class="card-footer d-flex gap-2">
-                        @php
-                            $likedUsers = $post->likes->map(function($like) {
-                                return $like->user->name ?? '';
-                            })->implode(', ');
-                        @endphp
-
-                        <form action="{{ route('post.like', $post->id) }}" method="POST">
-                            @csrf
-                            <button 
-                                class="btn btn-sm btn-outline-danger"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="top"
-                                title="{{ $likedUsers ?: 'No likes yet' }}">
-                                ❤️ {{ $post->likes->count() }}
-                            </button>
-                        </form>
-                        <button class="btn btn-outline-primary btn-sm flex-grow-1">💬 Comment</button>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-        <div class="col-md-4 sticky-sidebar">
-            <div class="card shadow">
+    <div class="row">
+        <div class="col">
+            <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Suggested Friends</h5>
-                    <p class="card-text">Connect with fellow writers and readers!</p>
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex align-items-center">
-                            <img src="{{ asset('public/assets/userprofiles/default.png') }}" alt="User 1" class="rounded-profile me-3" style="width: 40px; height: 40px; border: 2px solid #FBC02D;">
-                            <div>
-                                <strong>Jane Doe</strong><br>
-                                <small class="text-muted">5 mutual friends</small>
+                    <p>
+                        We value your feedback and inquiries! Please fill out the form below to get in touch with us. Whether you have questions about our services, want to share your thoughts, or need assistance, we're here to help. We look forward to hearing from you!
+                    </p>
+                    <div class="form-group">
+                        <form action="{{ route('contacts.store') }}" method="POST">
+                            @csrf
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
                             </div>
-                            <button class="btn btn-sm btn-outline-primary ms-auto">Follow</button>
-                        </li>
-                    </ul>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <label for="email" class="mt-3">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="message" class="mt-3">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

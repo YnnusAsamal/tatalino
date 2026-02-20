@@ -224,7 +224,7 @@
           <li class="nav-item"><a class="nav-link text-dark" href="">Explore</a></li>|
           <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a></li>|
           <li class="nav-item"><a class="nav-link text-dark" href="">About</a></li>|
-          <li class="nav-item"><a class="nav-link text-dark" href="">Contact</a></li>
+          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('contacts.create')); ?>">Contact</a></li>
       </ul>
     <?php endif; ?>
   </section>
