@@ -23,12 +23,12 @@ class StudentPostController extends Controller
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
+        
 
         $essays = Post::where('category_id', 9)->where('status', 'Published')->get();
-        $poems = Post::where('category_id', 2)->where('status', 'Published')->get();
-
-        $writer = User::where('id', Auth::id())->first();
-        return view('studentposts.index', compact('posts', 'writer', 'featuredPosts', 'essays', 'poems'));
+        $writer = User::where('featured', 'Featured')->get();
+        
+        return view('studentposts.index', compact('posts', 'writer', 'featuredPosts', 'essays'));
     }
 
     public function allposts(Request $request)

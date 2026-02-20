@@ -198,6 +198,13 @@
       font-size: 1.5rem;
     }
   }
+
+  .carousel .card {
+    transition: transform 0.3s ease;
+}
+.carousel .card:hover {
+    transform: scale(1.03);
+}
 </style>
 
 <div id="particles-js"></div>
@@ -235,12 +242,14 @@
       <section class="works">
         <h3>Featured Student Works</h3>
         <div class="works-grid">
+          <?php $__currentLoopData = $featuredPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $featuredPost): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <div class="card">
-            <img src="https://picsum.photos/150/100?1" alt="">
-            <strong>The Painful Journey</strong>
-            <p>Jean Dautin</p>
+            <img src="<?php echo e(asset('public/assets/posts/' . $featuredPost->image)); ?>" alt="">
+            <strong><?php echo e($featuredPost->title); ?></strong>
+            <p><?php echo e($featuredPost->users->name); ?></p>
           </div>
-          <div class="card">
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          <!-- <div class="card">
             <img src="https://picsum.photos/150/100?2" alt="">
             <strong>Echoes of Silence</strong>
             <p>Armando Jose</p>
@@ -249,67 +258,112 @@
             <img src="https://picsum.photos/150/100?3" alt="">
             <strong>The Silent Fiano</strong>
             <p>Katrina Dillera</p>
-          </div>
+          </div> -->
         </div>
       </section>
 
-      <section class="essays">
-        <h3>Latest Essays</h3>
-        <div class="essays-grid">
-          <?php $__currentLoopData = $essays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $essay): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-          <div class="card mb-3" data-bs-toggle="modal" data-bs-target="#essayModal-<?php echo e($essay->id); ?>">
-              <img src="<?php echo e(asset('assets/posts/' . $essay->image)); ?>" class="card-img-top" alt="Essay Image">
-              <div class="card-body">
-                  <strong class="card-title"><?php echo e($essay->title); ?></strong>
-                  <p class="card-text text-muted"><?php echo e($essay->users->name); ?></p>
-              </div>
-          </div>
+    <section class="essays py-4">
+    <h3 class="mb-4">Latest Essays</h3>
 
-          <!-- Modal -->
-          <div class="modal fade" id="essayModal-<?php echo e($essay->id); ?>" tabindex="-1" aria-labelledby="essayModalLabel-<?php echo e($essay->id); ?>" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="essayModalLabel-<?php echo e($essay->id); ?>"><?php echo e($essay->title); ?></h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div id="essayCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            <?php $__currentLoopData = $essays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $essay): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="carousel-item <?php echo e($key == 0 ? 'active' : ''); ?>">
+                
+                <div class="card mx-auto shadow"
+                     style="max-width: 600px; cursor:pointer;"
+                     data-bs-toggle="modal"
+                     data-bs-target="#essayModal-<?php echo e($essay->id); ?>">
+
+                    <img src="<?php echo e(asset('public/assets/posts/' . $essay->image)); ?>"
+                         class="card-img-top"
+                         style="height:300px; object-fit:cover;"
+                         alt="Essay Image">
+
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><?php echo e($essay->title); ?></h5>
+                        <p class="text-muted mb-0"><?php echo e($essay->users->name); ?></p>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <?php if($essay->image): ?>
-                  <img src="<?php echo e(asset('assets/posts/' . $essay->image)); ?>" class="img-fluid mb-3" alt="Essay Image">
-                  <?php endif; ?>
-                  <p><strong>Author:</strong> <?php echo e($essay->users->name); ?></p>
-                  <div><?php echo $essay->content; ?></div>
-                </div>
-                <div class="modal-footer">
-                  <small class="text-muted">Published: <?php echo e($essay->created_at->format('F d, Y')); ?></small>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
+
             </div>
-          </div>
-          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            <!-- Modal -->
+            <div class="modal fade" id="essayModal-<?php echo e($essay->id); ?>" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><?php echo e($essay->title); ?></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <?php if($essay->image): ?>
+                            <img src="<?php echo e(asset('public/assets/posts/' . $essay->image)); ?>"
+                                 class="img-fluid mb-3">
+                            <?php endif; ?>
+                            <p><strong>Author:</strong> <?php echo e($essay->users->name); ?></p>
+                            <div><?php echo $essay->content; ?></div>
+                        </div>
+                        <div class="modal-footer">
+                            <small class="text-muted">
+                                Published: <?php echo e($essay->created_at->format('F d, Y')); ?>
+
+                            </small>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
-      </section>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#essayCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#essayCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</section>
     </div>
 
     <aside class="sidebar">
       <div class="writer">
-        <img src="https://picsum.photos/200/200?woman" alt="">
-        <h4>Writer of the Month</h4>
-        <p><strong>Anna Santos</strong></p>
-        <p>Join us for a literary workshop on November 20.</p>
-        <a href="#">Learn More</a>
+        <?php $__currentLoopData = $writer; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $writers): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <div class="card">
+          <div class="card-body">
+             <?php
+                $images = json_decode($writers->profile->image ?? '[]', true);
+                $profileImage = $images[0] ?? null;
+            ?>
+            <?php if($profileImage): ?>
+                <img src="<?php echo e(asset('public/assets/userprofiles/' . $profileImage)); ?>" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
+            <?php else: ?>
+                <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
+            <?php endif; ?>
+            <h4>Writer of the Month</h4>
+            <p><strong><?php echo e($writers->name); ?></strong></p>
+            <p><?php echo e($writers->profile->bio); ?></p>
+            <a href="#">Learn More</a>
+          </div>
+        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
 
       <div class="news">
-        <h4>Literary Event</h4>
-        <p>Join us for a literary workshop on November 20</p>
-        <button>Learn More</button>
-      </div>
-
-      <div class="poems">
-        <h4>Poems of Hope</h4>
-        <img src="https://picsum.photos/120/150?book" alt="Poems">
+        <div class="card">
+          <div class="card-body">
+            <h4>Literary Event</h4>
+            <p>Join us for a literary workshop on November 20</p>
+            <button>Learn More</button>
+          </div>
+        </div>
+        
       </div>
     </aside>
   </main>
