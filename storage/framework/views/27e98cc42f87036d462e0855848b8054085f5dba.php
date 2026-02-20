@@ -1,11 +1,16 @@
 
 <?php $__env->startSection('content'); ?>
 <style>
-  /* body {
-    font-family: 'Lato', sans-serif;
-    background-color: #fdfaf3;
-    color: #2E7D32 !important;
-  } */
+  body {
+    font-family: 'Oswald', sans-serif;
+    background: #f1f2f7;
+    color: #797979;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+  }
 
   header {
     text-align: center;
@@ -14,8 +19,8 @@
 
   header h1 {
     font-size: 2.5rem;
-    margin: 0;
     color: #2E7D32;
+    margin: 0;
   }
 
   header p {
@@ -50,7 +55,6 @@
     color: #fff;
     border: none;
     padding: 0.6rem 1.2rem;
-    font-size: 1rem;
     cursor: pointer;
   }
 
@@ -81,6 +85,13 @@
     padding: 1rem;
     text-align: center;
     border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
 
   .card img {
@@ -156,6 +167,24 @@
     border-radius: 4px;
   }
 
+  #particles-js {
+    pointer-events: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    left: 0;
+  }
+
+  .modal {
+    z-index: 1050 !important;
+  }
+
+  .modal-backdrop {
+    z-index: 1040 !important;
+  }
+
   @media (max-width: 768px) {
     main.container {
       grid-template-columns: 1fr;
@@ -169,136 +198,32 @@
       font-size: 1.5rem;
     }
   }
-
-       body {
-    color: #797979;
-    background: #f1f2f7;
-    font-family: 'Oswald', sans-serif;
-    padding: 0px !important;
-    margin: 0px !important;
-    font-size: 13px;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    }
-    h2, h5, label {
-        font-family: 'Oswald', sans-serif;
-        color: #2E7D32;
-    }
-    .profile-card {
-        border: 1px solid #ddd;
-        border-radius: 12px;
-        padding: 2rem;
-        background-color: #ffffff;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        margin-bottom: 2rem;
-    }
-    .profile-card p {
-        font-size: 1.05rem;
-        margin-bottom: 0.6rem;
-        color: #333;
-    }
-    .form-label {
-        color: #2E7D32;
-        font-weight: 600;
-    }
-    .btn-primary {
-        background-color: #2E7D32;
-        border-color: #2E7D32;
-    }
-    .btn-primary:hover {
-        background-color: #27642A;
-        border-color: #27642A;
-    }
-    .rounded-profile {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 4px solid #FBC02D;
-    }
-    .card-title {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-    #particles-js {
-            pointer-events: none;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            top: 0;
-            left: 0;
-        }
-
-        h2, h5, label {
-        font-family: 'Oswald', sans-serif;
-        color: #2E7D32;
-    }
-
-    .feed-scroll {
-        height: 100vh;
-        overflow-y: auto;
-        padding-right: 15px;
-    }
-    .sticky-sidebar {
-        position: sticky;
-        top: 80px; /* distance from top */
-        height: fit-content;
-    }
-
-
 </style>
+
 <div id="particles-js"></div>
+
 <div class="container-fluid p-0">
   <header>
     <h1>Tinta’t Talino</h1>
     <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
   </header>
-  <section class="navigation">
-      <?php if(auth()->guard()->check()): ?>
-        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo e(route('essays.index')); ?>">Essays</a>
-            </li>
-            |
-             <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo e(route('collections.index')); ?>">Collections</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Explore</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">About</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Contact</a>
-            </li>
-        </ul>
-    <?php else: ?>
-        <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="<?php echo e(route('login')); ?>">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="<?php echo e(route('register')); ?>">Register</a>
-            </li>
-        </ul> -->
-    <?php endif; ?>
 
+  <section class="navigation mb-3">
+    <?php if(auth()->guard()->check()): ?>
+      <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
+          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a></li>|
+          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('essays.index')); ?>">Essays</a></li>|
+          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('collections.index')); ?>">Collections</a></li>|
+          <li class="nav-item"><a class="nav-link text-dark" href="">Explore</a></li>|
+          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a></li>|
+          <li class="nav-item"><a class="nav-link text-dark" href="">About</a></li>|
+          <li class="nav-item"><a class="nav-link text-dark" href="">Contact</a></li>
+      </ul>
+    <?php endif; ?>
   </section>
+
   <hr>
+
   <section class="featured">
     <h2>Featured Work of the Month</h2>
     <p>A mesmerizing poem on the beauty of nature and the human spirit</p>
@@ -331,16 +256,38 @@
       <section class="essays">
         <h3>Latest Essays</h3>
         <div class="essays-grid">
-          <div class="card">
-            <img src="https://picsum.photos/150/100?4" alt="">
-            <strong>The Power of Perseverance</strong>
-            <p>John C.</p>
+          <?php $__currentLoopData = $essays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $essay): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <div class="card mb-3" data-bs-toggle="modal" data-bs-target="#essayModal-<?php echo e($essay->id); ?>">
+              <img src="<?php echo e(asset('assets/posts/' . $essay->image)); ?>" class="card-img-top" alt="Essay Image">
+              <div class="card-body">
+                  <strong class="card-title"><?php echo e($essay->title); ?></strong>
+                  <p class="card-text text-muted"><?php echo e($essay->users->name); ?></p>
+              </div>
           </div>
-          <div class="card">
-            <img src="https://picsum.photos/150/100?5" alt="">
-            <strong>The Act of Storytelling</strong>
-            <p>Katrina T.</p>
+
+          <!-- Modal -->
+          <div class="modal fade" id="essayModal-<?php echo e($essay->id); ?>" tabindex="-1" aria-labelledby="essayModalLabel-<?php echo e($essay->id); ?>" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="essayModalLabel-<?php echo e($essay->id); ?>"><?php echo e($essay->title); ?></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <?php if($essay->image): ?>
+                  <img src="<?php echo e(asset('assets/posts/' . $essay->image)); ?>" class="img-fluid mb-3" alt="Essay Image">
+                  <?php endif; ?>
+                  <p><strong>Author:</strong> <?php echo e($essay->users->name); ?></p>
+                  <div><?php echo $essay->content; ?></div>
+                </div>
+                <div class="modal-footer">
+                  <small class="text-muted">Published: <?php echo e($essay->created_at->format('F d, Y')); ?></small>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
           </div>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
       </section>
     </div>
@@ -362,7 +309,7 @@
 
       <div class="poems">
         <h4>Poems of Hope</h4>
-        <img src="https://picsum.photos/120/150?book" alt="">
+        <img src="https://picsum.photos/120/150?book" alt="Poems">
       </div>
     </aside>
   </main>
@@ -371,6 +318,10 @@
     <a href="<?php echo e(route('studentposts.create')); ?>">Submit Your Work</a>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
 particlesJS("particles-js", {
   "particles": {
@@ -387,8 +338,6 @@ particlesJS("particles-js", {
   }
 });
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.student', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\tatalino\resources\views/studentposts/index.blade.php ENDPATH**/ ?>
