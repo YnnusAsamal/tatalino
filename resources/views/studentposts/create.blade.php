@@ -132,8 +132,8 @@
                         <p class="bio">{{ Auth::user()->profile->bio ?? 'No bio available.' }}</p>
                         <div class="stats mb-3">
                             <span><strong>{{ Auth::user()->posts()->count() }}</strong> Posts</span>
-                            <span><strong>58</strong> Followers</span>
-                            <span><strong>34</strong> Following</span>
+                            <span><strong>{{ Auth::user()->followers->count() }}</strong> Followers</span>
+                            <span><strong>{{ Auth::user()->following->count() }}</strong> Following</span>
                         </div>
                     </div>
                     <div class="edit-profile">

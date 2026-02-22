@@ -214,7 +214,7 @@
 
             <!-- Brand -->
             <a class="navbar-brand fw-bold fs-4" href="<?php echo e(url('/')); ?>">
-                <img src="<?php echo e(asset('assets/logo_1.png')); ?>" alt="" srcset="" width="75px" height="100px" class="d-inline-block align-text-top">
+                <img src="<?php echo e(asset('public/assets/logo_1.png')); ?>" alt="" srcset="" width="75px" height="100px" class="d-inline-block align-text-top">
             </a>
 
             <!-- Toggle Button -->
@@ -330,7 +330,7 @@
         <div class="container mt-3">
         <header class="animated-header">
             <h1 class="logo">
-                <img src="<?php echo e(asset('assets/words.png')); ?>" alt="" width="350px">
+                <img src="<?php echo e(asset('public/assets/words.png')); ?>" alt="" width="350px">
             </h1>
             <p class="tagline">THE CCNHS PORTAL FOR WORDS AND WONDER</p>
         </header>
