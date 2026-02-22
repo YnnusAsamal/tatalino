@@ -293,7 +293,7 @@
                                         class="rounded-circle me-3"
                                         style="width:40px;height:40px;border:2px solid #FBC02D;">
                                 @else
-                                    <img src="{{ asset('public/assets/userprofiles/default.png') }}"
+                                    <img src="{{ asset('public/assets/userprofiles/avatar.png') }}"
                                         class="rounded-circle me-3"
                                         style="width:40px;height:40px;border:2px solid #FBC02D;">
                                 @endif
