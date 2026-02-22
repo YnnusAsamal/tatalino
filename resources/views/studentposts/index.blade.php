@@ -223,7 +223,11 @@
           @foreach($featuredPosts as $featuredPost)
           <div class="card">
             @if($featuredPost->image == null)
-            <p class="text-center text-muted">No Image Available</p>
+            <!-- <p class="text-center text-muted">No Image Available</p> -->
+             <img src="{{ asset('public/assets/posts/default.jpg') }}" 
+                        class="card-img-top" 
+                        alt="Post Image" 
+                        style="height:200px; object-fit:cover;">
             @else
             <img src="{{ asset('public/assets/posts/' . $featuredPost->image) }}" alt="">
             @endif
