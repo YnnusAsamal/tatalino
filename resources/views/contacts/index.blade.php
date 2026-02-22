@@ -82,6 +82,8 @@ h4 {
                         </h6>
                         <p class="card-text">
                             Message
+                            <br>
+                            <hr>
                             {{ $contact->message }}
                         </p>
                     </div>
