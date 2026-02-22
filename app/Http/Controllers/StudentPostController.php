@@ -62,9 +62,19 @@ class StudentPostController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
+        $currentUser = Auth::user();
+
+        $suggestedUsers = User::where('id', '!=', $currentUser->id)
+            ->whereDoesntHave('followers', function ($query) use ($currentUser) {
+                $query->where('follower_id', $currentUser->id);
+            })
+            ->with('profile')
+            ->take(5) // limit suggestions
+            ->get();
+
         $posts = $query->get();
 
-        return view('publish.index', compact('posts'));
+        return view('publish.index', compact('posts','suggestedUsers'));
     }
 
     public function collections()

@@ -282,14 +282,53 @@
                     <h5 class="card-title">Suggested Friends</h5>
                     <p class="card-text">Connect with fellow writers and readers!</p>
                     <ul class="list-group">
+
+                    <?php $__empty_1 = true; $__currentLoopData = $suggestedUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+
+                        <?php
+                            $images = json_decode($user->profile->image ?? '[]', true);
+                            $profileImage = $images[0] ?? null;
+                        ?>
+
                         <li class="list-group-item d-flex align-items-center">
-                            <img src="<?php echo e(asset('public/assets/userprofiles/default.png')); ?>" alt="User 1" class="rounded-profile me-3" style="width: 40px; height: 40px; border: 2px solid #FBC02D;">
+
+                            <a href="<?php echo e(route('userprofiles.show', $user->id)); ?>">
+                                <?php if($profileImage): ?>
+                                    <img src="<?php echo e(asset('public/assets/userprofiles/' . $profileImage)); ?>"
+                                        class="rounded-circle me-3"
+                                        style="width:40px;height:40px;border:2px solid #FBC02D;">
+                                <?php else: ?>
+                                    <img src="<?php echo e(asset('public/assets/userprofiles/default.png')); ?>"
+                                        class="rounded-circle me-3"
+                                        style="width:40px;height:40px;border:2px solid #FBC02D;">
+                                <?php endif; ?>
+                            </a>
+
                             <div>
-                                <strong>Jane Doe</strong><br>
-                                <small class="text-muted">5 mutual friends</small>
+                                <a href="<?php echo e(route('userprofiles.show', $user->id)); ?>"
+                                class="text-decoration-none fw-bold text-dark">
+                                    <?php echo e($user->name); ?>
+
+                                </a>
                             </div>
-                            <button class="btn btn-sm btn-outline-primary ms-auto">Follow</button>
+
+                            <form action="<?php echo e(route('follow.toggle', $user->id)); ?>"
+                                method="POST"
+                                class="ms-auto">
+                                <?php echo csrf_field(); ?>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    Follow
+                                </button>
+                            </form>
+
                         </li>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        <li class="list-group-item text-muted">
+                            No suggestions available.
+                        </li>
+                    <?php endif; ?>
+
                     </ul>
                 </div>
             </div>

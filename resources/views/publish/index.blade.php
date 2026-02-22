@@ -277,14 +277,52 @@
                     <h5 class="card-title">Suggested Friends</h5>
                     <p class="card-text">Connect with fellow writers and readers!</p>
                     <ul class="list-group">
+
+                    @forelse($suggestedUsers as $user)
+
+                        @php
+                            $images = json_decode($user->profile->image ?? '[]', true);
+                            $profileImage = $images[0] ?? null;
+                        @endphp
+
                         <li class="list-group-item d-flex align-items-center">
-                            <img src="{{ asset('public/assets/userprofiles/default.png') }}" alt="User 1" class="rounded-profile me-3" style="width: 40px; height: 40px; border: 2px solid #FBC02D;">
+
+                            <a href="{{ route('userprofiles.show', $user->id) }}">
+                                @if($profileImage)
+                                    <img src="{{ asset('public/assets/userprofiles/' . $profileImage) }}"
+                                        class="rounded-circle me-3"
+                                        style="width:40px;height:40px;border:2px solid #FBC02D;">
+                                @else
+                                    <img src="{{ asset('public/assets/userprofiles/default.png') }}"
+                                        class="rounded-circle me-3"
+                                        style="width:40px;height:40px;border:2px solid #FBC02D;">
+                                @endif
+                            </a>
+
                             <div>
-                                <strong>Jane Doe</strong><br>
-                                <small class="text-muted">5 mutual friends</small>
+                                <a href="{{ route('userprofiles.show', $user->id) }}"
+                                class="text-decoration-none fw-bold text-dark">
+                                    {{ $user->name }}
+                                </a>
                             </div>
-                            <button class="btn btn-sm btn-outline-primary ms-auto">Follow</button>
+
+                            <form action="{{ route('follow.toggle', $user->id) }}"
+                                method="POST"
+                                class="ms-auto">
+                                @csrf
+                                <button class="btn btn-sm btn-outline-primary">
+                                    Follow
+                                </button>
+                            </form>
+
                         </li>
+
+                    @empty
+                        <li class="list-group-item text-muted">
+                            No suggestions available.
+                        </li>
+                    @endforelse
+
                     </ul>
                 </div>
             </div>
