@@ -309,7 +309,9 @@
             @if($profileImage)
                 <img src="{{ asset('public/assets/userprofiles/' . $profileImage) }}" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
             @else
-                <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
+                <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;">
+                  <img src="{{ asset('public/assets/userprofiles/avatar.png') }}" alt="Default Profile Image" class="rounded-profile" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
+                </div>
             @endif
             <h4>Writer of the Month</h4>
             <p><strong>{{ $writers->name }}</strong></p>
