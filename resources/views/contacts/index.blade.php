@@ -44,7 +44,7 @@
             </table>
         </div>
             <div class="card-footer">
-                {!! $data->render() !!}
+                {!! $contacts->render() !!}
             </div>
     </div>
 </div>
