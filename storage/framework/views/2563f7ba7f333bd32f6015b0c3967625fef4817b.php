@@ -125,57 +125,6 @@
 </style>
 <div id="particles-js"></div>
 <div class="container-fluid">
-    <header>
-        <h1>Tinta’t Talino</h1>
-        <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
-    </header>
-    <div class="row">
-        <div class="col">
-            <section class="navigation">
-            <?php if(auth()->guard()->check()): ?>
-                <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-                
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="<?php echo e(route('essays.index')); ?>">Essays</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="<?php echo e(route('collections.index')); ?>">Collections</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="">Explore</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="">About</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="">Contact</a>
-                    </li>
-                </ul>
-            <?php else: ?>
-                <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="<?php echo e(route('login')); ?>">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="<?php echo e(route('register')); ?>">Register</a>
-                    </li>
-                </ul> -->
-            <?php endif; ?>
-        </section>
-        </div>
-    </div>
     <div class="row mb-3 align-items-center">
         <div class="col-md-6">
             <h3 class="mb-0">Published Essays</h3>
@@ -194,7 +143,7 @@
     <div class="row mt-2" style="overflow-y: auto; position: relative; max-height: 80vh;">
         <div class="col-md-8">
             <div class="feed-posts">
-                <hr>
+
                 <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="card mb-3 shadow">
                     <div class="card-header d-flex align-items-center">

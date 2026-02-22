@@ -189,49 +189,6 @@
 </style>
 <div id="particles-js"></div>
 <div class="container-fluid p-0">
-  <header>
-    <h1>Tinta’t Talino</h1>
-    <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
-  </header>
-
-  <section class="navigation">
-      <?php if(auth()->guard()->check()): ?>
-        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-           
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Essays</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Collections</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Explore</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">About</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Contact</a>
-            </li>
-        </ul>
-    <?php else: ?>
-
-    <?php endif; ?>
-
-  </section>
-  <hr>
   <div class="container">
     <div class="row">
       <div class="col">
@@ -250,7 +207,7 @@
                       $profileImage = $images[0] ?? null;
                   ?>
                   <?php if($profileImage): ?>
-                      <img src="<?php echo e(asset('assets/userprofiles/' . $profileImage)); ?>" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
+                      <img src="<?php echo e(asset('public/assets/userprofiles/' . $profileImage)); ?>" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
                   <?php else: ?>
                       <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
                   <?php endif; ?>
@@ -286,7 +243,7 @@
                   </div>
 
                   <?php if($post->image): ?>
-                      <img src="<?php echo e(asset('assets/posts/' . $post->image)); ?>" alt="Post Image" class="img-fluid rounded mt-3" style="max-width: 100%; height: auto;">
+                      <img src="<?php echo e(asset('public/assets/posts/' . $post->image)); ?>" alt="Post Image" class="img-fluid rounded mt-3" style="max-width: 100%; height: auto;">
                   <?php endif; ?>
               </div>
 

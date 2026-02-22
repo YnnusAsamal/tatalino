@@ -125,62 +125,11 @@
 </style>
 <div id="particles-js"></div>
 <div class="container-fluid">
-    <header>
-        <h1>Tinta’t Talino</h1>
-        <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
-    </header>
-    <div class="row">
-        <div class="col">
-            <section class="navigation">
-            @auth
-                <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-                
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('studentposts.index') }}">Home</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('essays.index') }}">Essays</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ route('collections.index') }}">Collections</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="">Explore</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ route('publish.index') }}">Publish</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="">About</a>
-                    </li>
-                    |
-                    <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ route('contacts.create') }}">Contact</a>
-                    </li>
-                </ul>
-            @else
-                <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
-                    </li>
-                </ul> -->
-            @endauth
-        </section>
-        </div>
-    </div>
     <div class="row mb-3 align-items-center">
-        <div class="col-md-6">
+        <div class="col-md-3">
             <h3 class="mb-0">Published Literary Works</h3>
         </div>
-        <div class="col-md-6 text-md-end mt-2 mt-md-0">
+        <div class="col-md-3 text-md-end mt-2 mt-md-0">
             <form method="GET" id="sortForm" class="d-inline-flex align-items-center gap-2">
                 <label for="sort" class="mb-0">Sort By:</label>
                 <select name="sort" id="sort" class="form-select form-select-sm" onchange="document.getElementById('sortForm').submit()">
@@ -190,15 +139,17 @@
                 </select>
             </form>
         </div>
+        <div class="col-md-3 text-md-center mt-2 mt-md-0">
+            <form method="GET" id="sortForm" class="d-inline-flex align-items-center gap-2">
+                <label for="sort" class="mb-0">Search by Author/s</label>
+                <input type="text" name="search" id="search" class="form-control form-control-sm" placeholder="Enter author name..." value="{{ request('search') }}" onkeypress="if(event.key === 'Enter') { document.getElementById('sortForm').submit(); }">
+            </form>
+        </div>
+
     </div>
     <div class="row mt-2" style="overflow-y: auto; position: relative; max-height: 80vh;">
-
         <div class="col-md-8">
-           
             <div class="feed-posts">
-
-                
-                <hr>
                 @foreach($posts as $post)
                 <div class="card mb-3 shadow">
                     <div class="card-header d-flex align-items-center">
@@ -211,7 +162,6 @@
                         @else
                             <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
                         @endif
-
                         <div>
                             <strong>{{ $post->users->name ?? 'NA' }}</strong><br>
                             <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small><br>
@@ -225,7 +175,6 @@
                             @endif
                         </div>
                     </div>
-
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <div class="position-relative">

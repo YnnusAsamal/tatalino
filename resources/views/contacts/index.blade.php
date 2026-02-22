@@ -2,14 +2,11 @@
 
 
 @section('content')
-
-
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
   <p>{{ $message }}</p>
 </div>
 @endif
-
 
 <div class ="py-12 mx-3 m-4">
     <div class="card">

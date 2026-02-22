@@ -27,7 +27,11 @@ class StudentPostController extends Controller
 
         $essays = Post::where('category_id', 9)->where('status', 'Published')->get();
         $writer = User::where('featured', 'Featured')->get();
-        
+
+
+        $searchAuthors = User::where('name', 'like', '%' . request('search') . '%')->get();
+        $searchTitles = Post::where('title', 'like', '%' . request('search') . '%')->get();
+        $searchKeywords = Post::where('content', 'like', '%' . request('search') . '%')->get();
         return view('studentposts.index', compact('posts', 'writer', 'featuredPosts', 'essays'));
     }
 
@@ -36,6 +40,15 @@ class StudentPostController extends Controller
 
         $query = Post::with(['users.profile', 'category', 'likes'])
                 ->where('status', 'Published');
+
+        if ($request->filled('search')) {
+        $search = $request->search;
+
+        $query->whereHas('users', function ($q) use ($search) {
+            $q->where('name', 'LIKE', "%{$search}%");
+        });
+    }
+
 
         $sort = $request->get('sort', 'newest');
 

@@ -95,7 +95,7 @@ h4 {
                         $firstImage = $images[0] ?? null;
                     @endphp
                         @if($firstImage)
-                            <div class="thumb-lg member-thumb mx-auto"><img src="{{ asset('assets/userprofiles/' . $firstImage) }}" class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                            <div class="thumb-lg member-thumb mx-auto"><img src="{{ asset('public/assets/userprofiles/' . $firstImage) }}" class="rounded-circle img-thumbnail" alt="profile-image"></div>
                         @else
                             <p>No profile image available.</p>
                         @endif

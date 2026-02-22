@@ -208,29 +208,7 @@
 </style>
 
 <div id="particles-js"></div>
-
 <div class="container-fluid p-0">
-  <header>
-    <h1>Tinta’t Talino</h1>
-    <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
-  </header>
-
-  <section class="navigation mb-3">
-    <?php if(auth()->guard()->check()): ?>
-      <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a></li>|
-          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('essays.index')); ?>">Essays</a></li>|
-          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('collections.index')); ?>">Collections</a></li>|
-          <li class="nav-item"><a class="nav-link text-dark" href="">Explore</a></li>|
-          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a></li>|
-          <li class="nav-item"><a class="nav-link text-dark" href="">About</a></li>|
-          <li class="nav-item"><a class="nav-link text-dark" href="<?php echo e(route('contacts.create')); ?>">Contact</a></li>
-      </ul>
-    <?php endif; ?>
-  </section>
-
-  <hr>
-
   <section class="featured">
     <h2>Featured Work of the Month</h2>
     <p>A mesmerizing poem on the beauty of nature and the human spirit</p>
@@ -245,7 +223,7 @@
           <?php $__currentLoopData = $featuredPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $featuredPost): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <div class="card">
             <?php if($featuredPost->image == null): ?>
-            <p class="text-center text-muted">No Image Available"></p>
+            <p class="text-center text-muted">No Image Available</p>
             <?php else: ?>
             <img src="<?php echo e(asset('public/assets/posts/' . $featuredPost->image)); ?>" alt="">
             <?php endif; ?>
@@ -253,16 +231,6 @@
             <p><?php echo e($featuredPost->users->name); ?></p>
           </div>
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-          <!-- <div class="card">
-            <img src="https://picsum.photos/150/100?2" alt="">
-            <strong>Echoes of Silence</strong>
-            <p>Armando Jose</p>
-          </div>
-          <div class="card">
-            <img src="https://picsum.photos/150/100?3" alt="">
-            <strong>The Silent Fiano</strong>
-            <p>Katrina Dillera</p>
-          </div> -->
         </div>
       </section>
 
@@ -274,24 +242,14 @@
             <?php $__currentLoopData = $essays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $essay): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="carousel-item <?php echo e($key == 0 ? 'active' : ''); ?>">
                 
-                <div class="card mx-auto shadow"
-                     style="max-width: 600px; cursor:pointer;"
-                     data-bs-toggle="modal"
-                     data-bs-target="#essayModal-<?php echo e($essay->id); ?>">
-
-                    <img src="<?php echo e(asset('public/assets/posts/' . $essay->image)); ?>"
-                         class="card-img-top"
-                         style="height:300px; object-fit:cover;"
-                         alt="Essay Image">
-
-                    <div class="card-body text-center">
-                        <h5 class="card-title"><?php echo e($essay->title); ?></h5>
-                        <p class="text-muted mb-0"><?php echo e($essay->users->name); ?></p>
-                    </div>
+                <div class="card mx-auto shadow"style="max-width: 600px; cursor:pointer;" data-bs-toggle="modal"data-bs-target="#essayModal-<?php echo e($essay->id); ?>">
+                    <img src="<?php echo e(asset('public/assets/posts/' . $essay->image)); ?>" class="card-img-top" style="height:300px; object-fit:cover;" alt="Essay Image">
+                      <div class="card-body text-center">
+                          <h5 class="card-title"><?php echo e($essay->title); ?></h5>
+                          <p class="text-muted mb-0"><?php echo e($essay->users->name); ?></p>
+                      </div>
                 </div>
-
             </div>
-
             <!-- Modal -->
             <div class="modal fade" id="essayModal-<?php echo e($essay->id); ?>" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -302,8 +260,7 @@
                         </div>
                         <div class="modal-body">
                             <?php if($essay->image): ?>
-                            <img src="<?php echo e(asset('public/assets/posts/' . $essay->image)); ?>"
-                                 class="img-fluid mb-3">
+                            <img src="<?php echo e(asset('public/assets/posts/' . $essay->image)); ?>" class="img-fluid mb-3" alt="Essay Image">
                             <?php endif; ?>
                             <p><strong>Author:</strong> <?php echo e($essay->users->name); ?></p>
                             <div><?php echo $essay->content; ?></div>

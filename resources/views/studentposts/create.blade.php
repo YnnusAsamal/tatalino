@@ -101,53 +101,7 @@
 
 
 <div class="container">
-    <header>
-    <h1>Tinta’t Talino</h1>
-    <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
-  </header>
-  <section class="navigation">
-      @auth
-        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="{{ route('studentposts.index') }}">Home</a>
-            </li>
-            |
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="{{ route('essays.index') }}">Essays</a>
-            </li>
-            |
-             <li class="nav-item">
-              <a class="nav-link text-dark" href="{{ route('collections.index') }}">Collections</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Explore</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="{{ route('publish.index') }}">Publish</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">About</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Contact</a>
-            </li>
-        </ul>
-    @else
-        <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="{{ route('login') }}">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="{{ route('register') }}">Register</a>
-            </li>
-        </ul> -->
-    @endauth
-
-  </section>
+</section>
     <div class="row">
         <div class="col">
             <div class="title">
@@ -155,7 +109,6 @@
             </div>
         </div>
     </div>
-    <hr>
     <div class="row" style="height: 100vh;">
         <div class="col-md-4 sticky-sidebar">
             <div class="card">

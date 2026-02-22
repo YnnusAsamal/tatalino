@@ -271,8 +271,6 @@
             </div>
         </div>
     </nav>
-
-   
     <div class="content" style="position: relative; z-index: 1;">
         <!-- <?php if(auth()->guard()->guest()): ?>
             <div class="welcome-banner">
@@ -285,8 +283,63 @@
             </div>
         <?php endif; ?> -->
         <div class="container mt-3">
+        <header>
+            <h1>Tinta’t Talino</h1>
+            <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
+        </header>
+        <div class="row">
+            <div class="col">
+                <section class="navigation">
+                <?php if(auth()->guard()->check()): ?>
+                    <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
+                        </li>
+                        |
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" href="<?php echo e(route('essays.index')); ?>">Essays</a>
+                        </li>
+                        |
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" href="<?php echo e(route('collections.index')); ?>">Collections</a>
+                        </li>
+                        |
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" href="">Explore</a>
+                        </li>
+                        |
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a>
+                        </li>
+                        |
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" href="">About</a>
+                        </li>
+                        |
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" href="<?php echo e(route('contacts.create')); ?>">Contact</a>
+                        </li>
+                    </ul>
+                <?php else: ?>
+                    <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="<?php echo e(route('login')); ?>">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="<?php echo e(route('register')); ?>">Register</a>
+                        </li>
+                    </ul> -->
+                <?php endif; ?>
+            </section>
+            </div>
+        </div>
+        <hr>
+        <div class="main">
             <?php echo $__env->yieldContent('content'); ?>
             <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        </div>
+           
         </div>
     </div>
 </body>

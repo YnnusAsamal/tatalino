@@ -101,53 +101,7 @@
 
 
 <div class="container">
-    <header>
-    <h1>Tinta’t Talino</h1>
-    <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
-  </header>
-  <section class="navigation">
-      <?php if(auth()->guard()->check()): ?>
-        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Essays</a>
-            </li>
-            |
-             <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo e(route('collections.index')); ?>">Collections</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Explore</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">About</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Contact</a>
-            </li>
-        </ul>
-    <?php else: ?>
-        <!-- <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="<?php echo e(route('login')); ?>">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="<?php echo e(route('register')); ?>">Register</a>
-            </li>
-        </ul> -->
-    <?php endif; ?>
-
-  </section>
+</section>
     <div class="row">
         <div class="col">
             <div class="title">
@@ -155,7 +109,6 @@
             </div>
         </div>
     </div>
-    <hr>
     <div class="row" style="height: 100vh;">
         <div class="col-md-4 sticky-sidebar">
             <div class="card">
@@ -166,7 +119,7 @@
                             $firstImage = $images[0] ?? null;
                         ?>
                         <?php if($firstImage): ?>
-                            <img src="<?php echo e(asset('assets/userprofiles/' . $firstImage)); ?>" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                            <img src="<?php echo e(asset('public/assets/userprofiles/' . $firstImage)); ?>" alt="Profile Image" class="rounded-profile mb-3 shadow">
                         <?php else: ?>
                             <p>No profile image available.</p>
                         <?php endif; ?>

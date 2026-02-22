@@ -210,50 +210,6 @@
 </style>
 <div id="particles-js"></div>
 <div class="container-fluid p-0">
-  <header>
-    <h1>Tinta’t Talino</h1>
-    <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
-  </header>
-
-  <section class="navigation">
-      <?php if(auth()->guard()->check()): ?>
-        <ul class="navbar-nav d-flex flex-row gap-3 align-items-center">
-           
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="<?php echo e(route('studentposts.index')); ?>">Home</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo e(route('essays.index')); ?>">Essays</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo e(route('collections.index')); ?>">Collections</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Explore</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo e(route('publish.index')); ?>">Publish</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">About</a>
-            </li>
-            |
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="">Contact</a>
-            </li>
-        </ul>
-    <?php else: ?>
-
-    <?php endif; ?>
-
-  </section>
-  <hr>
-
   <div class="container">
     <div class="row">
       <div class="col">
