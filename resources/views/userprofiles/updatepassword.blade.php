@@ -25,7 +25,7 @@
                     Change Password
                 </div>
                 <div class="card-body">
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('userprofiles.update-password',[$users->id]) }}" method="post">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('userprofiles.update-password', $users->id) }}" method="post">
                         @csrf
                         @method('PATCH')
                             <div class="form-group">

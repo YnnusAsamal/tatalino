@@ -116,8 +116,8 @@ class UserProfileController extends Controller
 
     public function updatePasswordForm($id)
     {
-        $userId = User::with('profile')->findOrFail($id);
-        return view('userprofiles.updatepassword', compact('userId'));
+        $users = User::with('profile')->findOrFail($id);
+        return view('userprofiles.updatepassword', compact('users'));
     }
     public function updatePassword(Request $request, $id)
     {
