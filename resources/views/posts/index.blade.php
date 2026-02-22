@@ -27,7 +27,7 @@
         <div class="col-md-6 mb-4">
             <div class="card h-100" style="height: 400px;">
                 @if($post->image)
-                    <img src="{{ asset('assets/posts/' . $post->image) }}" 
+                    <img src="{{ asset('public/assets/posts/' . $post->image) }}" 
                         class="card-img-top" 
                         alt="Post Image" 
                         style="height:200px; object-fit:cover;">
