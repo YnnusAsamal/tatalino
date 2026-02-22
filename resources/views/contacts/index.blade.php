@@ -31,14 +31,13 @@
                 </tr>
                 @foreach ($contacts as $key => $contact)
                     <tr>
-                    <td>{{ ++$i }}</td>
+                    <td>{{ $key + 1 }}</td>
                     <td>{{ $contact->name }}</td>
                     <td>{{ $contact->email }}</td>
                     <td>
                         {{$contact->message}}
                     </td>
                     <!-- <td>
-                      
                     </td> -->
                     </tr>
                 @endforeach
