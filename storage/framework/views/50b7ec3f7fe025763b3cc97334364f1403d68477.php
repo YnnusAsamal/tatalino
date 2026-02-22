@@ -8,7 +8,7 @@
     font-family: 'Oswald', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
-    font-size: 13px;
+    font-size: 16px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
@@ -34,6 +34,7 @@
     h2, h5, label {
         font-family: 'Oswald', sans-serif;
         color: #2E7D32;
+        
     }
     .profile-card {
         border: 1px solid #ddd;
@@ -163,7 +164,11 @@
                             <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
                         <?php endif; ?>
                         <div>
-                            <strong><?php echo e($post->users->name ?? 'NA'); ?></strong><br>
+                            <a href="<?php echo e(route('userprofiles.show', $post->users->id)); ?>" 
+                                class="text-decoration-none text-dark fw-bold">
+                                    <?php echo e($post->users->name ?? 'NA'); ?>
+
+                            </a><br>
                             <small class="text-muted"><?php echo e($post->created_at->diffForHumans() ?? 'NA'); ?></small><br>
                             <small class="text-muted"><span class="badge bg-secondary "><?php echo e(optional($post->category)->name ?? 'Uncategorized'); ?></span></small>
                         </div>
@@ -218,8 +223,6 @@
                     </div>
                     <!-- Comments Section -->
                     <div class="card-body border-top">
-
-                        
                         <?php $__currentLoopData = $post->comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="d-flex mb-2">
                                 <div class="me-2">
@@ -238,7 +241,11 @@
                                 </div>
 
                                 <div class="bg-light p-2 rounded w-100">
-                                    <strong><?php echo e($comment->user->name); ?></strong>
+                                    <a href="<?php echo e(route('userprofiles.show', $comment->user->id)); ?>"
+                                        class="text-decoration-none text-dark fw-bold">
+                                            <?php echo e($comment->user->name); ?>
+
+                                        </a>
                                     <small class="text-muted ms-2">
                                         <?php echo e($comment->created_at->diffForHumans()); ?>
 
@@ -247,9 +254,6 @@
                                 </div>
                             </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
-                        
                         <form action="<?php echo e(route('comments.store')); ?>" method="POST" class="mt-2">
                             <?php echo csrf_field(); ?>
                             <input type="hidden" name="post_id" value="<?php echo e($post->id); ?>">

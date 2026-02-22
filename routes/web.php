@@ -21,6 +21,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\EssayController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FollowController;
 
 /**
  * Utility route - clear cache
@@ -117,7 +118,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('userprofiles/edit/{id}', [UserProfileController::class, 'edit'])->name('userprofiles.edit');
         Route::put('userprofiles/update/{id}', [UserProfileController::class, 'update'])->name('userprofiles.update');
-    
+        Route::get('userprofiles/show/{id}', [UserProfileController::class, 'show'])->name('userprofiles.show');
         
         Route::get('forum', [ForumController::class, 'index'])->name('forum.index');
         Route::post('forum/post', [ForumController::class, 'storePost'])->name('forum.post');
@@ -142,6 +143,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('userprofiles/updatepassword/{id}', [UserProfileController::class, 'updatePassword'])->name('userprofiles.update-password');
 
         Route::post('comments/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+
+
+        Route::post('/follow/{id}', [FollowController::class, 'toggle'])->name('follow.toggle')->middleware('auth');
 
     });
 });

@@ -49,11 +49,13 @@ class UserProfileController extends Controller
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(UserProfile $userProfile)
+    public function show($id)
     {
-        //
-    }
+        $user = User::with(['profile', 'posts',])
+            ->findOrFail($id);
 
+        return view('userprofiles.show', compact('user'));
+    }
     /**
      * Show the form for editing the specified resource.
      *

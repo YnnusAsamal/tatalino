@@ -8,7 +8,7 @@
     font-family: 'Oswald', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
-    font-size: 13px;
+    font-size: 16px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
@@ -34,6 +34,7 @@
     h2, h5, label {
         font-family: 'Oswald', sans-serif;
         color: #2E7D32;
+        
     }
     .profile-card {
         border: 1px solid #ddd;
@@ -163,7 +164,10 @@
                             <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
                         @endif
                         <div>
-                            <strong>{{ $post->users->name ?? 'NA' }}</strong><br>
+                            <a href="{{ route('userprofiles.show', $post->users->id) }}" 
+                                class="text-decoration-none text-dark fw-bold">
+                                    {{ $post->users->name ?? 'NA' }}
+                            </a><br>
                             <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small><br>
                             <small class="text-muted"><span class="badge bg-secondary ">{{ optional($post->category)->name ?? 'Uncategorized' }}</span></small>
                         </div>
@@ -216,8 +220,6 @@
                     </div>
                     <!-- Comments Section -->
                     <div class="card-body border-top">
-
-                        {{-- Comment List --}}
                         @foreach($post->comments as $comment)
                             <div class="d-flex mb-2">
                                 <div class="me-2">
@@ -236,7 +238,10 @@
                                 </div>
 
                                 <div class="bg-light p-2 rounded w-100">
-                                    <strong>{{ $comment->user->name }}</strong>
+                                    <a href="{{ route('userprofiles.show', $comment->user->id) }}"
+                                        class="text-decoration-none text-dark fw-bold">
+                                            {{ $comment->user->name }}
+                                        </a>
                                     <small class="text-muted ms-2">
                                         {{ $comment->created_at->diffForHumans() }}
                                     </small>
@@ -244,9 +249,6 @@
                                 </div>
                             </div>
                         @endforeach
-
-
-                        {{-- Add Comment Form --}}
                         <form action="{{ route('comments.store') }}" method="POST" class="mt-2">
                             @csrf
                             <input type="hidden" name="post_id" value="{{ $post->id }}">

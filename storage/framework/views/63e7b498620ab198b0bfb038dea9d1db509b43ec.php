@@ -91,7 +91,7 @@
                             $firstImage = $images[0] ?? null;
                         ?>
                         <?php if($firstImage): ?>
-                            <img src="<?php echo e(asset('assets/userprofiles/' . $firstImage)); ?>" alt="Profile Image" class="rounded-profile mb-3 shadow">
+                            <img src="<?php echo e(asset('public/assets/userprofiles/' . $firstImage)); ?>" alt="Profile Image" class="rounded-profile mb-3 shadow">
                         <?php else: ?>
                             <p>No profile image available.</p>
                         <?php endif; ?>
@@ -104,8 +104,8 @@
                         <p class="bio"><?php echo e(Auth::user()->profile->bio ?? 'No bio available.'); ?></p>
                         <div class="stats">
                             <span><strong><?php echo e(Auth::user()->posts()->count()); ?></strong> Posts</span>
-                            <span><strong>58</strong> Followers</span>
-                            <span><strong>34</strong> Following</span>
+                            <span><strong><?php echo e(Auth::user()->followers()->count()); ?></strong> Followers</span>
+                            <span><strong><?php echo e(Auth::user()->following()->count()); ?></strong> Following</span>
                         </div>
                     </div>
                     <div class="edit-profile">
@@ -138,7 +138,7 @@
                             $profileImage = $images[0] ?? null;
                         ?>
                         <?php if($profileImage): ?>
-                            <img src="<?php echo e(asset('assets/userprofiles/' . $profileImage)); ?>" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
+                            <img src="<?php echo e(asset('public/assets/userprofiles/' . $profileImage)); ?>" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
                         <?php else: ?>
                             <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
                         <?php endif; ?>
@@ -162,7 +162,7 @@
                         <p class="card-text"><?php echo $post->content; ?></p>
 
                         <?php if($post->image): ?>
-                            <img src="<?php echo e(asset('assets/posts/' . $post->image)); ?>" alt="Post Image" class="img-fluid rounded mt-3">
+                            <img src="<?php echo e(asset('public/assets/posts/' . $post->image)); ?>" alt="Post Image" class="img-fluid rounded mt-3">
                         <?php endif; ?>
                     </div>
 
