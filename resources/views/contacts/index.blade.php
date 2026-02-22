@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="card-footer">
-            {!! $contacts->render() !!}
+            {!! $contacts->links() !!}
         </div>
     </div>
 </div>
