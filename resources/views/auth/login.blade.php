@@ -125,7 +125,9 @@
                                     </div>
 
                                     <h6 class="h5 mb-0">Welcome Students!</h6>
-                                    <img src="{{ asset('public/assets/words.png') }}" alt="Welcome Image" class="img-fluid mb-3 align-self-center" style="max-width: 150px;">
+                                    <br>
+                                    <img src="{{ asset('public/assets/words.png') }}" alt="Welcome Image" class="img-fluid mb-3 text-center" style="max-width: 200px;">
+                                    <br>
                                     <p class="text-muted mt-2 mb-5">Enter your email address and password to access website</p>
 
                                     <form method="POST" action="{{ route('login') }}">
