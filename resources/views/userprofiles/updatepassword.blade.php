@@ -91,15 +91,15 @@
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('userprofiles.update-password', $users->id) }}" method="post">
                         @csrf
                         @method('PATCH')
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <input type="password" id="first-name" class="form-control col-md-7 col-xs-12"  placeholder="Enter old password" name="oldpassword"> 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <input type="password" id="first-name" placeholder="Enter new password" class="form-control col-md-7 col-xs-12" name="newpassword"> 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <input type="password" id="first-name"  class="form-control col-md-7 col-xs-12"placeholder="Enter password confirmation"  name="password_confirmation"> 
                             </div>
 
