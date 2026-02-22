@@ -214,7 +214,59 @@
 
                             </button>
                         </form>
-                        <button class="btn btn-outline-primary btn-sm flex-grow-1">💬 Comment</button>
+                        <button class="btn btn-outline-primary btn-sm">💬 Comment <?php echo e($post->comments->count()); ?></button>
+                    </div>
+                    <!-- Comments Section -->
+                    <div class="card-body border-top">
+
+                        
+                        <?php $__currentLoopData = $post->comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="d-flex mb-2">
+                                <div class="me-2">
+                                    <?php
+                                        $cImages = json_decode($comment->user->profile->image ?? '[]', true);
+                                        $cProfile = $cImages[0] ?? null;
+                                    ?>
+
+                                    <?php if($cProfile): ?>
+                                        <img src="<?php echo e(asset('public/assets/userprofiles/' . $cProfile)); ?>"
+                                            class="rounded-circle"
+                                            style="width:35px;height:35px;">
+                                    <?php else: ?>
+                                        <div style="width:35px;height:35px;background:#ddd;border-radius:50%;"></div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="bg-light p-2 rounded w-100">
+                                    <strong><?php echo e($comment->user->name); ?></strong>
+                                    <small class="text-muted ms-2">
+                                        <?php echo e($comment->created_at->diffForHumans()); ?>
+
+                                    </small>
+                                    <div><?php echo e($comment->content); ?></div>
+                                </div>
+                            </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+                        
+                        <form action="<?php echo e(route('comments.store')); ?>" method="POST" class="mt-2">
+                            <?php echo csrf_field(); ?>
+                            <input type="hidden" name="post_id" value="<?php echo e($post->id); ?>">
+
+                            <div class="input-group">
+                                <input type="text"
+                                    name="content"
+                                    class="form-control"
+                                    placeholder="Write a comment..."
+                                    required>
+
+                                <button class="btn btn-primary btn-sm">
+                                    Post
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

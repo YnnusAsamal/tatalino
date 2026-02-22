@@ -169,7 +169,7 @@
 
             <!-- Brand -->
             <a class="navbar-brand fw-bold fs-4" href="<?php echo e(url('/')); ?>">
-                Tinta’t Talino
+                <img src="<?php echo e(asset('assets/sitelogo.jpg')); ?>" alt="" srcset="" width="50px">
             </a>
 
             <!-- Toggle Button -->
@@ -230,7 +230,7 @@
                             <ul class="dropdown-menu dropdown-menu-end shadow">
                                 <li>
                                     <a class="dropdown-item" 
-                                    href="<?php echo e(route('update-password.edit', auth()->user()->id)); ?>">
+                                    href="<?php echo e(route('userprofiles.updatepassword', auth()->user()->id)); ?>">
                                         Change Password
                                     </a>
                                 </li>
@@ -284,7 +284,7 @@
         <?php endif; ?> -->
         <div class="container mt-3">
         <header>
-            <h1>Tinta’t Talino</h1>
+            <h1><img src="<?php echo e(asset('assets/words.jpg')); ?>" alt="" width="500px"></h1>
             <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
         </header>
         <div class="row">

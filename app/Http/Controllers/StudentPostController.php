@@ -38,7 +38,7 @@ class StudentPostController extends Controller
     public function allposts(Request $request)
     {
 
-        $query = Post::with(['users.profile', 'category', 'likes'])
+        $query = Post::with(['users.profile', 'category', 'likes','comments'])
                 ->where('status', 'Published');
 
         if ($request->filled('search')) {
@@ -47,7 +47,7 @@ class StudentPostController extends Controller
         $query->whereHas('users', function ($q) use ($search) {
             $q->where('name', 'LIKE', "%{$search}%");
         });
-    }
+        }
 
 
         $sort = $request->get('sort', 'newest');

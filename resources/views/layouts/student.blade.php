@@ -169,7 +169,7 @@
 
             <!-- Brand -->
             <a class="navbar-brand fw-bold fs-4" href="{{ url('/') }}">
-                Tinta’t Talino
+                <img src="{{asset('assets/sitelogo.jpg')}}" alt="" srcset="" width="50px">
             </a>
 
             <!-- Toggle Button -->
@@ -283,7 +283,7 @@
         @endguest -->
         <div class="container mt-3">
         <header>
-            <h1>Tinta’t Talino</h1>
+            <h1><img src="{{asset('assets/words.jpg')}}" alt="" width="500px"></h1>
             <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
         </header>
         <div class="row">

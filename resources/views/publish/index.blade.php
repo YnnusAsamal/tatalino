@@ -212,7 +212,58 @@
                                 ❤️ {{ $post->likes->count() }}
                             </button>
                         </form>
-                        <button class="btn btn-outline-primary btn-sm flex-grow-1">💬 Comment</button>
+                        <button class="btn btn-outline-primary btn-sm">💬 Comment {{ $post->comments->count() }}</button>
+                    </div>
+                    <!-- Comments Section -->
+                    <div class="card-body border-top">
+
+                        {{-- Comment List --}}
+                        @foreach($post->comments as $comment)
+                            <div class="d-flex mb-2">
+                                <div class="me-2">
+                                    @php
+                                        $cImages = json_decode($comment->user->profile->image ?? '[]', true);
+                                        $cProfile = $cImages[0] ?? null;
+                                    @endphp
+
+                                    @if($cProfile)
+                                        <img src="{{ asset('public/assets/userprofiles/' . $cProfile) }}"
+                                            class="rounded-circle"
+                                            style="width:35px;height:35px;">
+                                    @else
+                                        <div style="width:35px;height:35px;background:#ddd;border-radius:50%;"></div>
+                                    @endif
+                                </div>
+
+                                <div class="bg-light p-2 rounded w-100">
+                                    <strong>{{ $comment->user->name }}</strong>
+                                    <small class="text-muted ms-2">
+                                        {{ $comment->created_at->diffForHumans() }}
+                                    </small>
+                                    <div>{{ $comment->content }}</div>
+                                </div>
+                            </div>
+                        @endforeach
+
+
+                        {{-- Add Comment Form --}}
+                        <form action="{{ route('comments.store') }}" method="POST" class="mt-2">
+                            @csrf
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                            <div class="input-group">
+                                <input type="text"
+                                    name="content"
+                                    class="form-control"
+                                    placeholder="Write a comment..."
+                                    required>
+
+                                <button class="btn btn-primary btn-sm">
+                                    Post
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
                 @endforeach

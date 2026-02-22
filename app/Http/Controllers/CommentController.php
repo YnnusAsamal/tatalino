@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CommentController extends Controller
 {
@@ -35,7 +36,18 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'post_id' => 'required|exists:posts,id',
+            'content' => 'required|string|max:1000',
+        ]);
+
+        Comment::create([
+            'post_id' => $request->post_id,
+            'user_id' => auth()->id(),
+            'content' => $request->content,
+        ]);
+        Alert::success('Success', 'Comment added successfully!');
+        return back()->with('success', 'Comment added!');
     }
 
     /**

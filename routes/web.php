@@ -141,7 +141,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('userprofiles/updatepassword/{id}', [UserProfileController::class, 'updatePasswordForm'])->name('userprofiles.updatepassword');
         Route::put('userprofiles/updatepassword/{id}', [UserProfileController::class, 'updatePassword'])->name('userprofiles.update-password');
 
-        
+        Route::post('comments/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 
     });
 });
