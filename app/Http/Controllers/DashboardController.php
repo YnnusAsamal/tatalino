@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Research;
 use App\Models\User;
-use App\Models\Cost;
-use App\Models\Customer;
+use App\Models\Post;
+use App\Models\Category;
 use App\Models\Consumption;
 use App\Notifications\ResearchNotification;
 use Illuminate\Support\Facades\Notification;
@@ -24,34 +24,13 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        
-     
-        $research = Research::count();
-        $ongoing = Research::where('researchStatus', '=', 'Ongoing')->count();
-        $complete = Research::where('researchStatus', '=', 'Completed')->count();
-        $users = User::count();
-        
-        $eng = Research::where('department','=','College of Engineering')->count();
-        $teach = Research::where('department', '=', 'College of Teacher Education')->count();
 
-        $adminacc = Research::where('department', '=', 'College of Administration and Accountancy')->count();
-        $hos = Research::where('department', '=', 'College of Hospitality Management Tourism')->count();
-        $it = Research::where('department', '=', 'College of Industrial Technology')->count();
-        $com = Research::where('department', '=', 'College of Computer Studies')->count();
-        $crim = Research::where('department', '=', 'College of Criminal Justice Education')->count();
-        $art = Research::where('department', '=', 'College of Art and Sciences')->count();
-
-        
-        
-        
-        // $ceng = Research::where([['department','=','College of Engineering'],['researchStatus','=','Ongoing']])->count();
-        //
-
-        $costs = Cost::all();
-        $customers = Customer::where('status', 'Active')->count();
-        $sumPaidAmount = Consumption::where('statusCons', 'paid')->sum('amountCons');
-
-        return view('dashboard', compact('sumPaidAmount','costs','customers','research', 'users', 'ongoing','complete', 'eng','teach','adminacc','hos', 'it','com','crim','art'));
+        $totalAuthors = User::count();
+        $totalPosts = Post::count();
+        $totalPublishedPosts = Post::where('status', 'Published')->count(); 
+        $totalDraftPosts = Post::where('status', 'Unpublished')->count();
+        $totalCategories = Category::count();
+        return view('dashboard', compact('totalAuthors','totalPosts','totalPublishedPosts','totalDraftPosts','totalCategories'));
       
         // return view('dashboard', compact('research', 'users','ongoing','complete'));
        

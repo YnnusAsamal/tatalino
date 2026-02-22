@@ -223,7 +223,11 @@
           <?php $__currentLoopData = $featuredPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $featuredPost): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <div class="card">
             <?php if($featuredPost->image == null): ?>
-            <p class="text-center text-muted">No Image Available</p>
+            <!-- <p class="text-center text-muted">No Image Available</p> -->
+             <img src="<?php echo e(asset('public/assets/posts/default.jpg')); ?>" 
+                        class="card-img-top" 
+                        alt="Post Image" 
+                        style="height:200px; object-fit:cover;">
             <?php else: ?>
             <img src="<?php echo e(asset('public/assets/posts/' . $featuredPost->image)); ?>" alt="">
             <?php endif; ?>

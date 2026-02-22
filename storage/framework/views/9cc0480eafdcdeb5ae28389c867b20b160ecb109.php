@@ -192,10 +192,11 @@
         <div class="sidebar border-right sticky-top" id="sidebar-wrapper">
             <div class="sidebar-heading text-white"><img src="<?php echo e(asset('public/assets/logo.JPG')); ?>" width="75px"> TINTATALINO</div>
                 <div class="list-group list-group-flush">
-                    <a href="<?php echo e(route('dashboard')); ?>" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspDashboard</a>
-                    <a href="<?php echo e(route('authors.index')); ?>" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Authors</a>
-                    <a href="<?php echo e(route('posts.index')); ?>" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Post</a>
-                    <a href="<?php echo e(route('category.index')); ?>" class="dropdown-item text-white"><span class="bi bi-speedometer"></span>&nbspManage Category</a>
+                    <a href="<?php echo e(route('dashboard')); ?>" class="dropdown-item text-white mb-2"><span class="bi bi-speedometer"></span>&nbspDashboard</a>
+                    <a href="<?php echo e(route('authors.index')); ?>" class="dropdown-item text-white mb-2"><span class="bi bi-person-lines-fill"></span>&nbspManage Authors</a>
+                    <a href="<?php echo e(route('posts.index')); ?>" class="dropdown-item text-white mb-2"><span class="bi bi-file-earmark-post"></span>&nbspManage Post</a>
+                    <a href="<?php echo e(route('category.index')); ?>" class="dropdown-item text-white mb-2"><span class="bi bi-tags"></span>&nbspManage Category</a>
+                    <a href="<?php echo e(route('contacts.index')); ?>" class="dropdown-item text-white mb-2"><span class="bi bi-envelope-exclamation"></span>&nbspManage Contacts</a>
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <?php if(\Spatie\Permission\PermissionServiceProvider::bladeMethodWrapper('hasAnyRole', 'Admin')): ?>    
                         <div class="accordion-item">
