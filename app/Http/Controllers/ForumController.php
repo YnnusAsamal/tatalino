@@ -36,11 +36,11 @@ class ForumController extends Controller
 
     public function storeReply(Request $request)
     {
-        $request->validate([
-            'post_id' => 'required',
-            'forum_id' => 'required',
-            'content' => 'required'
-        ]);
+        // $request->validate([
+        //     'post_id' => 'required',
+        //     'forum_id' => 'required',
+        //     'content' => 'required'
+        // ]);
 
         ForumReply::create([
             'post_id' => $request->post_id,

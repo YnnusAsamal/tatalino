@@ -1,17 +1,17 @@
 
 <?php $__env->startSection('content'); ?>
 <style>
-  body {
-    color: #797979;
-    background: #f1f2f7;
-    font-family: 'Oswald', sans-serif;
-    padding: 0px !important;
-    margin: 0px !important;
-    font-size: 13px;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-  }
+   body {
+            color: #797979;
+            background: #f1f2f7;
+            font-family: 'Oswald', sans-serif;
+            padding: 0px !important;
+            margin: 0px !important;
+            font-size: 16px;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-font-smoothing: antialiased;
+        }
 
    #particles-js {
         pointer-events: none;

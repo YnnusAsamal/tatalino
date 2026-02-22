@@ -7,10 +7,17 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 @import url("https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700");
 
-body{
-    background:#DCDCDC;
-    /* margin-top:20px; */
-}
+ body {
+            color: #797979;
+            background: #f1f2f7;
+            font-family: 'Oswald', sans-serif;
+            padding: 0px !important;
+            margin: 0px !important;
+            font-size: 16px;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-font-smoothing: antialiased;
+        }
 .card-box {
     padding: 20px;
     border-radius: 3px;

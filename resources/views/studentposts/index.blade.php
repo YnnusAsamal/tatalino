@@ -1,16 +1,17 @@
 @extends('layouts.student')
 @section('content')
 <style>
-  body {
-    font-family: 'Oswald', sans-serif;
-    background: #f1f2f7;
-    color: #797979;
-    padding: 0;
-    margin: 0;
-    font-size: 13px;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-  }
+ body {
+            color: #797979;
+            background: #f1f2f7;
+            font-family: 'Oswald', sans-serif;
+            padding: 0px !important;
+            margin: 0px !important;
+            font-size: 16px;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-font-smoothing: antialiased;
+        }
 
   header {
     text-align: center;

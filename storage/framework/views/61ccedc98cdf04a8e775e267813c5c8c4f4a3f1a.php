@@ -151,17 +151,62 @@
     </style> -->
 
    <style>
-    
-        .navbar-brand {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #2E7D32 !important;
-            text-align: center;
-            display: block;
-            margin: 0 auto;          
-            text-decoration: none;
+        
+    .navbar-brand {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2E7D32 !important;
+        text-align: center;
+        display: block;
+        margin: 0 auto;          
+        text-decoration: none;
         }
-    </style>
+
+    .animated-header {
+        text-align: center;
+        padding: 40px 20px;
+        animation: fadeSlideDown 1.2s ease-out forwards;
+        opacity: 0;
+    }
+
+    .logo img {
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+        letter-spacing: 3px;
+        margin-top: 15px;
+        opacity: 0;
+        animation: fadeIn 1.5s ease forwards;
+        animation-delay: 0.8s;
+    }
+
+    /* Fade + Slide Down */
+    @keyframes  fadeSlideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Smooth Fade */
+    @keyframes  fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Floating Logo */
+    @keyframes  float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+        </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
@@ -169,7 +214,7 @@
 
             <!-- Brand -->
             <a class="navbar-brand fw-bold fs-4" href="<?php echo e(url('/')); ?>">
-                <img src="<?php echo e(asset('assets/sitelogo.jpg')); ?>" alt="" srcset="" width="100px">
+                <img src="<?php echo e(asset('assets/logo_1.png')); ?>" alt="" srcset="" width="75px" height="100px" class="d-inline-block align-text-top">
             </a>
 
             <!-- Toggle Button -->
@@ -283,10 +328,14 @@
             </div>
         <?php endif; ?> -->
         <div class="container mt-3">
-        <header>
-            <h1><img src="<?php echo e(asset('assets/words.jpg')); ?>" alt="" width="500px"></h1>
-            <p>THE CCNHS PORTAL FOR WORDS AND WONDER</p>
+        <header class="animated-header">
+            <h1 class="logo">
+                <img src="<?php echo e(asset('assets/words.png')); ?>" alt="" width="350px">
+            </h1>
+            <p class="tagline">THE CCNHS PORTAL FOR WORDS AND WONDER</p>
         </header>
+
+
         <div class="row">
             <div class="col">
                 <section class="navigation">
