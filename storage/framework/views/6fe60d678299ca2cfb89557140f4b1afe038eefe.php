@@ -187,7 +187,7 @@
                             ?>
 
                             <?php if($firstImage): ?>
-                                <img src="<?php echo e(asset('assets/userprofiles/' . $firstImage)); ?>"
+                                <img src="<?php echo e(asset('public/assets/userprofiles/' . $firstImage)); ?>"
                                     class="img-sm rounded-circle me-2 border border-2 border-dark"
                                     alt="Profile Image">
                             <?php else: ?>
@@ -224,7 +224,7 @@
                         ?>
 
                         <?php if($firstImage): ?>
-                            <img src="<?php echo e(asset('assets/userprofiles/' . $firstImage)); ?>"
+                            <img src="<?php echo e(asset('public/assets/userprofiles/' . $firstImage)); ?>"
                                 class="img-sm rounded-circle me-2 border border-2 border-dark"
                                 alt="Profile Image">
                         <?php else: ?>

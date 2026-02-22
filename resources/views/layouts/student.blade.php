@@ -169,7 +169,7 @@
 
             <!-- Brand -->
             <a class="navbar-brand fw-bold fs-4" href="{{ url('/') }}">
-                <img src="{{asset('assets/sitelogo.jpg')}}" alt="" srcset="" width="50px">
+                <img src="{{asset('assets/sitelogo.jpg')}}" alt="" srcset="" width="100px">
             </a>
 
             <!-- Toggle Button -->
