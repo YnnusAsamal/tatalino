@@ -112,9 +112,32 @@ class UserProfileController extends Controller
 
         Alert::success('Success', 'Profile updated successfully!');
         return redirect()->back();
-}
+    }
 
+    public function updatePasswordForm($id)
+    {
+        $userId = User::with('profile')->findOrFail($id);
+        return view('userprofiles.updatepassword', compact('userId'));
+    }
+    public function updatePassword(Request $request, $id)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
 
+        $user = User::findOrFail($id);
+
+        if (!\Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect']);
+        }
+
+        $user->password = \Hash::make($request->new_password);
+        $user->save();
+
+        Alert::success('Success', 'Password updated successfully!');
+        return redirect()->back();
+     }
 
 
     /**

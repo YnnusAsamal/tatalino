@@ -229,7 +229,7 @@
                             <ul class="dropdown-menu dropdown-menu-end shadow">
                                 <li>
                                     <a class="dropdown-item" 
-                                    href="{{ route('update-password.edit', auth()->user()->id) }}">
+                                    href="{{ route('userprofiles.updatepassword', auth()->user()->id) }}">
                                         Change Password
                                     </a>
                                 </li>

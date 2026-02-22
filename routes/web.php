@@ -93,6 +93,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('authors/featured/{id}', [AuthorController::class, 'featured'])->name('authors.featured');
 
          Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
+
+
     });
 
     /**
@@ -135,6 +137,11 @@ Route::group(['middleware' => ['auth']], function () {
        
         Route::get('contacts/create', [ContactController::class, 'create'])->name('contacts.create');
         Route::post('contacts/store', [ContactController::class, 'store'])->name('contacts.store');
+
+        Route::get('userprofiles/updatepassword/{id}', [UserProfileController::class, 'updatePasswordForm'])->name('userprofiles.updatepassword');
+        Route::put('userprofiles/updatepassword/{id}', [UserProfileController::class, 'updatePassword'])->name('userprofiles.update-password');
+
+        
 
     });
 });
