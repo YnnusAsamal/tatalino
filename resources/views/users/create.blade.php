@@ -55,22 +55,6 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Department</strong>
-                        <select class="form-select" name="department">
-                            <option value="RDO">RDO</option>
-                            <option value="College of Engineering">College of Engineering</option>
-                            <option value="College of Administration and Accountancy">College of Administration and Accountancy</option>
-                            <option value="College of Hospitality Management Tourism">College of Hospitality Management Tourism</option>
-                            <option value="College of Teacher Education">College of Teacher Education</option>
-                            <option value="College of Industrial Technology">College of Industrial Technology</option>
-                            <option value="College of Computer Studies">College of Computer Studies</option>
-                            <option value="College of Criminal Justice Education">College of Criminal Justice Education</option>
-                            <option value="College of Art and Sciences">College of Art and Sciences</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
                         <strong>Role:</strong>
                         {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
                     </div>
