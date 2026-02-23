@@ -81,6 +81,9 @@
 
         <h3>{{ $user->name }}</h3>
         <p class="text-muted">{{ $user->email }}</p>
+        <p class="text-muted">{{ $user->profile->bio ?? '' }}</p> <br>
+        <p class="text-muted">{{ $user->profile->strand ?? '' }}</p>
+        <p class="text-muted">{{ $user->profile->grade_level ?? '' }}</p>
         <div class="d-flex justify-content-center gap-4 mt-3">
             <div>
                 <strong>{{ $user->followers->count() }}</strong><br>

@@ -139,6 +139,7 @@
             @enderror
         </div>
 
+        
         <div class="mb-4">
             <label for="bio" class="form-label">Bio</label>
             <textarea 
@@ -151,7 +152,33 @@
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
-
+        <div class="mb-4">
+            <label for="strand" class="form-label">Strand</label>
+            <input 
+                type="text" 
+                name="strand" 
+                id="strand" 
+                class="form-control" 
+                value="{{ old('strand', $userId->profile->strand ?? '') }}"
+            >
+            @error('strand')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label for="grade_level" class="form-label">Grade Level</label>
+            <select name="grade_level" id="grade_level" class="form-select">
+                <option value="">Choose Grade Level</option>
+                @foreach(['Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'] as $grade)
+                    <option value="{{ $grade }}" {{ old('grade_level', $userId->profile->grade_level ?? '') == $grade ? 'selected' : '' }}>
+                        {{ $grade }}
+                    </option>
+                @endforeach
+            </select>
+            @error('grade_level')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
         <div class="mb-4">
             <label for="hobby" class="form-label">Hobby</label>
             <input 

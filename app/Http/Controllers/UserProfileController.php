@@ -108,6 +108,8 @@ class UserProfileController extends Controller
         $profile->image = json_encode($newFiles);
         $profile->user_description = $request->input('user_description');
         $profile->bio = $request->input('bio');
+        $profile->strand = $request->input('strand');
+        $profile->grade_level = $request->input('grade_level');
         $profile->hobby = $request->input('hobby');
 
         $profile->save();
