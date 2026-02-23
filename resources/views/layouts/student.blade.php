@@ -362,7 +362,7 @@
                         </li>
                         |
                         <li class="nav-item">
-                        <a class="nav-link text-dark" href="">About</a>
+                        <a class="nav-link text-dark" href="{{ route('abouts.index') }}">About</a>
                         </li>
                         |
                         <li class="nav-item">

@@ -147,6 +147,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/follow/{id}', [FollowController::class, 'toggle'])->name('follow.toggle')->middleware('auth');
 
+        Route::get('about', function () {
+            return view('abouts.index');
+         })->name('abouts.index');
     });
 });
 
