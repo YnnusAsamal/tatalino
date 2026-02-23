@@ -1,7 +1,7 @@
 @extends('layouts.student')
 @section('content')
 <style>
-       body {
+    body {
     color: #797979;
     background: #f1f2f7;
     font-family: 'Oswald', sans-serif;
@@ -77,15 +77,23 @@
         top: 80px; /* distance from top */
         height: fit-content;
     }
+    .card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px rgba(46, 125, 50, 0.4);
+    }
 </style>
 <div id="particles-js"></div>
 <div class="container mt-3">
-    <div class="row">
+    <div class="row mb-2">
         <div class="col">
             <h3>About Us</h3>
         </div>
     </div>
-    <hr>
     <div class="row">
         <div class="col">
             <p>Welcome to our blog website, a vibrant platform where creativity meets community! Our mission is to provide a space for writers of all backgrounds to share their stories, ideas, and insights with the world. Whether you're a seasoned author or just starting your writing journey, our blog is the perfect place to connect, inspire, and be inspired.</p>
