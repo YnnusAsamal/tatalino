@@ -83,8 +83,9 @@
 }
 
     .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 20px rgba(46, 125, 50, 0.4);
+        transform: translateY(-6px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        border: 1px solid #2E7D32;
     }
 </style>
 <div id="particles-js"></div>
