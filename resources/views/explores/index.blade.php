@@ -1,0 +1,383 @@
+@extends('layouts.student')
+
+@section('content')
+<style>
+    body {
+    color: #797979;
+    background: #f1f2f7;
+    font-family: 'Oswald', sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    }
+     header {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #2E7D32;
+  }
+
+  header p {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: #444;
+    letter-spacing: 1px;
+  }
+
+    h2, h5, label {
+        font-family: 'Oswald', sans-serif;
+        color: #2E7D32;
+        
+    }
+    .profile-card {
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 2rem;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+    }
+    .profile-card p {
+        font-size: 1.05rem;
+        margin-bottom: 0.6rem;
+        color: #333;
+    }
+    .form-label {
+        color: #2E7D32;
+        font-weight: 600;
+    }
+    .btn-primary {
+        background-color: #2E7D32;
+        border-color: #2E7D32;
+    }
+    .btn-primary:hover {
+        background-color: #27642A;
+        border-color: #27642A;
+    }
+    .rounded-profile {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #FBC02D;
+    }
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    #particles-js {
+        pointer-events: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        top: 0;
+        left: 0;
+    }
+
+    h2, h5, label {
+    font-family: 'Oswald', sans-serif;
+    color: #2E7D32;
+    }
+
+    .feed-scroll {
+        height: 100vh;
+        overflow-y: auto;
+        padding-right: 15px;
+    }
+    .sticky-sidebar {
+        position: sticky;
+        top: 80px; /* distance from top */
+        height: fit-content;
+    }
+
+    @media (max-width: 768px) {
+    main.container {
+      grid-template-columns: 1fr;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    .featured h2 {
+      font-size: 1.5rem;
+    }
+    
+  }
+  .post-content {
+    max-height: 120px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.post-content.expanded {
+    max-height: none;
+}
+
+    
+</style>
+<div id="particles-js"></div>
+<div class="container-fluid">
+    <div class="row mb-3 align-items-center">
+        <div class="col-md-3">
+            <h3 class="mb-0">Published Literary Works</h3>
+        </div>
+        <div class="col-md-3 text-md-end mt-2 mt-md-0">
+            <form method="GET" id="sortForm" class="d-inline-flex align-items-center gap-2">
+                <label for="sort" class="mb-0">Sort By:</label>
+                <select name="sort" id="sort" class="form-select form-select-sm" onchange="document.getElementById('sortForm').submit()">
+                    <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
+                    <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Oldest</option>
+                    <option value="popular" {{ request('sort') == 'popular' ? 'selected' : '' }}>Most Popular</option>
+                </select>
+            </form>
+        </div>
+        <div class="col-md-3 text-md-center mt-2 mt-md-0">
+            <form method="GET" id="sortForm" class="d-inline-flex align-items-center gap-2">
+                <label for="sort" class="mb-0">Search by Author/s</label>
+                <input type="text" name="search" id="search" class="form-control form-control-sm" placeholder="Enter author name..." value="{{ request('search') }}" onkeypress="if(event.key === 'Enter') { document.getElementById('sortForm').submit(); }">
+            </form>
+        </div>
+
+    </div>
+    <div class="row mt-2" style="overflow-y: auto; position: relative; max-height: 80vh;">
+        <div class="col-md-8">
+            <div class="feed-posts">
+                @foreach($posts as $post)
+                <div class="card mb-3 shadow">
+                    <div class="card-header d-flex align-items-center">
+                        @php
+                            $images = json_decode($post->users->profile->image ?? '[]', true);
+                            $profileImage = $images[0] ?? null;
+                        @endphp
+                        @if($profileImage)
+                            <img src="{{ asset('public/assets/userprofiles/' . $profileImage) }}" alt="Profile Image" class="rounded-profile me-3" style="width: 50px; height: 50px; border: 2px solid #FBC02D;">
+                        @else
+                            <div class="rounded-profile me-3" style="width: 50px; height: 50px; background-color: #ddd;"></div>
+                        @endif
+                        <div>
+                            <a href="{{ route('userprofiles.show', $post->users->id) }}" 
+                                class="text-decoration-none text-dark fw-bold">
+                                    {{ $post->users->name ?? 'NA' }}
+                            </a><br>
+                            <small class="text-muted">{{ $post->created_at->diffForHumans() ?? 'NA' }}</small><br>
+                            <small class="text-muted"><span class="badge bg-secondary ">{{ optional($post->category)->name ?? 'Uncategorized' }}</span></small>
+                        </div>
+                        <div class="float-right ms-auto">
+                            @if($post->status === 'Published')
+                                <span class="badge bg-success">Published</span>
+                            @else
+                                    <span class="badge bg-warning text-dark">Draft</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $post->title }}</h5>
+                        <div class="position-relative">
+                            <div class="post-content text-dark" id="post-content-{{ $post->id }}">
+                                {!! $post->content !!}
+                            </div>
+
+                            <button 
+                                class="btn btn-link p-0 see-more-btn d-none" 
+                                id="toggle-btn-{{ $post->id }}"
+                                onclick="toggleContent({{ $post->id }})">
+                                See More
+                            </button>
+                        </div>
+
+                        @if($post->image)
+                            <img src="{{ asset('public/assets/posts/' . $post->image) }}" alt="Post Image" class="img-fluid rounded mt-3" style="max-width: 100%; height: auto;">
+                        @endif
+                    </div>
+
+                    <div class="card-footer d-flex gap-2">
+                        @php
+                            $likedUsers = $post->likes->map(function($like) {
+                                return $like->user->name ?? '';
+                            })->implode(', ');
+                        @endphp
+
+                        <form action="{{ route('post.like', $post->id) }}" method="POST">
+                            @csrf
+                            <button 
+                                class="btn btn-sm btn-outline-danger"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title="{{ $likedUsers ?: 'No likes yet' }}">
+                                ❤️ {{ $post->likes->count() }}
+                            </button>
+                        </form>
+                        <button class="btn btn-outline-primary btn-sm">💬 Comment {{ $post->comments->count() }}</button>
+                    </div>
+                    <!-- Comments Section -->
+                    <div class="card-body border-top">
+                        @foreach($post->comments as $comment)
+                            <div class="d-flex mb-2">
+                                <div class="me-2">
+                                    @php
+                                        $cImages = json_decode($comment->user->profile->image ?? '[]', true);
+                                        $cProfile = $cImages[0] ?? null;
+                                    @endphp
+
+                                    @if($cProfile)
+                                        <img src="{{ asset('public/assets/userprofiles/' . $cProfile) }}"
+                                            class="rounded-circle"
+                                            style="width:35px;height:35px;">
+                                    @else
+                                        <div style="width:35px;height:35px;background:#ddd;border-radius:50%;"></div>
+                                    @endif
+                                </div>
+
+                                <div class="bg-light p-2 rounded w-100">
+                                    <a href="{{ route('userprofiles.show', $comment->user->id) }}"
+                                        class="text-decoration-none text-dark fw-bold">
+                                            {{ $comment->user->name }}
+                                        </a>
+                                    <small class="text-muted ms-2">
+                                        {{ $comment->created_at->diffForHumans() }}
+                                    </small>
+                                    <div>{{ $comment->content }}</div>
+                                </div>
+                            </div>
+                        @endforeach
+                        <form action="{{ route('comments.store') }}" method="POST" class="mt-2">
+                            @csrf
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                            <div class="input-group">
+                                <input type="text"
+                                    name="content"
+                                    class="form-control"
+                                    placeholder="Write a comment..."
+                                    required>
+
+                                <button class="btn btn-primary btn-sm">
+                                    Post
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="col-md-4 sticky-sidebar">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Suggested Friends</h5>
+                    <p class="card-text">Connect with fellow writers and readers!</p>
+                    <ul class="list-group">
+
+                    @forelse($suggestedUsers as $user)
+
+                        @php
+                            $images = json_decode($user->profile->image ?? '[]', true);
+                            $profileImage = $images[0] ?? null;
+                        @endphp
+
+                        <li class="list-group-item d-flex align-items-center">
+
+                            <a href="{{ route('userprofiles.show', $user->id) }}">
+                                @if($profileImage)
+                                    <img src="{{ asset('public/assets/userprofiles/' . $profileImage) }}"
+                                        class="rounded-circle me-3"
+                                        style="width:40px;height:40px;border:2px solid #FBC02D;">
+                                @else
+                                    <img src="{{ asset('public/assets/userprofiles/avatar.png') }}"
+                                        class="rounded-circle me-3"
+                                        style="width:40px;height:40px;border:2px solid #FBC02D;">
+                                @endif
+                            </a>
+
+                            <div>
+                                <a href="{{ route('userprofiles.show', $user->id) }}"
+                                class="text-decoration-none fw-bold text-dark">
+                                    {{ $user->name }}
+                                </a>
+                            </div>
+
+                            <form action="{{ route('follow.toggle', $user->id) }}"
+                                method="POST"
+                                class="ms-auto">
+                                @csrf
+                                <button class="btn btn-sm btn-outline-primary">
+                                    Follow
+                                </button>
+                            </form>
+
+                        </li>
+
+                    @empty
+                        <li class="list-group-item text-muted">
+                            No suggestions available.
+                        </li>
+                    @endforelse
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 70 },
+    "size": { "value": 3 },
+    "color": { "value": "#a855f7" },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#c084fc",
+      "opacity": 0.4
+    },
+    "move": { "speed": 2 }
+  }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".post-content").forEach(function(content) {
+        const postId = content.id.split("-").pop();
+        const button = document.getElementById("toggle-btn-" + postId);
+
+        if (content.scrollHeight > 120) {
+            button.classList.remove("d-none");
+        }
+    });
+});
+
+function toggleContent(postId) {
+    const content = document.getElementById("post-content-" + postId);
+    const button = document.getElementById("toggle-btn-" + postId);
+
+    content.classList.toggle("expanded");
+
+    if (content.classList.contains("expanded")) {
+        button.innerText = "See Less";
+    } else {
+        button.innerText = "See More";
+    }
+}
+</script>
+@endsection

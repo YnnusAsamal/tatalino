@@ -42,6 +42,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'bio' => ['nullable', 'string', 'max:500'],
             'hobby' => ['nullable', 'string', 'max:255'],
+            'grade_level' => ['nullable', 'string', 'max:255'],
+            'strand' => ['nullable', 'string', 'max:255'],
             'user_description' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:10000'],
         ]);

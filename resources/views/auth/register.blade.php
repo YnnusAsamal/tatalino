@@ -119,6 +119,28 @@ body{
                                         <input type="file" name="image"
                                             class="form-control">
                                     </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>Strand</label>
+                                                <input type="text" name="strand"
+                                                    class="form-control"
+                                                    value="{{ old('strand') }}">
+                                            </div>
+                                            <div class="col">
+                                                <label>Grade Level</label>
+                                                <select name="grade_level" class="form-select">
+                                                    <option value="">Choose Grade Level</option>
+                                                    <option value="Grade 7" {{ old('grade_level') == 'Grade 7' ? 'selected' : '' }}>Grade 7</option>
+                                                    <option value="Grade 8" {{ old('grade_level') == 'Grade 8' ? 'selected' : '' }}>Grade 8</option>
+                                                    <option value="Grade 9" {{ old('grade_level') == 'Grade 9' ? 'selected' : '' }}>Grade 9</option>
+                                                    <option value="Grade 10" {{ old('grade_level') == 'Grade 10' ? 'selected' : '' }}>Grade 10</option>
+                                                    <option value="Grade 11" {{ old('grade_level') == 'Grade 11' ? 'selected' : '' }}>Grade 11</option>
+                                                    <option value="Grade 12" {{ old('grade_level') == 'Grade 12' ? 'selected' : '' }}>Grade 12</option>
+                                                </select>
+                                                    value="{{ old('grade_level') }}">
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <label>Bio</label>

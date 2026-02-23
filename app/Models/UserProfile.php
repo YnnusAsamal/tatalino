@@ -17,6 +17,8 @@ class UserProfile extends Model
         'user_description',
         'bio',
         'hobby',
+        'strand',
+        'grade_level',
     ];
 
     public function users()
