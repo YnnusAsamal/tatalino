@@ -123,9 +123,13 @@ body{
                                         <div class="row">
                                             <div class="col">
                                                 <label>Strand</label>
-                                                <input type="text" name="strand"
-                                                    class="form-control"
-                                                    value="{{ old('strand') }}">
+                                                <select name="strand" class="form-select">
+                                                    <option value="">Choose Strand</option>
+                                                    <option value="STEM (Science, Technology, Engineering, and Mathematics)" {{ old('strand') == 'STEM (Science, Technology, Engineering, and Mathematics)' ? 'selected' : '' }}>STEM (Science, Technology, Engineering, and Mathematics)</option>
+                                                    <option value="ABM (Accountancy, Business, and Management)" {{ old('strand') == 'ABM (Accountancy, Business, and Management)' ? 'selected' : '' }}>ABM (Accountancy, Business, and Management)</option>
+                                                    <option value="HUMSS (Humanities and Social Sciences)" {{ old('strand') == 'HUMSS (Humanities and Social Sciences)' ? 'selected' : '' }}>HUMSS (Humanities and Social Sciences)</option>
+                                                    <option value="GAS (General Academic Strand)" {{ old('strand') == 'GAS (General Academic Strand)' ? 'selected' : '' }}>GAS (General Academic Strand)</option> 
+                                                </select>
                                             </div>
                                             <div class="col">
                                                 <label>Grade Level</label>

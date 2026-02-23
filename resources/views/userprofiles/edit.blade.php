@@ -154,13 +154,13 @@
         </div>
         <div class="mb-4">
             <label for="strand" class="form-label">Strand</label>
-            <input 
-                type="text" 
-                name="strand" 
-                id="strand" 
-                class="form-control" 
-                value="{{ old('strand', $userId->profile->strand ?? '') }}"
-            >
+            <select name="strand" class="form-select">
+           
+                <option value="STEM (Science, Technology, Engineering, and Mathematics)" {{ old('strand') == 'STEM (Science, Technology, Engineering, and Mathematics)' ? 'selected' : '' }}>STEM (Science, Technology, Engineering, and Mathematics)</option>
+                <option value="ABM (Accountancy, Business, and Management)" {{ old('strand') == 'ABM (Accountancy, Business, and Management)' ? 'selected' : '' }}>ABM (Accountancy, Business, and Management)</option>
+                <option value="HUMSS (Humanities and Social Sciences)" {{ old('strand') == 'HUMSS (Humanities and Social Sciences)' ? 'selected' : '' }}>HUMSS (Humanities and Social Sciences)</option>
+                <option value="GAS (General Academic Strand)" {{ old('strand') == 'GAS (General Academic Strand)' ? 'selected' : '' }}>GAS (General Academic Strand)</option> 
+            </select>
             @error('strand')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
