@@ -142,7 +142,7 @@ body{
                                                     <option value="Grade 11" {{ old('grade_level') == 'Grade 11' ? 'selected' : '' }}>Grade 11</option>
                                                     <option value="Grade 12" {{ old('grade_level') == 'Grade 12' ? 'selected' : '' }}>Grade 12</option>
                                                 </select>
-                                                    value="{{ old('grade_level') }}">
+                                            </div>
                                         </div>
                                     </div>
 
