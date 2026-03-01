@@ -207,41 +207,54 @@
     transform: scale(1.03);
 }
 
-  #loading-screen {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 1s ease;
-  }
+/* ================= FULLSCREEN LOADER ================= */
 
-  .loader-content {
-      text-align: center;
-  }
+html, body {
+    height: 100%;
+}
 
-  .loader-logo {
-      width: 180px;
-      opacity: 0;
-      transition: opacity 1s ease;
-  }
+#loading-screen {
+    position: fixed;
+    inset: 0;                 /* TOP RIGHT BOTTOM LEFT = 0 */
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;           /* ABOVE EVERYTHING */
+    overflow: hidden;
+}
 
-  /* Fade animation */
-  .fade-in {
-      opacity: 1 !important;
-  }
+.loader-wrapper {
+    position: relative;
+    text-align: center;
+}
 
-  .fade-out {
-      opacity: 0 !important;
-  }
+.loader-logo {
+    width: 200px;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* Animation Classes */
+.fade-in {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.fade-out {
+    opacity: 0 !important;
+}
 </style>
 <div id="loading-screen">
     <div class="loader-content">
         <img id="logo1" src="{{ asset('public/assets/logo_1.png') }}" class="loader-logo" alt="Logo 1">
-        <img id="logo2" src="{{ asset('public/assets/logo2.png') }}" class="loader-logo d-none" alt="Logo 2">
+        <img id="logo2" src="{{ asset('public/assets/logo.png') }}" class="loader-logo d-none" alt="Logo 2">
     </div>
 </div>
 <div id="particles-js"></div>
@@ -404,32 +417,32 @@ window.addEventListener("load", function () {
     const logo2 = document.getElementById("logo2");
     const loader = document.getElementById("loading-screen");
 
-    // Fade in first logo
+    // Show first logo
     setTimeout(() => {
         logo1.classList.add("fade-in");
     }, 300);
 
-    // Fade out first logo
+    // Switch to second logo
     setTimeout(() => {
         logo1.classList.remove("fade-in");
         logo1.classList.add("fade-out");
     }, 2000);
 
-    // Show second logo
     setTimeout(() => {
         logo1.classList.add("d-none");
         logo2.classList.remove("d-none");
         logo2.classList.add("fade-in");
     }, 3000);
 
-    // Fade out loader completely
+    // Fade out entire loader
     setTimeout(() => {
+        loader.style.transition = "opacity 1s ease";
         loader.style.opacity = "0";
     }, 5000);
 
-    // Remove loader from DOM
+    // Remove loader
     setTimeout(() => {
-        loader.style.display = "none";
+        loader.remove();
     }, 6000);
 
 });
