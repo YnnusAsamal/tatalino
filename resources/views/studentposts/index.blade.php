@@ -206,9 +206,46 @@
 .carousel .card:hover {
     transform: scale(1.03);
 }
+
+  #loading-screen {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 1s ease;
+  }
+
+  .loader-content {
+      text-align: center;
+  }
+
+  .loader-logo {
+      width: 180px;
+      opacity: 0;
+      transition: opacity 1s ease;
+  }
+
+  /* Fade animation */
+  .fade-in {
+      opacity: 1 !important;
+  }
+
+  .fade-out {
+      opacity: 0 !important;
+  }
 </style>
 
 <div id="particles-js"></div>
+<div id="loading-screen">
+    <div class="loader-content">
+        <img id="logo1" src="{{ asset('public/assets/logo_1.png') }}" class="loader-logo" alt="Logo 1">
+        <img id="logo2" src="{{ asset('public/assets/logo2.png') }}" class="loader-logo d-none" alt="Logo 2">
+    </div>
+</div>
 <div class="container-fluid p-0">
   <section class="featured">
     <h2>Featured Work of the Month</h2>
@@ -357,6 +394,44 @@ particlesJS("particles-js", {
     },
     "move": { "speed": 2 }
   }
+});
+</script>
+
+<script>
+window.addEventListener("load", function () {
+
+    const logo1 = document.getElementById("logo1");
+    const logo2 = document.getElementById("logo2");
+    const loader = document.getElementById("loading-screen");
+
+    // Fade in first logo
+    setTimeout(() => {
+        logo1.classList.add("fade-in");
+    }, 300);
+
+    // Fade out first logo
+    setTimeout(() => {
+        logo1.classList.remove("fade-in");
+        logo1.classList.add("fade-out");
+    }, 2000);
+
+    // Show second logo
+    setTimeout(() => {
+        logo1.classList.add("d-none");
+        logo2.classList.remove("d-none");
+        logo2.classList.add("fade-in");
+    }, 3000);
+
+    // Fade out loader completely
+    setTimeout(() => {
+        loader.style.opacity = "0";
+    }, 5000);
+
+    // Remove loader from DOM
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 6000);
+
 });
 </script>
 @endsection
