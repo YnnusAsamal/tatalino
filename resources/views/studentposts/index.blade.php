@@ -238,14 +238,14 @@
       opacity: 0 !important;
   }
 </style>
-
-<div id="particles-js"></div>
 <div id="loading-screen">
     <div class="loader-content">
         <img id="logo1" src="{{ asset('public/assets/logo_1.png') }}" class="loader-logo" alt="Logo 1">
         <img id="logo2" src="{{ asset('public/assets/logo2.png') }}" class="loader-logo d-none" alt="Logo 2">
     </div>
 </div>
+<div id="particles-js"></div>
+
 <div class="container-fluid p-0">
   <section class="featured">
     <h2>Featured Work of the Month</h2>
